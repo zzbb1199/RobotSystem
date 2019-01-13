@@ -1,13 +1,15 @@
 [Global]
-CurrentProject=MusicPlayer/MusicPlayer.vpj
+CurrentProject=Album/Album.vpj
 [ProjectDates]
 RobotSystem.vpj=20190113123942527
 Test/Test.vpj=20190113123530784
-MusicPlayer/MusicPlayer.vpj=20190113124440452
+MusicPlayer/MusicPlayer.vpj=20190113140000938
+Album/Album.vpj=20190113141631429
 [ActiveConfig]
 RobotSystem.vpj=,Debug
 Test/Test.vpj=,Debug
 MusicPlayer/MusicPlayer.vpj=,Debug
+Album/Album.vpj=,Debug
 [TreeExpansion2]
 -@ RobotSystem.vpj
   - Source Files

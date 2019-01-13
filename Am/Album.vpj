@@ -11,7 +11,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdMusicPlayer"
+		OutputFile="%bdAlbum"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -136,7 +136,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdMusicPlayer"
+		OutputFile="%bdAlbum"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -258,44 +258,42 @@
 	</Config>
 	<Files>
 		<Folder
-			Name="Bitmaps"
-			Filters="*.bmp"
-			GUID="{31D776B1-4678-450E-BF49-AE299F2F4298}"/>
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
+			GUID="{DDF0AE1A-04DC-4832-A0A3-2D2F448D39E6}">
+			<F N="dir.c"/>
+			<F N="draw.c"/>
+			<F N="touch.c"/>
+			<F N="main.c"/>
+			<F N="memory_share.c"/>
+			<F N="music.c"/>
+		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{005DA55A-1C78-47AF-A850-F7EA587FF280}">
-			<F N="album.h"/>
-			<F N="dir.h"/>
-			<F N="draw.h"/>
-			<F N="lcd_info.h"/>
-			<F N="memory_share.h"/>
-			<F N="music.h"/>
+			GUID="{F4101535-A00C-453A-8523-B96EA1D07273}">
 			<F N="touch.h"/>
-		</Folder>
-		<Folder
-			Name="Other Files"
-			Filters=""
-			GUID="{92BDE3A5-80E5-41A5-B5BF-CF32E4D6505F}">
-			<F
-				N="Makefile"
-				Type="Makefile"/>
+			<F N="draw.h"/>
+			<F N="memory_share.h"/>
+			<F N="dir.h"/>
+			<F N="music.h"/>
+			<F N="lcd_info.h"/>
 		</Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"
-			GUID="{BC8C773D-9E49-4894-AAB2-5EA649BE265E}"/>
+			GUID="{9359F2A3-F404-4E39-A340-82088F186476}"/>
 		<Folder
-			Name="Source Files"
-			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
-			GUID="{4A1E69F9-DE1B-46E4-B992-8D40C5F89995}">
-			<F N="album.c"/>
-			<F N="dir.c"/>
-			<F N="draw.c"/>
-			<F N="main.c"/>
-			<F N="memory_share.c"/>
-			<F N="music.c"/>
-			<F N="touch.c"/>
+			Name="Bitmaps"
+			Filters="*.bmp"
+			GUID="{E277D67F-3BB0-40B4-B340-4EBFFFC38C08}"/>
+		<Folder
+			Name="Other Files"
+			Filters=""
+			GUID="{D378BCA7-934D-4D04-84FE-78F159615CF9}">
+			<F
+				N="Makefile"
+				Type="Makefile"/>
 		</Folder>
 	</Files>
 </Project>

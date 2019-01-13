@@ -11,7 +11,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdMusicPlayer"
+		OutputFile="%bdAlbum"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -136,7 +136,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdMusicPlayer"
+		OutputFile="%bdAlbum"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -260,11 +260,15 @@
 		<Folder
 			Name="Bitmaps"
 			Filters="*.bmp"
-			GUID="{31D776B1-4678-450E-BF49-AE299F2F4298}"/>
+			GUID="{B94D106A-F1F5-4636-A5F1-327CE481AB86}">
+			<F N="image2.bmp"/>
+			<F N="image3.bmp"/>
+			<F N="image4.bmp"/>
+		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{005DA55A-1C78-47AF-A850-F7EA587FF280}">
+			GUID="{46667E16-DB21-457B-9D51-D11113171E5D}">
 			<F N="album.h"/>
 			<F N="dir.h"/>
 			<F N="draw.h"/>
@@ -276,7 +280,7 @@
 		<Folder
 			Name="Other Files"
 			Filters=""
-			GUID="{92BDE3A5-80E5-41A5-B5BF-CF32E4D6505F}">
+			GUID="{2B675870-71D7-4ABE-950C-F4E883DEBE75}">
 			<F
 				N="Makefile"
 				Type="Makefile"/>
@@ -284,11 +288,11 @@
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"
-			GUID="{BC8C773D-9E49-4894-AAB2-5EA649BE265E}"/>
+			GUID="{681A19A7-BC85-4347-A0B3-80B5B5F24E99}"/>
 		<Folder
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
-			GUID="{4A1E69F9-DE1B-46E4-B992-8D40C5F89995}">
+			GUID="{4C613B99-8E6B-4A00-AFC0-52EE012E58E7}">
 			<F N="album.c"/>
 			<F N="dir.c"/>
 			<F N="draw.c"/>

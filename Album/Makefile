@@ -19,15 +19,17 @@ endif
 #
 ifeq "$(CFG)" "Debug"
 OUTDIR=Debug
-OUTFILE=$(OUTDIR)/MusicPlayer
+OUTFILE=$(OUTDIR)/Album
 CFG_INC=
 CFG_LIB=
 CFG_OBJ=
-COMMON_OBJ=$(OUTDIR)/dir.o $(OUTDIR)/draw.o $(OUTDIR)/main.o \
-	$(OUTDIR)/memory_share.o $(OUTDIR)/music.o $(OUTDIR)/touch.o 
+COMMON_OBJ=$(OUTDIR)/album.o $(OUTDIR)/dir.o $(OUTDIR)/draw.o \
+	$(OUTDIR)/main.o $(OUTDIR)/memory_share.o $(OUTDIR)/music.o \
+	$(OUTDIR)/touch.o 
 OBJ=$(COMMON_OBJ) $(CFG_OBJ)
-ALL_OBJ=$(OUTDIR)/dir.o $(OUTDIR)/draw.o $(OUTDIR)/main.o \
-	$(OUTDIR)/memory_share.o $(OUTDIR)/music.o $(OUTDIR)/touch.o 
+ALL_OBJ=$(OUTDIR)/album.o $(OUTDIR)/dir.o $(OUTDIR)/draw.o \
+	$(OUTDIR)/main.o $(OUTDIR)/memory_share.o $(OUTDIR)/music.o \
+	$(OUTDIR)/touch.o 
 
 COMPILE=gcc -c    -g -o "$(OUTDIR)/$(*F).o" $(CFG_INC) "$<"
 LINK=gcc  -g -o "$(OUTFILE)" $(OBJ) $(CFG_LIB)
@@ -82,15 +84,17 @@ endif
 #
 ifeq "$(CFG)" "Release"
 OUTDIR=Release
-OUTFILE=$(OUTDIR)/MusicPlayer
+OUTFILE=$(OUTDIR)/Album
 CFG_INC=
 CFG_LIB=
 CFG_OBJ=
-COMMON_OBJ=$(OUTDIR)/dir.o $(OUTDIR)/draw.o $(OUTDIR)/main.o \
-	$(OUTDIR)/memory_share.o $(OUTDIR)/music.o $(OUTDIR)/touch.o 
+COMMON_OBJ=$(OUTDIR)/album.o $(OUTDIR)/dir.o $(OUTDIR)/draw.o \
+	$(OUTDIR)/main.o $(OUTDIR)/memory_share.o $(OUTDIR)/music.o \
+	$(OUTDIR)/touch.o 
 OBJ=$(COMMON_OBJ) $(CFG_OBJ)
-ALL_OBJ=$(OUTDIR)/dir.o $(OUTDIR)/draw.o $(OUTDIR)/main.o \
-	$(OUTDIR)/memory_share.o $(OUTDIR)/music.o $(OUTDIR)/touch.o 
+ALL_OBJ=$(OUTDIR)/album.o $(OUTDIR)/dir.o $(OUTDIR)/draw.o \
+	$(OUTDIR)/main.o $(OUTDIR)/memory_share.o $(OUTDIR)/music.o \
+	$(OUTDIR)/touch.o 
 
 COMPILE=gcc -c   -o "$(OUTDIR)/$(*F).o" $(CFG_INC) "$<"
 LINK=gcc  -o "$(OUTFILE)" $(OBJ) $(CFG_LIB)
