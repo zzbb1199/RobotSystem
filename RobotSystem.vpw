@@ -2,8 +2,10 @@
 <Workspace Version="10.0" VendorName="SlickEdit">
 	<Projects>
 		<Project File="Album/Album.vpj"/>
+		<Project File="CrossLine/CrossLine.vpj"/>
 		<Project File="MusicPlayer/MusicPlayer.vpj"/>
 		<Project File="RobotSystem.vpj"/>
 		<Project File="Test/Test.vpj"/>
+		<Project File="Video/Video.vpj"/>
 	</Projects>
 </Workspace>
