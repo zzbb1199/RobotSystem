@@ -16,10 +16,16 @@ void draw_bg(int *addr,int color);
  */
 int image_show(int *lcd,char *image_path);
 
-struct Line
+struct Point
 {
     int x;
     int y;
 };
-void draw_cross_line(int *addr,struct Line line);
+
+struct Boundary
+{
+	struct Point *p1,*p2;
+};
+
+void draw_cross_line(int *addr,struct Point point);
 #endif

@@ -42,14 +42,14 @@ int image_show(int *addr,char *image_path)
     char image_info[54];
     read(fd_image,image_info,54);
 
-    printf("=========this image'info========\n");
-    printf("image path:%s\n",image_path);
+//    printf("=========this image'info========\n");
+//    printf("image path:%s\n",image_path);
     int width = image_info[19]<<8 | image_info[18];
     int height = image_info[23]<<8 | image_info[22];
-    printf("widht=%d\n",width);
-    printf("height=%d\n",height);
-    printf("width=%x\n",width);
-    printf("height=%x\n",height);
+//    printf("widht=%d\n",width);
+//    printf("height=%d\n",height);
+//    printf("width=%x\n",width);
+//    printf("height=%x\n",height);
 
     char buffer[width*height*3];
     int ret = read(fd_image,buffer,width*height*3);
@@ -104,7 +104,7 @@ static int min(int a, int b)
     return a < b ? a : b;
 }
 
-void draw_cross_line(int *addr,struct Line line)
+void draw_cross_line(int *addr,struct Point line)
 {
     //绘制第一条线 横轴
     draw_bg(addr,0x000000);
