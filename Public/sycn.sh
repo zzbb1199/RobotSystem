@@ -1,4 +1,5 @@
 
+rm main.c
 cp *.h *.c ../
 cp *.h *.c ../Album/
 cp *.h *.c ../Video/
