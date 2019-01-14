@@ -19,6 +19,19 @@ int init_music(char *path[], int num)
 	return 0;
 }
 
+static int pause_music()
+{
+	printf("pause\n");
+	system("killall -19 madplay");  /*悬挂进程*/
+}
+
+static int play_music()
+{
+	printf("play\n");
+	system("killall -18 madplay");  /*继续进程*/
+}
+
+
 
 int pause_or_play()
 {
@@ -34,17 +47,6 @@ int pause_or_play()
 	}
 }
 
-static int pause_music()
-{
-	printf("pause\n");
-	system("killall -19 madplay");  /*悬挂进程*/
-}
-
-static int play_music()
-{
-	printf("play\n");
-	system("killall -18 madplay");  /*继续进程*/
-}
 
 int pre_music()
 {

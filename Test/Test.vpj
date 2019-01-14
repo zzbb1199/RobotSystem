@@ -261,12 +261,26 @@
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{F2D1EC3D-CA43-47AE-9F7E-4411FE5BA27E}">
-			<F N="main/main.c"/>
+			<F N="album.c"/>
+			<F N="dir.c"/>
+			<F N="draw.c"/>
+			<F N="main.c"/>
+			<F N="memory_share.c"/>
+			<F N="music.c"/>
+			<F N="touch.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{F3302614-4F67-44FE-8A42-61D358541D12}"/>
+			GUID="{F3302614-4F67-44FE-8A42-61D358541D12}">
+			<F N="album.h"/>
+			<F N="dir.h"/>
+			<F N="draw.h"/>
+			<F N="lcd_info.h"/>
+			<F N="memory_share.h"/>
+			<F N="music.h"/>
+			<F N="touch.h"/>
+		</Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"

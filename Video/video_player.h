@@ -12,9 +12,11 @@
 
 static char *video_path[50]; /*视频文件路径*/
 
+static int video_num = -1;	/*视频数量*/
 static int i = 0;   /*当前视频index*/
 
 static int fd_fifo = -1;    /*视频控制管道文件*/
+
 
 
 /**
@@ -52,7 +54,7 @@ int play_or_pause();
 int forward(int sec);
 
 /**
- * 后退
+ * 后退视频
  * 
  * @author gec (14/01/19)
  * 
@@ -62,7 +64,27 @@ int forward(int sec);
  */
 int backward(int sec);
 
+/**
+ * 音量加
+ * 
+ * @author gec (14/01/19)
+ * 
+ * @param level 音量加多少
+ * 
+ * @return int 
+ */
+extern int volume_up(float level);
 
+/**
+ * 音量减少
+ * 
+ * @author gec (14/01/19)
+ * 
+ * @param level  音量减少多少
+ * 
+ * @return int 
+ */
+extern int volume_down(float level);
 
 
 /**
@@ -86,3 +108,5 @@ int next_video();
 
 
 #endif
+
+
