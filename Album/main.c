@@ -3,6 +3,8 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "lcd_info.h"
 #include "touch.h"
 #include "draw.h"
@@ -16,7 +18,7 @@ static int fd_touch = -1;
 
 void init()
 {
-
+    printf("main init start!\n");
     lcd_addr = my_mmap();
     fd_touch = open("/dev/input/event0",O_RDONLY);
     if(-1==fd_touch)
@@ -26,10 +28,22 @@ void init()
     }
 
     int image_num = -1;
-    char *image_path[50]; 
-    read_files("./image", ".bmp", image_path, &image_num);
+    char *image_path[50];
+    int i;
+    for(i = 0; i < 50; i++)
+    {
+        image_path[i] = (char *)malloc(sizeof(char) * 50);
+    }
+    int read_ret = read_files("./Image", ".bmp", image_path, &image_num);
+    if(-1 == read_ret)
+    {
+        printf("read image files failed\n");
+        exit(0);
+    }
+
     //初始化相册
     init_album(lcd_addr, image_path, image_num);
+    printf("main init finished\n");
 }
 
 
@@ -48,7 +62,7 @@ int main(int argc, char const *argv[])
     int i = 0;
 
     //show a pic
-    image_show(lcd_addr,image_path[i%image_num]);
+    //image_show(lcd_addr,image_path[i%image_num]);
 
     int x,y;
     int start_x,start_y;

@@ -26,7 +26,12 @@ static int fd_touch = -1;
 int init()
 {
 	char *music_path[50];    /*音乐文件路径*/
-	int music_num = 0;
+	int i;
+	for (i = 0; i < 50;i++)
+	{
+		music_path[i] = (char *)malloc(sizeof(char) * 50);
+	}
+	int music_num = -1;
 	//获取音乐文件路径
 	read_files("./music", ".mp3", music_path, &music_num);
 	//初始化音乐播放器

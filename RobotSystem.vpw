@@ -4,5 +4,6 @@
 		<Project File="Album/Album.vpj"/>
 		<Project File="MusicPlayer/MusicPlayer.vpj"/>
 		<Project File="RobotSystem.vpj"/>
+		<Project File="Test/Test.vpj"/>
 	</Projects>
 </Workspace>

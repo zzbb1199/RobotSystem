@@ -19,20 +19,16 @@ endif
 #
 ifeq "$(CFG)" "Debug"
 OUTDIR=Debug
-OUTFILE=$(OUTDIR)/Album
+OUTFILE=$(OUTDIR)/Test
 CFG_INC=
 CFG_LIB=
 CFG_OBJ=
-COMMON_OBJ=$(OUTDIR)/album.o $(OUTDIR)/dir.o $(OUTDIR)/draw.o \
-	$(OUTDIR)/main.o $(OUTDIR)/memory_share.o $(OUTDIR)/music.o \
-	$(OUTDIR)/touch.o 
+COMMON_OBJ=$(OUTDIR)/main.o 
 OBJ=$(COMMON_OBJ) $(CFG_OBJ)
-ALL_OBJ=$(OUTDIR)/album.o $(OUTDIR)/dir.o $(OUTDIR)/draw.o \
-	$(OUTDIR)/main.o $(OUTDIR)/memory_share.o $(OUTDIR)/music.o \
-	$(OUTDIR)/touch.o 
+ALL_OBJ=$(OUTDIR)/main.o 
 
-COMPILE=arm-linux-gcc -c    -g -o "$(OUTDIR)/$(*F).o" $(CFG_INC) "$<"
-LINK=arm-linux-gcc  -g -o "$(OUTFILE)" $(OBJ) $(CFG_LIB)
+COMPILE=gcc -c    -g -o "$(OUTDIR)/$(*F).o" $(CFG_INC) "$<"
+LINK=gcc  -g -o "$(OUTFILE)" $(OBJ) $(CFG_LIB)
 COMPILE_ADA=gnat -g -c -o "$(OUTDIR)/$(*F).o" "$<"
 COMPILE_ADB=gnat -g -c -o "$(OUTDIR)/$(*F).o" "$<"
 COMPILE_F=gfortran -c -g -o "$(OUTDIR)/$(*F).o" "$<"
@@ -40,22 +36,22 @@ COMPILE_F90=gfortran -c -g -o "$(OUTDIR)/$(*F).o" "$<"
 COMPILE_D=gdc -c -g -o "$(OUTDIR)/$(*F).o" "$<"
 
 # Pattern rules
-$(OUTDIR)/%.o : %.c
+$(OUTDIR)/%.o : main/%.c
 	$(COMPILE)
 
-$(OUTDIR)/%.o : %.ada
+$(OUTDIR)/%.o : main/%.ada
 	$(COMPILE_ADA)
 
-$(OUTDIR)/%.o : %.d
+$(OUTDIR)/%.o : main/%.d
 	$(COMPILE_D)
 
-$(OUTDIR)/%.o : %.adb
+$(OUTDIR)/%.o : main/%.adb
 	$(COMPILE_ADB)
 
-$(OUTDIR)/%.o : %.f90
+$(OUTDIR)/%.o : main/%.f90
 	$(COMPILE_F90)
 
-$(OUTDIR)/%.o : %.f
+$(OUTDIR)/%.o : main/%.f
 	$(COMPILE_F)
 
 # Build rules
@@ -84,20 +80,16 @@ endif
 #
 ifeq "$(CFG)" "Release"
 OUTDIR=Release
-OUTFILE=$(OUTDIR)/Album
+OUTFILE=$(OUTDIR)/Test
 CFG_INC=
 CFG_LIB=
 CFG_OBJ=
-COMMON_OBJ=$(OUTDIR)/album.o $(OUTDIR)/dir.o $(OUTDIR)/draw.o \
-	$(OUTDIR)/main.o $(OUTDIR)/memory_share.o $(OUTDIR)/music.o \
-	$(OUTDIR)/touch.o 
+COMMON_OBJ=$(OUTDIR)/main.o 
 OBJ=$(COMMON_OBJ) $(CFG_OBJ)
-ALL_OBJ=$(OUTDIR)/album.o $(OUTDIR)/dir.o $(OUTDIR)/draw.o \
-	$(OUTDIR)/main.o $(OUTDIR)/memory_share.o $(OUTDIR)/music.o \
-	$(OUTDIR)/touch.o 
+ALL_OBJ=$(OUTDIR)/main.o 
 
-COMPILE=arm-linux-gcc -c   -o "$(OUTDIR)/$(*F).o" $(CFG_INC) "$<"
-LINK=arm-linux-gcc  -o "$(OUTFILE)" $(OBJ) $(CFG_LIB)
+COMPILE=gcc -c   -o "$(OUTDIR)/$(*F).o" $(CFG_INC) "$<"
+LINK=gcc  -o "$(OUTFILE)" $(OBJ) $(CFG_LIB)
 COMPILE_ADA=gnat -O -c -o "$(OUTDIR)/$(*F).o" "$<"
 COMPILE_ADB=gnat -O -c -o "$(OUTDIR)/$(*F).o" "$<"
 COMPILE_F=gfortran -O -g -o "$(OUTDIR)/$(*F).o" "$<"
@@ -105,22 +97,22 @@ COMPILE_F90=gfortran -O -g -o "$(OUTDIR)/$(*F).o" "$<"
 COMPILE_D=gdc -c -g -o "$(OUTDIR)/$(*F).o" "$<"
 
 # Pattern rules
-$(OUTDIR)/%.o : %.c
+$(OUTDIR)/%.o : main/%.c
 	$(COMPILE)
 
-$(OUTDIR)/%.o : %.ada
+$(OUTDIR)/%.o : main/%.ada
 	$(COMPILE_ADA)
 
-$(OUTDIR)/%.o : %.d
+$(OUTDIR)/%.o : main/%.d
 	$(COMPILE_D)
 
-$(OUTDIR)/%.o : %.adb
+$(OUTDIR)/%.o : main/%.adb
 	$(COMPILE_ADB)
 
-$(OUTDIR)/%.o : %.f90
+$(OUTDIR)/%.o : main/%.f90
 	$(COMPILE_F90)
 
-$(OUTDIR)/%.o : %.f
+$(OUTDIR)/%.o : main/%.f
 	$(COMPILE_F)
 
 # Build rules

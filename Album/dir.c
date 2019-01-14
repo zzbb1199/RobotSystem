@@ -4,6 +4,7 @@
 int read_files(char *dir_path, char *type
 			   , char *save_path[], int *num)
 {
+	printf("read files start\n");
 	DIR *dir = opendir(dir_path);
 	if(!dir)
 	{
@@ -22,10 +23,13 @@ int read_files(char *dir_path, char *type
 		{
 			continue;
 		}
-		strcpy(save_path[i], file_name);
+		sprintf(save_path[i], "%s%s%s", dir_path, "/", file_name);
+//		strcpy(save_path[i], file_name);
 		i++;
 	}
 	*num = i;
+	closedir(dir);
+	printf("read files end\n");
 	return 0;
 }
 
