@@ -39,10 +39,6 @@ int init_music(char *path[], int music_num);
 int pause_or_play();
 
 
-static int pause_music();
-
-static int play_music();
-
 /**
  * 上一首音乐
  * 

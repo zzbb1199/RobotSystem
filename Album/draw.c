@@ -89,6 +89,20 @@ int image_show(int *addr,char *image_path)
     return 0;
 }
 
+/**
+ * 比较a,b返回最小的那个
+ * 
+ * @author gec (14/01/19)
+ * 
+ * @param a 
+ * @param b 
+ * 
+ * @return int 
+ */
+static int min(int a, int b)
+{
+    return a < b ? a : b;
+}
 
 void draw_cross_line(int *addr,struct Line line)
 {
@@ -97,7 +111,7 @@ void draw_cross_line(int *addr,struct Line line)
     int start_x = 0;
     int start_y = line.y;
     int end_x = WIDTH;
-    int end_y = line.y+10;
+    int end_y = min(line.y+10,HEIGHT);
 
     int line_color = 0xffffff;
     int x,y;
@@ -111,7 +125,7 @@ void draw_cross_line(int *addr,struct Line line)
     //第二条
     start_x = line.x;
     start_y = 0;
-    end_x = line.x+10;
+    end_x = min(line.x + 10, WIDTH);
     end_y = HEIGHT;
     for(x = start_x;x<end_x;x++)
     {

@@ -1,5 +1,5 @@
 [Global]
-CurrentProject=CrossLine/CrossLine.vpj
+CurrentProject=GuaGuaLe/GuaGuaLe.vpj
 [ProjectDates]
 Album/Album.vpj=20190114003202000
 MusicPlayer/MusicPlayer.vpj=20190114003202000
@@ -7,6 +7,7 @@ RobotSystem.vpj=20190114003202000
 Test/Test.vpj=20190114011722000
 Video/Video.vpj=20190114030513000
 CrossLine/CrossLine.vpj=20190114033903000
+GuaGuaLe/GuaGuaLe.vpj=20190114060806000
 [ActiveConfig]
 RobotSystem.vpj=,Debug
 Test/Test.vpj=,Debug
@@ -14,6 +15,7 @@ MusicPlayer/MusicPlayer.vpj=,Debug
 Album/Album.vpj=,Debug
 Video/Video.vpj=,Debug
 CrossLine/CrossLine.vpj=,Debug
+GuaGuaLe/GuaGuaLe.vpj=,Debug
 [TreeExpansion2]
 +@ RobotSystem.vpj
 +@ Album/Album.vpj

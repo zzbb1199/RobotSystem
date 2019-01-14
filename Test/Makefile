@@ -27,8 +27,8 @@ COMMON_OBJ=$(OUTDIR)/main.o
 OBJ=$(COMMON_OBJ) $(CFG_OBJ)
 ALL_OBJ=$(OUTDIR)/main.o 
 
-COMPILE=gcc -c    -g -o "$(OUTDIR)/$(*F).o" $(CFG_INC) "$<"
-LINK=gcc  -g -o "$(OUTFILE)" $(OBJ) $(CFG_LIB)
+COMPILE=arm-linux-gcc -c    -g -o "$(OUTDIR)/$(*F).o" $(CFG_INC) "$<"
+LINK=arm-linux-gcc  -g -o "$(OUTFILE)" $(OBJ) $(CFG_LIB)
 COMPILE_ADA=gnat -g -c -o "$(OUTDIR)/$(*F).o" "$<"
 COMPILE_ADB=gnat -g -c -o "$(OUTDIR)/$(*F).o" "$<"
 COMPILE_F=gfortran -c -g -o "$(OUTDIR)/$(*F).o" "$<"
@@ -88,8 +88,8 @@ COMMON_OBJ=$(OUTDIR)/main.o
 OBJ=$(COMMON_OBJ) $(CFG_OBJ)
 ALL_OBJ=$(OUTDIR)/main.o 
 
-COMPILE=gcc -c   -o "$(OUTDIR)/$(*F).o" $(CFG_INC) "$<"
-LINK=gcc  -o "$(OUTFILE)" $(OBJ) $(CFG_LIB)
+COMPILE=arm-linux-gcc -c   -o "$(OUTDIR)/$(*F).o" $(CFG_INC) "$<"
+LINK=arm-linux-gcc  -o "$(OUTFILE)" $(OBJ) $(CFG_LIB)
 COMPILE_ADA=gnat -O -c -o "$(OUTDIR)/$(*F).o" "$<"
 COMPILE_ADB=gnat -O -c -o "$(OUTDIR)/$(*F).o" "$<"
 COMPILE_F=gfortran -O -g -o "$(OUTDIR)/$(*F).o" "$<"
