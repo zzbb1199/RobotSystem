@@ -23,7 +23,8 @@ int read_files(char *dir_path, char *type
 		{
 			continue;
 		}
-		strcpy(save_path[i], file_name);
+		sprintf(save_path[i], "%s%s%s", dir_path, "/", file_name);
+//		strcpy(save_path[i], file_name);
 		i++;
 	}
 	*num = i;

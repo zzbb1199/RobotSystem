@@ -1,5 +1,5 @@
 [Global]
-CurrentProject=Album/Album.vpj
+CurrentProject=MusicPlayer/MusicPlayer.vpj
 [ProjectDates]
 Album/Album.vpj=20190114003202000
 MusicPlayer/MusicPlayer.vpj=20190114003202000
@@ -12,20 +12,15 @@ MusicPlayer/MusicPlayer.vpj=,Debug
 Album/Album.vpj=,Debug
 [TreeExpansion2]
 +@ RobotSystem.vpj
--@ Album/Album.vpj
-  + Bitmaps
-  - Header Files
-  - Other Files
-  + Resource Files
-  - Source Files
++@ Album/Album.vpj
 -@ MusicPlayer/MusicPlayer.vpj
   + Bitmaps
   + Header Files
-  + Other Files
+  - Other Files
   + Resource Files
   - Source Files
 +@ Test/Test.vpj
-scroll:2
+scroll:0
 [State]
 MONITOR_CONFIGS: 392
 MONITOR_CONFIG: 221 0 0 1362 616

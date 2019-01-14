@@ -17,13 +17,15 @@ int read_files(char *dir_path, char *type
 	int i = 0;
 	while((file = readdir(dir)))
 	{
+		printf("%s\n", file->d_name);
 		strcpy(file_name, file->d_name);	/*读取文件名*/
 		ret = strstr(file_name, type);
 		if(!ret || strlen(ret) != strlen(type))	/*如果没有该子串或者type的长度和从子串点开始的长度不同时*/
 		{
 			continue;
 		}
-		strcpy(save_path[i], file_name);
+		sprintf(save_path[i], "%s%s%s", dir_path, "/", file_name);
+//		strcpy(save_path[i], file_name);
 		i++;
 	}
 	*num = i;

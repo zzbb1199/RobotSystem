@@ -33,7 +33,7 @@ int init()
 	}
 	int music_num = -1;
 	//获取音乐文件路径
-	read_files("./music", ".mp3", music_path, &music_num);
+	read_files("./Music", ".mp3", music_path, &music_num);
 	//初始化音乐播放器
 	init_music(music_path, music_num);
 	//初始化触摸板
@@ -51,14 +51,11 @@ int main(void)
 {
 	//init
 	init();
+
 	int x, y;
-
-	//播放一个音乐
-	next_music();
-
 	while (1)
 	{
-		get_xy(fd_touch,&x, &y);
+		get_xy(fd_touch, &x, &y);
 		if (x < 300)
 		{
 			pre_music();
@@ -74,6 +71,7 @@ int main(void)
 		/**
 		 * 可加一个点击区域，推出这个循环，暂时就不管了
 		 */
+		sleep(1);	/*防止无触*/
 	}
 	return 0;
 }

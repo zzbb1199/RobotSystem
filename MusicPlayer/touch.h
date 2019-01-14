@@ -8,6 +8,7 @@
 #define __TOUCH_H__
 #include <linux/input.h>
 #include <unistd.h>
+#include <stdio.h>
 
 /**
  * 获取当前触摸点的横纵坐标

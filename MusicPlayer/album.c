@@ -11,6 +11,8 @@ int init_album(int *p, char *path[], int num)
     }
     image_num = num;
     addr = p;
+	//放映第一张图片
+	image_show(addr, image_path[0]);
     return 0;
 }
 
