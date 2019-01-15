@@ -1,2 +1,3 @@
-main.o main.d: main.c ../lcd_info.h ../touch.h ../draw.h ../lcd_info.h \
- ../memory_share.h ../dir.h ../album.h ../draw.h
+main.o main.d: main.c ../mylib/lcd_info.h ../mylib/touch.h ../mylib/draw.h \
+ ../mylib/lcd_info.h ../mylib/memory_share.h ../mylib/dir.h \
+ ../mylib/album.h ../mylib/draw.h

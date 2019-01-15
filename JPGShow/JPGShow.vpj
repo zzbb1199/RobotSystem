@@ -259,16 +259,12 @@
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{98CAE92A-9899-40DE-A3E2-83B444B1572B}">
-			<F N="common.c"/>
-			<F N="lcd.c"/>
 			<F N="main.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{CCDFEBB6-B511-40A8-89B8-77623D45EB0C}">
-			<F N="lcd.h"/>
-		</Folder>
+			GUID="{CCDFEBB6-B511-40A8-89B8-77623D45EB0C}"></Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"
@@ -281,17 +277,6 @@
 			Name="Other Files"
 			Filters=""
 			GUID="{E8DFAD31-B7FE-4A81-AE3D-014302DD24F6}">
-			<F N="pic/1.jpg"/>
-			<F N="pic/2.jpg"/>
-			<F N="pic/3.jpg"/>
-			<F N="pic/4.jpg"/>
-			<F N="jpg_show_arm"/>
-			<F N="JpgShow.vpj"/>
-			<F N="libjpeg/libapi_v4l2_arm.so"/>
-			<F N="libjpeg/libjpeg.a"/>
-			<F N="libjpeg/libjpeg.so"/>
-			<F N="libjpeg/libjpeg.so.8"/>
-			<F N="libjpeg/libjpeg.so.8.0.2"/>
 			<F
 				N="Makefile"
 				Type="Makefile"/>

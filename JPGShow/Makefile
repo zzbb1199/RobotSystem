@@ -6,7 +6,7 @@ CSources := $(wildcard *.c ../*.c )
 Objs := $(CSources:.c=.o)
 
 
-main:$(Objs)
+JpgShow:$(Objs)
 	echo "compling"
 	$(CC) $^ -o $@   $(CFLAGS)
 

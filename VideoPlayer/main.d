@@ -1,1 +1,2 @@
-main.o main.d: main.c ../touch.h ../lcd_info.h ../dir.h ../video_player.h
+main.o main.d: main.c ../mylib/touch.h ../mylib/lcd_info.h ../mylib/dir.h \
+ ../mylib/video_player.h

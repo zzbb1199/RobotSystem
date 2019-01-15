@@ -1,2 +1,2 @@
-main.o main.d: main.c ../draw.h ../lcd_info.h ../touch.h ../lcd.h \
- ../libjpeg/api_v4l2.h
+main.o main.d: main.c ../mylib/draw.h ../mylib/lcd_info.h ../mylib/touch.h \
+ ../mylib/lcd.h ../lib/libjpeg/api_v4l2.h

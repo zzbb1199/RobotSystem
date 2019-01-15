@@ -1,12 +1,12 @@
 CC := arm-linux-gcc
-CFLAGS := -L ../libjpeg -lapi_v4l2_arm -lpthread -ljpeg
-INCLUDE :=-I ../ -I ../libjpeg 
-CSources := $(wildcard *.c ../*.c )
+CFLAGS := -L ../lib/libjpeg -lapi_v4l2_arm -lpthread -ljpeg
+INCLUDE :=-I ../mylib/ -I ../lib/libjpeg 
+CSources := $(wildcard *.c ../mylib/*.c )
 
 Objs := $(CSources:.c=.o)
 
 
-main:$(Objs)
+Camera:$(Objs)
 	echo "compling"
 	$(CC) $^ -o $@   $(CFLAGS)
 

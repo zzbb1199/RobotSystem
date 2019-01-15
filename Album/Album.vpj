@@ -256,39 +256,13 @@
 	</Config>
 	<Files>
 		<Folder
-			Name="Source Files"
-			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
-			GUID="{0E9A4AF6-BB16-4266-AECD-FCF45B1CDD95}">
-			<F N="../album.c"/>
-			<F N="../dir.c"/>
-			<F N="../draw.c"/>
-			<F N="main.c"/>
-			<F N="../memory_share.c"/>
-			<F N="../music.c"/>
-			<F N="../touch.c"/>
-			<F N="../video_player.c"/>
-		</Folder>
-		<Folder
-			Name="Header Files"
-			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{673CFB99-4D2C-4777-9D8A-DE9CD0454352}">
-			<F N="../album.h"/>
-			<F N="../dir.h"/>
-			<F N="../draw.h"/>
-			<F N="../lcd_info.h"/>
-			<F N="../memory_share.h"/>
-			<F N="../music.h"/>
-			<F N="../touch.h"/>
-			<F N="../video_player.h"/>
-		</Folder>
-		<Folder
-			Name="Resource Files"
-			Filters="*.ico;*.cur;*.dlg"
-			GUID="{ABBBCC8D-9359-4AED-AB07-E7FCB6132231}"/>
-		<Folder
 			Name="Bitmaps"
 			Filters="*.bmp"
 			GUID="{C17F5146-219A-4EBB-AE0D-2AF019615E0E}"/>
+		<Folder
+			Name="Header Files"
+			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
+			GUID="{673CFB99-4D2C-4777-9D8A-DE9CD0454352}"></Folder>
 		<Folder
 			Name="Other Files"
 			Filters=""
@@ -296,6 +270,16 @@
 			<F
 				N="Makefile"
 				Type="Makefile"/>
+		</Folder>
+		<Folder
+			Name="Resource Files"
+			Filters="*.ico;*.cur;*.dlg"
+			GUID="{ABBBCC8D-9359-4AED-AB07-E7FCB6132231}"/>
+		<Folder
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
+			GUID="{0E9A4AF6-BB16-4266-AECD-FCF45B1CDD95}">
+			<F N="main.c"/>
 		</Folder>
 	</Files>
 </Project>
