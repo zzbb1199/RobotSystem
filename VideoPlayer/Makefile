@@ -1,13 +1,14 @@
-CC := gcc
-CFLAGS :=
-INCLUDE := -I ../
+CC := arm-linux-gcc
+CFLAGS := -L ../libjpeg -lapi_v4l2_arm -lpthread -ljpeg
+INCLUDE :=-I ../ -I ../libjpeg 
 CSources := $(wildcard *.c ../*.c )
 
 Objs := $(CSources:.c=.o)
 
-main:$(Objs)
+
+VidePlayer:$(Objs)
 	echo "compling"
-	$(CC)  $(CFLAGS) -o $@ $^
+	$(CC) $^ -o $@   $(CFLAGS)
 
 -include $(CSources:.c=.d)
 
@@ -19,11 +20,12 @@ main:$(Objs)
 	rm -f $@.$$$$
 
 %.o : %.c
-	$(CC) -c $(CFLAGS) $(INCLUDE) $< -o $@
+	$(CC) -c $(INCLUDE) $< -o $@
 
 .PHONY : clean
 
 clean:
 	@echo $(CSources)
 	rm main $(CSources:.c=.d) $(CSources:.c=.o)
+
 

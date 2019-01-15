@@ -1,12 +1,12 @@
 [Global]
-CurrentProject=../Camera/Camera.vpj
+CurrentProject=../MusicPlayer/MusicPlayer.vpj
 [ProjectDates]
-Album.vpj=20190115052458000
+Album.vpj=20190115075150000
 MusicPlayer/MusicPlayer.vpj=20190115052725000
 ../MusicPlayer/MusicPlayer.vpj=20190115053128000
 ../VideoPlayer/VideoPlayer.vpj=20190115053303000
-../JpgShow/JpgShow.vpj=20190115053800000
-../Camera/Camera.vpj=20190115054757000
+../JpgShow/JpgShow.vpj=20190115075304000
+../Camera/Camera.vpj=20190115074726000
 ../GuaGuaLe/GuaGuaLe.vpj=20190115054434000
 ../CrossLine/CrossLine.vpj=20190115054604000
 [ActiveConfig]

@@ -267,11 +267,6 @@
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
 			GUID="{CCDFEBB6-B511-40A8-89B8-77623D45EB0C}">
-			<F N="libjpeg/api_v4l2.h"/>
-			<F N="libjpeg/jconfig.h"/>
-			<F N="libjpeg/jerror.h"/>
-			<F N="libjpeg/jmorecfg.h"/>
-			<F N="libjpeg/jpeglib.h"/>
 			<F N="lcd.h"/>
 		</Folder>
 		<Folder

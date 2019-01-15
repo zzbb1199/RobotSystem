@@ -26,6 +26,5 @@ struct Boundary
 {
 	struct Point *p1,*p2;
 };
-
 void draw_cross_line(int *addr,struct Point point);
 #endif

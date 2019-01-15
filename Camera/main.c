@@ -2,7 +2,6 @@
  * 摄像机主程序
  */
 #include <stdio.h>
-
 #include <fcntl.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -18,13 +17,10 @@
 #include "api_v4l2.h"
 
 
-FrameBuffer freambuf; /* 一帧数据 */
-int write_lock  = 0;    /* 写入锁 */
+static FrameBuffer freambuf; /* 一帧数据 */
+static int write_lock  = 0;    /* 写入锁 */
 
-int fd_touch = -1;
-int fd_write2file = -1;
-
-
+static int fd_touch = -1;
 
 int check_boundary(int x, int y, struct Boundary bd)
 {
@@ -36,30 +32,49 @@ int check_boundary(int x, int y, struct Boundary bd)
 }
 void* take_photo()
 {
+	/* 初始化点击拍照边界 */
 	struct Boundary take_photo_bd;
-	take_photo_bd.p1 =  (struct Point *)malloc(sizeof(struct Point));
-	take_photo_bd.p2 =  (struct Point *)malloc(sizeof(struct Point));
-
+	take_photo_bd.p1 = (struct Point *)malloc(sizeof(struct Point));
+	take_photo_bd.p2 = (struct Point *)malloc(sizeof(struct Point)); 
 	take_photo_bd.p1->x = 720;
 	take_photo_bd.p1->y = 0;
-
 	take_photo_bd.p2->x = 800;
 	take_photo_bd.p2->y = 240;
 
+	/* 保存触摸点 */
 	int x, y;
 
 	/*  写入字节数 */
 	int write_ret;
+	/* 定义写入文件描述符 */
+	int fd_write2file = -1;
+	/* 第几张照片 */
+	int i = 1;
+	/* 图片名字 */
+	char image_name[50];
+	bzero(image_name, 50);
 	while (1)
 	{
 		get_xy(fd_touch, &x, &y);
+		/* 检查是否触摸在拍照区域 */
 		if (check_boundary(x, y, take_photo_bd))
 		{
 			/* 添加写入锁 */
 			write_lock = 1;
+			/* 初始化需要将文件写入到的地方 */
+			sprintf(image_name, "./Image/image%d.ipg", i);
+			fd_write2file = open(image_name, O_RDWR | O_CREAT | O_TRUNC, 0755);
+			if (-1 == fd_write2file)
+			{
+				perror("open image file dec error!");
+				return 0;
+			}
 			write_ret = write(fd_write2file, freambuf.buf, freambuf.length);
 			printf("write_ret %d\n", write_ret);
-			printf("write success!!\n");
+
+			i++;
+			/* 回收资源 */
+			close(fd_write2file);
 			/* 解锁 */
 			write_lock = 0;
 		}
@@ -80,9 +95,6 @@ int destory()
 	/* 关闭触摸屏 */
 	close(fd_touch);
 
-	/* 关闭写入文件 */
-	close(fd_write2file);
-
 	return 0;
 }
 
@@ -100,11 +112,6 @@ int init()
 
 	/* 初始化触摸屏 */
 	fd_touch = open("/dev/input/event0", O_RDONLY);
-
-	/* 初始化需要将文件写入到的地方 */
-	fd_write2file = open("./Image/image.jpg", O_RDWR | O_CREAT, 0755);
-	/* 清空文件 */
-	system("echo "" > .Image/image.jpg");
 
 	/* 创建拍照thread */
 	pthread_t take_photo_thread;
@@ -143,3 +150,4 @@ int main(int argc, char **argv)
 
 	return 0;
 }
+

@@ -259,26 +259,12 @@
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{3D3364E0-D140-40B9-8405-7DF8E04C3B29}">
-			<F N="common.c"/>
-			<F N="draw.c"/>
-			<F N="lcd.c"/>
 			<F N="main.c"/>
-			<F N="touch.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{33732F17-D568-4326-AD93-12E0D0D4B1D0}">
-			<F N="libjpeg/api_v4l2.h"/>
-			<F N="draw.h"/>
-			<F N="libjpeg/jconfig.h"/>
-			<F N="libjpeg/jerror.h"/>
-			<F N="libjpeg/jmorecfg.h"/>
-			<F N="libjpeg/jpeglib.h"/>
-			<F N="lcd.h"/>
-			<F N="lcd_info.h"/>
-			<F N="touch.h"/>
-		</Folder>
+			GUID="{33732F17-D568-4326-AD93-12E0D0D4B1D0}"></Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"
@@ -290,34 +276,6 @@
 		<Folder
 			Name="Other Files"
 			Filters=""
-			GUID="{C9274817-48C0-4A74-87C1-8D0D3F0FF26A}">
-			<F N="Camera.vpj"/>
-			<F N="common.o"/>
-			<F N="draw.o"/>
-			<F N="lcd.o"/>
-			<F N="libjpeg/libapi_v4l2_arm.so"/>
-			<F N="libffmpeg/libavcodec.so.54"/>
-			<F N="libffmpeg/libavdevice.so.54"/>
-			<F N="libffmpeg/libavfilter.so.3"/>
-			<F N="libffmpeg/libavformat.so.54"/>
-			<F N="libffmpeg/libavutil.so.52"/>
-			<F N="libjpeg/libjpeg.a"/>
-			<F N="libjpeg/libjpeg.so"/>
-			<F N="libjpeg/libjpeg.so.8"/>
-			<F N="libjpeg/libjpeg.so.8.0.2"/>
-			<F N="libffmpeg/libpostproc.so.52"/>
-			<F N="libffmpeg/libSDL-1.2.so.0"/>
-			<F N="libffmpeg/libswresample.so.0"/>
-			<F N="libffmpeg/libswscale.so.2"/>
-			<F N="libffmpeg/libx264.so.142"/>
-			<F N="libffmpeg/libz.so"/>
-			<F N="libffmpeg/libz.so.1"/>
-			<F N="main.o"/>
-			<F
-				N="Makefile"
-				Type="Makefile"/>
-			<F N="touch.o"/>
-			<F N="编译.txt"/>
-		</Folder>
+			GUID="{C9274817-48C0-4A74-87C1-8D0D3F0FF26A}"></Folder>
 	</Files>
 </Project>

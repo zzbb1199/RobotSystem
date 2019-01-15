@@ -1,18 +1,31 @@
-#定义变量保存gcc,arm-linux-gcc
-CC=arm-linux-gcc
+CC := arm-linux-gcc
+CFLAGS := -L ../libjpeg -lapi_v4l2_arm -lpthread -ljpeg
+INCLUDE :=-I ../ -I ../libjpeg 
+CSources := $(wildcard *.c ../*.c )
 
-ELF=Camera
+Objs := $(CSources:.c=.o)
 
-CONFIG=-I./ -I./libjpeg -L./libjpeg -ljpeg -lapi_v4l2_arm
 
-SRCS=$(wildcard *.c)
-OBJS=$(patsubst %.c, %.o, $(SRCS))
+main:$(Objs)
+	echo "compling"
+	$(CC) $^ -o $@   $(CFLAGS)
 
-$(ELF):$(OBJS)
-	$(CC) -o $@ $^ -lpthread $(CONFIG)
+-include $(CSources:.c=.d)
 
-%.o:%.c
-	$(CC) -c $< -o $@ $(CONFIG)
+
+%.d : %.c
+	rm -f $@; \
+	$(CC) -MM $(INCLUDE) $< > $@.$$$$; \
+	sed -e 's,^.*:,$*.o $@:,g'  < $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+%.o : %.c
+	$(CC) -c $(INCLUDE) $< -o $@
+
+.PHONY : clean
 
 clean:
-	rm *.o $(TARGET)
+	@echo $(CSources)
+	rm main $(CSources:.c=.d) $(CSources:.c=.o)
+
+
