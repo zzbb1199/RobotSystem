@@ -9,7 +9,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdJPGShow"
+		OutputFile="%bdJpgShow"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -134,7 +134,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdJPGShow"
+		OutputFile="%bdJpgShow"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -258,7 +258,7 @@
 		<Folder
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
-			GUID="{6FAE2558-A741-4672-866C-EB8533247C22}">
+			GUID="{98CAE92A-9899-40DE-A3E2-83B444B1572B}">
 			<F N="common.c"/>
 			<F N="lcd.c"/>
 			<F N="main.c"/>
@@ -266,26 +266,37 @@
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{566C8636-A2D2-4ADC-8476-A7AEC9E99B5B}">
-			<F N="lcd.h"/>
+			GUID="{CCDFEBB6-B511-40A8-89B8-77623D45EB0C}">
 			<F N="libjpeg/api_v4l2.h"/>
 			<F N="libjpeg/jconfig.h"/>
 			<F N="libjpeg/jerror.h"/>
 			<F N="libjpeg/jmorecfg.h"/>
 			<F N="libjpeg/jpeglib.h"/>
+			<F N="lcd.h"/>
 		</Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"
-			GUID="{FCD2B6C9-6A9E-4592-8711-2244C73548E1}"/>
+			GUID="{64751AF3-95F1-40E2-8AEB-D55464D14857}"/>
 		<Folder
 			Name="Bitmaps"
 			Filters="*.bmp"
-			GUID="{67BE2631-C51A-42C3-91DE-607817CBEF24}"/>
+			GUID="{CC94D475-4702-490C-8793-A7874DC95F83}"/>
 		<Folder
 			Name="Other Files"
 			Filters=""
-			GUID="{04EA32F3-6F7D-4BEA-B24C-BBBFA39AC05B}">
+			GUID="{E8DFAD31-B7FE-4A81-AE3D-014302DD24F6}">
+			<F N="pic/1.jpg"/>
+			<F N="pic/2.jpg"/>
+			<F N="pic/3.jpg"/>
+			<F N="pic/4.jpg"/>
+			<F N="jpg_show_arm"/>
+			<F N="JpgShow.vpj"/>
+			<F N="libjpeg/libapi_v4l2_arm.so"/>
+			<F N="libjpeg/libjpeg.a"/>
+			<F N="libjpeg/libjpeg.so"/>
+			<F N="libjpeg/libjpeg.so.8"/>
+			<F N="libjpeg/libjpeg.so.8.0.2"/>
 			<F
 				N="Makefile"
 				Type="Makefile"/>

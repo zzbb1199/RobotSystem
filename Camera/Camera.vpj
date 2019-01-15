@@ -9,7 +9,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdCrossLine"
+		OutputFile="%bdCamera"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -134,7 +134,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdCrossLine"
+		OutputFile="%bdCamera"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -258,44 +258,66 @@
 		<Folder
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
-			GUID="{DF3875E2-DD03-475B-B14D-A90B865C57C2}">
-			<F N="../album.c"/>
-			<F N="../dir.c"/>
-			<F N="../draw.c"/>
+			GUID="{3D3364E0-D140-40B9-8405-7DF8E04C3B29}">
+			<F N="common.c"/>
+			<F N="draw.c"/>
+			<F N="lcd.c"/>
 			<F N="main.c"/>
-			<F N="../memory_share.c"/>
-			<F N="../music.c"/>
-			<F N="../touch.c"/>
-			<F N="../video_player.c"/>
+			<F N="touch.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{2696B25B-6B87-4E54-BB19-2D83F4FC584C}">
-			<F N="../album.h"/>
-			<F N="../dir.h"/>
-			<F N="../draw.h"/>
-			<F N="../lcd_info.h"/>
-			<F N="../memory_share.h"/>
-			<F N="../music.h"/>
-			<F N="../touch.h"/>
-			<F N="../video_player.h"/>
+			GUID="{33732F17-D568-4326-AD93-12E0D0D4B1D0}">
+			<F N="libjpeg/api_v4l2.h"/>
+			<F N="draw.h"/>
+			<F N="libjpeg/jconfig.h"/>
+			<F N="libjpeg/jerror.h"/>
+			<F N="libjpeg/jmorecfg.h"/>
+			<F N="libjpeg/jpeglib.h"/>
+			<F N="lcd.h"/>
+			<F N="lcd_info.h"/>
+			<F N="touch.h"/>
 		</Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"
-			GUID="{E5834F51-B3F3-4F9D-9BE5-FCE29D5B7018}"/>
+			GUID="{826DD1B3-BEBD-4137-9960-7CFFB0DF08A3}"/>
 		<Folder
 			Name="Bitmaps"
 			Filters="*.bmp"
-			GUID="{9DE18236-10B8-41FD-9C0E-25CE2498D2BA}"/>
+			GUID="{D51FCDBA-B6F0-4A3E-AB8D-A40195937084}"/>
 		<Folder
 			Name="Other Files"
 			Filters=""
-			GUID="{C52BEE39-7424-40CB-BCB0-91FBB21CF8A6}">
+			GUID="{C9274817-48C0-4A74-87C1-8D0D3F0FF26A}">
+			<F N="Camera.vpj"/>
+			<F N="common.o"/>
+			<F N="draw.o"/>
+			<F N="lcd.o"/>
+			<F N="libjpeg/libapi_v4l2_arm.so"/>
+			<F N="libffmpeg/libavcodec.so.54"/>
+			<F N="libffmpeg/libavdevice.so.54"/>
+			<F N="libffmpeg/libavfilter.so.3"/>
+			<F N="libffmpeg/libavformat.so.54"/>
+			<F N="libffmpeg/libavutil.so.52"/>
+			<F N="libjpeg/libjpeg.a"/>
+			<F N="libjpeg/libjpeg.so"/>
+			<F N="libjpeg/libjpeg.so.8"/>
+			<F N="libjpeg/libjpeg.so.8.0.2"/>
+			<F N="libffmpeg/libpostproc.so.52"/>
+			<F N="libffmpeg/libSDL-1.2.so.0"/>
+			<F N="libffmpeg/libswresample.so.0"/>
+			<F N="libffmpeg/libswscale.so.2"/>
+			<F N="libffmpeg/libx264.so.142"/>
+			<F N="libffmpeg/libz.so"/>
+			<F N="libffmpeg/libz.so.1"/>
+			<F N="main.o"/>
 			<F
 				N="Makefile"
 				Type="Makefile"/>
+			<F N="touch.o"/>
+			<F N="编译.txt"/>
 		</Folder>
 	</Files>
 </Project>

@@ -3,9 +3,7 @@
 	Version="10.0"
 	VendorName="SlickEdit"
 	TemplateName="GNU C/C++"
-	WorkingDir="."
-	BuildSystem="automakefile"
-	BuildMakeFile="Makefile">
+	WorkingDir=".">
 	<Config
 		Name="Debug"
 		Type="gnuc"
@@ -43,7 +41,7 @@
 				Deletable="0"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw">
-				<Exec CmdLine='make -f "Makefile" CFG=%b'/>
+				<Exec CmdLine="make"/>
 			</Target>
 			<Target
 				Name="Rebuild"
@@ -52,7 +50,7 @@
 				Deletable="0"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw">
-				<Exec CmdLine='make -f "Makefile" rebuild CFG=%b'/>
+				<Exec CmdLine=""/>
 			</Target>
 			<Target
 				Name="Debug"
@@ -168,7 +166,7 @@
 				Deletable="0"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw">
-				<Exec CmdLine='make -f "Makefile" CFG=%b'/>
+				<Exec CmdLine="make"/>
 			</Target>
 			<Target
 				Name="Rebuild"
@@ -177,7 +175,7 @@
 				Deletable="0"
 				SaveOption="SaveWorkspaceFiles"
 				RunFromDir="%rw">
-				<Exec CmdLine='make -f "Makefile" rebuild CFG=%b'/>
+				<Exec CmdLine=""/>
 			</Target>
 			<Target
 				Name="Debug"
@@ -258,48 +256,46 @@
 	</Config>
 	<Files>
 		<Folder
-			Name="Bitmaps"
-			Filters="*.bmp"
-			GUID="{B94D106A-F1F5-4636-A5F1-327CE481AB86}">
-			<F N="image2.bmp"/>
-			<F N="image3.bmp"/>
-			<F N="image4.bmp"/>
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
+			GUID="{0E9A4AF6-BB16-4266-AECD-FCF45B1CDD95}">
+			<F N="../album.c"/>
+			<F N="../dir.c"/>
+			<F N="../draw.c"/>
+			<F N="main.c"/>
+			<F N="../memory_share.c"/>
+			<F N="../music.c"/>
+			<F N="../touch.c"/>
+			<F N="../video_player.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{46667E16-DB21-457B-9D51-D11113171E5D}">
-			<F N="album.h"/>
-			<F N="dir.h"/>
-			<F N="draw.h"/>
-			<F N="lcd_info.h"/>
-			<F N="memory_share.h"/>
-			<F N="music.h"/>
-			<F N="touch.h"/>
-		</Folder>
-		<Folder
-			Name="Other Files"
-			Filters=""
-			GUID="{2B675870-71D7-4ABE-950C-F4E883DEBE75}">
-			<F
-				N="Makefile"
-				Type="Makefile"/>
+			GUID="{673CFB99-4D2C-4777-9D8A-DE9CD0454352}">
+			<F N="../album.h"/>
+			<F N="../dir.h"/>
+			<F N="../draw.h"/>
+			<F N="../lcd_info.h"/>
+			<F N="../memory_share.h"/>
+			<F N="../music.h"/>
+			<F N="../touch.h"/>
+			<F N="../video_player.h"/>
 		</Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"
-			GUID="{681A19A7-BC85-4347-A0B3-80B5B5F24E99}"/>
+			GUID="{ABBBCC8D-9359-4AED-AB07-E7FCB6132231}"/>
 		<Folder
-			Name="Source Files"
-			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
-			GUID="{4C613B99-8E6B-4A00-AFC0-52EE012E58E7}">
-			<F N="album.c"/>
-			<F N="dir.c"/>
-			<F N="draw.c"/>
-			<F N="main.c"/>
-			<F N="memory_share.c"/>
-			<F N="music.c"/>
-			<F N="touch.c"/>
+			Name="Bitmaps"
+			Filters="*.bmp"
+			GUID="{C17F5146-219A-4EBB-AE0D-2AF019615E0E}"/>
+		<Folder
+			Name="Other Files"
+			Filters=""
+			GUID="{D8877659-F708-4878-A39F-DDDA6174058F}">
+			<F
+				N="Makefile"
+				Type="Makefile"/>
 		</Folder>
 	</Files>
 </Project>

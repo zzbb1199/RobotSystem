@@ -33,7 +33,7 @@ int main(void)
 {
     //init
     init();
-    struct Point line;
+    struct Line line;
     line.x = 100;
     line.y = 100;
     draw_cross_line(addr,line);
