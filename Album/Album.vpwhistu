@@ -1,7 +1,7 @@
 [Global]
-CurrentProject=../Camera/Camera.vpj
+CurrentProject=Album.vpj
 [ProjectDates]
-Album.vpj=20190115081641000
+Album.vpj=20190115123135000
 MusicPlayer/MusicPlayer.vpj=20190115052725000
 ../MusicPlayer/MusicPlayer.vpj=20190115083531000
 ../VideoPlayer/VideoPlayer.vpj=20190115083630000

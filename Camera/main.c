@@ -11,7 +11,6 @@
 #include <strings.h>
 #include <stdlib.h>
 #include <linux/input.h>
-#include "draw.h"
 #include "touch.h"
 #include "lcd.h"
 #include "api_v4l2.h"
@@ -193,7 +192,7 @@ int main(int argc, char **argv)
 		{
 
 			/* 初始化需要将文件写入到的地方 */
-			sprintf(image_name, "./Image/image%d.ipg", take_photo_num);
+			sprintf(image_name, "./Image/image%d.jpg", take_photo_num);
 			fd_write2file = open(image_name, O_RDWR | O_CREAT | O_TRUNC, 0755);
 			if (-1 == fd_write2file)
 			{

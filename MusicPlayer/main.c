@@ -9,7 +9,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "draw.h"
+#include "lcd.h"
 #include "memory_share.h"
 
 /**
@@ -82,7 +82,7 @@ int init()
 	//初始化音乐播放器
 	init_music(music_path, music_num);
 	//绘制背景图
-	image_show(addr, "./Image/music_pause.bmp");
+	draw_image(addr, "./Image/music_pause.bmp");
 	//初始化图片封面的边界条件
 	init_boundary();
 	return 0;
@@ -145,7 +145,7 @@ int main(void)
 		if (is_pre_music(x,y))
 		{
 			pre_music();
-			image_show(addr, "./Image/music_pause.bmp");
+			draw_image(addr, "./Image/music_pause.bmp");
 		}
 		else if (is_pause(x,y))
 		{
@@ -157,14 +157,14 @@ int main(void)
 			}
 			else
 			{
-				image_show(addr,"./Image/music_pause.bmp");
+				draw_image(addr, "./Image/music_pause.bmp");
 				isplayed = 1;
 			}
 		}
 		else if (is_next_music(x,y))
 		{
 			next_music();
-			image_show(addr, "./Image/music_pause.bmp");
+			draw_image(addr, "./Image/music_pause.bmp");
 		}
 		/**
 		 * 可加一个点击区域，推出这个循环，暂时就不管了

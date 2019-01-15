@@ -21,7 +21,7 @@
 #include <sys/stat.h>
 #include <sys/mman.h>
 #include <stdlib.h>
-
+#include <string.h>
 #include "lcd.h"
 
 #if EN_LCD_SHOW_JPG
@@ -46,7 +46,7 @@ int lcd_open(void)
 {
 	g_fb_fd = open("/dev/fb0", O_RDWR);
 
-	if(g_fb_fd < 0)
+	if (g_fb_fd < 0)
 	{
 		printf("open lcd error\n");
 		return -1;
@@ -71,8 +71,11 @@ void lcd_draw_point(unsigned int x, unsigned int y, unsigned int color)
 }
 
 #if EN_LCD_SHOW_JPG
+void draw_backgroud(int color);
 int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pjpg_buf, unsigned int jpg_buf_size, unsigned int jpg_half)
 {
+	draw_backgroud(0x000000);
+	printf("x=%d\n", x);
 	/*定义解码对象，错误处理对象*/
 	struct 	jpeg_decompress_struct 	cinfo;
 	struct 	jpeg_error_mgr 			jerr;
@@ -99,12 +102,12 @@ int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pj
 
 
 
-	if(pjpg_path != NULL)
+	if (pjpg_path != NULL)
 	{
 		/* 申请jpg资源，权限可读可写 */
 		jpg_fd = open(pjpg_path, O_RDWR);
 
-		if(jpg_fd == -1)
+		if (jpg_fd == -1)
 		{
 			printf("open %s error\n", pjpg_path);
 
@@ -146,14 +149,14 @@ int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pj
 	unsigned int color_buf[cinfo.output_height][cinfo.output_width];
 
 
-	if(jpg_half)
+	if (jpg_half)
 	{
 		x_e	= x_s + (cinfo.output_width / 2);
 		y_e	= y  + (cinfo.output_height / 2);
 
 
 		/*读解码数据*/
-		while(cinfo.output_scanline < cinfo.output_height)
+		while (cinfo.output_scanline < cinfo.output_height)
 		{
 			pcolor_buf = g_color_buf;
 
@@ -163,7 +166,7 @@ int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pj
 			/* 再读取jpg一行的rgb值 */
 			jpeg_read_scanlines(&cinfo, (JSAMPARRAY)&pcolor_buf, 1);
 
-			for(i = 0; i < (cinfo.output_width / 2); i++)
+			for (i = 0; i < (cinfo.output_width / 2); i++)
 			{
 				/* 获取rgb值 */
 				color = 		*(pcolor_buf + 2);
@@ -171,7 +174,7 @@ int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pj
 				color = color | *(pcolor_buf) << 16;
 
 				/* 显示像素点 */
-				lcd_draw_point(x,y,color);
+				lcd_draw_point(x, y, color);
 				/* 缓存像素点颜色数据 */
 //				color_buf[y][x] = color;
 
@@ -200,14 +203,14 @@ int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pj
 		y_e	= y  + cinfo.output_height;
 
 		/*读解码数据*/
-		while(cinfo.output_scanline < cinfo.output_height)
+		while (cinfo.output_scanline < cinfo.output_height)
 		{
 			pcolor_buf = g_color_buf;
 
 			/* 读取jpg一行的rgb值 */
 			jpeg_read_scanlines(&cinfo, (JSAMPARRAY)&pcolor_buf, 1);
 
-			for(i = 0; i < cinfo.output_width; i++)
+			for (i = 0; i < cinfo.output_width; i++)
 			{
 				/* 获取rgb值 */
 				color = 		*(pcolor_buf + 2);
@@ -215,7 +218,7 @@ int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pj
 				color = color | *(pcolor_buf) << 16;
 
 				/* 显示像素点 */
-				lcd_draw_point(x,y,color);
+				lcd_draw_point(x, y, color);
 				/* 缓存像素点颜色数据 */
 //				color_buf[y][x] = color;
 				pcolor_buf += 3;
@@ -246,7 +249,7 @@ int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pj
 	jpeg_finish_decompress(&cinfo);
 	jpeg_destroy_decompress(&cinfo);
 
-	if(pjpg_path != NULL)
+	if (pjpg_path != NULL)
 	{
 		/* 关闭jpg文件 */
 		close(jpg_fd);
@@ -282,12 +285,12 @@ int lcd_draw_jpg_in_jpg(unsigned int x, unsigned int y, const char *pjpg_path, c
 	int	jpg_fd;
 	unsigned int 	jpg_size;
 
-	if(pjpg_path != NULL)
+	if (pjpg_path != NULL)
 	{
 		/* 申请jpg资源，权限可读可写 */
 		jpg_fd = open(pjpg_path, O_RDWR);
 
-		if(jpg_fd == -1)
+		if (jpg_fd == -1)
 		{
 			printf("open %s error\n", pjpg_path);
 
@@ -330,17 +333,17 @@ int lcd_draw_jpg_in_jpg(unsigned int x, unsigned int y, const char *pjpg_path, c
 	y_e	= y  + cinfo.output_height;
 
 	/*读解码数据*/
-	while(cinfo.output_scanline < cinfo.output_height)
+	while (cinfo.output_scanline < cinfo.output_height)
 	{
 		pcolor_buf = g_color_buf;
 
 		/* 读取jpg一行的rgb值 */
 		jpeg_read_scanlines(&cinfo, (JSAMPARRAY)&pcolor_buf, 1);
 
-		for(i = 0; i < cinfo.output_width; i++)
+		for (i = 0; i < cinfo.output_width; i++)
 		{
 			/* 不显示的部分 */
-			if(y_n > g_jpg_in_jpg_y && y_n < g_jpg_in_jpg_y + 240) if(x_n > g_jpg_in_jpg_x && x_n < g_jpg_in_jpg_x + 320)
+			if (y_n > g_jpg_in_jpg_y && y_n < g_jpg_in_jpg_y + 240) if (x_n > g_jpg_in_jpg_x && x_n < g_jpg_in_jpg_x + 320)
 				{
 					pcolor_buf += 3;
 
@@ -374,7 +377,7 @@ int lcd_draw_jpg_in_jpg(unsigned int x, unsigned int y, const char *pjpg_path, c
 	jpeg_finish_decompress(&cinfo);
 	jpeg_destroy_decompress(&cinfo);
 
-	if(pjpg_path != NULL)
+	if (pjpg_path != NULL)
 	{
 		/* 关闭jpg文件 */
 		close(jpg_fd);
@@ -389,86 +392,94 @@ int lcd_draw_jpg_in_jpg(unsigned int x, unsigned int y, const char *pjpg_path, c
 }
 #endif
 
-//LCD任意地址绘制图片
-int lcd_draw_bmp(unsigned int x, unsigned int y, const char *pbmp_path)
+/**
+ * draw background
+ * 
+ * @author gec (15/01/19)
+ * 
+ * @param addr 
+ * @param color 
+ */
+void draw_backgroud(int color)
 {
-	int bmp_fd;
-	unsigned int blue, green, red;
-	unsigned int color;
-	unsigned int bmp_width;
-	unsigned int bmp_height;
-	unsigned int bmp_type;
-	unsigned int bmp_size;
-	unsigned int x_s = x;
-	unsigned int x_e;
-	unsigned int y_e;
-	unsigned char buf[54] = { 0 };
-	char *pbmp_buf = g_color_buf;
-
-	/* 申请位图资源，权限可读可写 */
-	bmp_fd = open(pbmp_path, O_RDWR);
-
-	if(bmp_fd == -1)
+	//write
+	printf("========draw_bg start=====\n");
+	int row, col;
+	for (row = 0; row < LCD_HEIGHT; row++)
 	{
-		printf("open bmp error\r\n");
+		for (col = 0; col < LCD_WIDTH; col++)
+		{
+			*(g_pfb_memory + row * LCD_WIDTH + col) = color;
+		}
+	}
+	printf("========draw_bg end=====\n");
 
+}
+
+
+//LCD任意地址绘制图片
+int lcd_draw_bmp(const char *image_path)
+{
+	draw_backgroud( 0x000000);
+
+	//open image
+	int fd_image = open(image_path, O_RDONLY);
+	if (-1 == fd_image)
+	{
+		perror("open image failed");
 		return -1;
 	}
 
-	/* 读取位图头部信息 */
-	read(bmp_fd, buf, 54);
+	//处理offset
+	//lseek(fd_image,54,SEEK_SET);
+	char image_info[54];
+	read(fd_image, image_info, 54);
 
-	/* 宽度  */
-	bmp_width = buf[18];
-	bmp_width |= buf[19] << 8;
-	printf("bmp_width=%d\r\n", bmp_width);
+    printf("=========this image'info========\n");
+    printf("image path:%s\n",image_path);
+	int width = image_info[19] << 8 | image_info[18];
+	int height = image_info[23] << 8 | image_info[22];
+    printf("widht=%d\n",width);
+    printf("height=%d\n",height);
+    printf("width=%x\n",width);
+    printf("height=%x\n",height);
+	
+	char buffer[width * height * 3];
+	int ret = read(fd_image, buffer, width * height * 3);
 
-	/* 高度  */
-	bmp_height = buf[22];
-	bmp_height |= buf[23] << 8;
-	printf("bmp_height=%d\r\n", bmp_height);
-
-	/* 文件类型 */
-	bmp_type = buf[28];
-	bmp_type |= buf[29] << 8;
-	printf("bmp_type=%d\r\n", bmp_type);
-
-	/* 设置显示x、y坐标结束位置 */
-	x_e = x + bmp_width;
-	y_e = y + bmp_height;
-
-	/* 获取位图文件的大小 */
-	bmp_size = file_size_get(pbmp_path);
-
-	/* 读取所有RGB数据 */
-	read(bmp_fd, pbmp_buf, bmp_size - 54);
-
-	for(; y < y_e; y++)
+	if (width > LCD_WIDTH || height > LCD_HEIGHT)
 	{
-		for(; x < x_e; x++)
-		{
-			/* 获取红绿蓝颜色数据 */
-			blue  = *pbmp_buf++;
-			green = *pbmp_buf++;
-			red   = *pbmp_buf++;
-
-			/* 判断当前的位图是否32位颜色 */
-			if(bmp_type == 32)
-			{
-				pbmp_buf++;
-			}
-
-			/* 组成24bit颜色 */
-			color = red << 16 | green << 8 | blue << 0;
-			lcd_draw_point(x, y, color);
-		}
-
-		x = x_s;
+		printf("this image is too large, please change a image and try again!\n'");
+		return -1;
 	}
 
-	/* 不再使用BMP，则释放bmp资源 */
-	close(bmp_fd);
+	//wait for optimize
+	int start_x, start_y;
+	int end_x, end_y;
+	start_x = LCD_WIDTH / 2 - width / 2;
+	start_y = LCD_HEIGHT / 2 - height / 2;
+	end_x = LCD_WIDTH / 2 + width / 2;
+	end_y = LCD_HEIGHT / 2 + height / 2;
 
+	//output
+	int x, y;
+	int color_index;
+	for (y = start_y; y < end_y; y++)
+	{
+		for (x = start_x; x < end_x; x++)
+		{
+			//printf("(%d,%d)\n",x,y);
+			color_index = (y - start_y) * width + x - start_x;
+			*(g_pfb_memory + (LCD_HEIGHT - 1 - y) * LCD_WIDTH + x) =
+				 buffer[color_index * 3 + 0] << 0 |
+				buffer[color_index * 3 + 1] << 8 |
+				buffer[color_index * 3 + 2] << 16;
+		}
+	}
+
+	printf("\n");
+
+	close(fd_image);
 	return 0;
 }
 
@@ -482,3 +493,19 @@ void lcd_close(void)
 	/* 关闭LCD设备 */
 	close(g_fb_fd);
 }
+
+void draw_image(char *image_path)
+{
+	if (strstr(image_path, ".bmp"))
+	{
+		printf("bmp type\n");
+		lcd_draw_bmp(image_path);
+	}
+	else if (strstr(image_path, "jpg"))
+	{
+		printf("jpg type\n");
+		lcd_draw_jpg(80, 0, image_path, NULL, 0, 0);
+	}
+}
+
+

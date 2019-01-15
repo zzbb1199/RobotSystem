@@ -2,18 +2,22 @@
 #include "album.h"
 
 
-int init_album(int *p, char *path[], int num)
+int init_album(char *path[], int num)
 {
-    int i;
-    for(i = 0; i < num; i++)
-    {
-        image_path[i] = path[i];
-    }
-    image_num = num;
-    addr = p;
-	//放映第一张图片
-	image_show(addr, image_path[0]);
-    return 0;
+	if (num <= 0)
+	{
+		return -1;
+	}
+	int i;
+	printf("loaded files:\n");
+	for (i = 0; i < num; i++)
+	{
+		image_path[i] = path[i];
+		printf("%s\n", image_path[i]);
+	}
+	image_num = num;
+	draw_image(image_path[0]);
+	return 0;
 }
 
 /**
@@ -25,9 +29,9 @@ int init_album(int *p, char *path[], int num)
  */
 int next_image()
 {
-    i = (i + 1) % image_num;
-    image_show(addr, image_path[i]);
-    return 0;
+	i = (i + 1) % image_num;
+	draw_image(image_path[i]);
+	return 0;
 }
 
 
@@ -40,7 +44,7 @@ int next_image()
  */
 int pre_image()
 {
-    i = (i - 1 + image_num) % image_num;
-    image_show(addr, image_path[i]);
-    return 0;
+	i = (i - 1 + image_num) % image_num;
+	draw_image( image_path[i]);
+	return 0;
 }

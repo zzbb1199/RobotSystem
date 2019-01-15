@@ -19,10 +19,27 @@ int read_files(char *dir_path, char *type
 	{
 		printf("%s\n", file->d_name);
 		strcpy(file_name, file->d_name);	/*读取文件名*/
-		ret = strstr(file_name, type);
-		if(!ret || strlen(ret) != strlen(type))	/*如果没有该子串或者type的长度和从子串点开始的长度不同时*/
+		if(0 == strcmp(type,"mp3"))
 		{
-			continue;
+			ret = strstr(file_name, ".mp3"); 
+			if(!ret   || strlen(ret) != strlen(".mp3")) /*如果没有该子串或者type的长度和从子串点开始的长度不同时*/
+			{
+				continue;
+			}
+		}
+		else if(0 == strcmp(type, "image"))
+		{
+			if(!strstr(file_name, ".bmp") && !strstr(file_name,".jpg"))
+			{
+				continue;
+			}
+		}
+		else if(0 == strcmp(type, "video"))
+		{
+			if(!strstr(file_name,".avi"))
+			{
+				continue;
+			}
 		}
 		sprintf(save_path[i], "%s%s%s", dir_path, "/", file_name);
 //		strcpy(save_path[i], file_name);

@@ -1,7 +1,8 @@
 /**
  * 相册操作头文件
  */
-#include "draw.h"
+#include "lcd.h"
+#include <stdio.h>
 
 static int *addr = NULL;
 
@@ -23,7 +24,7 @@ static int image_num = -1;  /*相片数量*/
  * 
  * @return int 
  */
-int init_album(int *addr, char *path[], int num);
+int init_album( char *path[], int num);
 
 /**
  * 下一张图片

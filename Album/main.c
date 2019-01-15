@@ -7,19 +7,17 @@
 #include <string.h>
 #include "lcd_info.h"
 #include "touch.h"
-#include "draw.h"
 #include "memory_share.h"
 #include "dir.h"
+#include "lcd.h"
 #include "album.h"
 
-static int *lcd_addr = NULL;
 static int fd_touch = -1;
 
 
 void init()
 {
-    printf("main init start!\n");
-    lcd_addr = my_mmap();
+    /* touch init */
     fd_touch = open("/dev/input/event0",O_RDONLY);
     if(-1==fd_touch)
     {
@@ -34,23 +32,24 @@ void init()
     {
         image_path[i] = (char *)malloc(sizeof(char) * 50);
     }
-    int read_ret = read_files("./Image", ".bmp", image_path, &image_num);
+    int read_ret = read_files("./Image", "image", image_path, &image_num);
     if(-1 == read_ret)
     {
         printf("read image files failed\n");
         exit(0);
     }
-
+    /* lcd draw init */
+    lcd_open();
     //初始化相册
-    init_album(lcd_addr, image_path, image_num);
+    init_album( image_path, image_num);
     printf("main init finished\n");
 }
 
 
 void destory()
 {
-    my_munmap(lcd_addr);
     close(fd_touch);
+    lcd_close();
 }
 
 int main(int argc, char const *argv[])

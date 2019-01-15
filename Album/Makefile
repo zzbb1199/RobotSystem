@@ -6,7 +6,7 @@ CSources := $(wildcard *.c ../mylib/*.c )
 Objs := $(CSources:.c=.o)
 
 
-main:$(Objs)
+Album:$(Objs)
 	echo "compling"
 	$(CC) $^ -o $@   $(CFLAGS)
 
