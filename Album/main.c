@@ -79,7 +79,8 @@ int main(int argc, char const *argv[])
             {
                 if(ABS_X == event.code)
                 {
-                    x = event.value;
+                    x
+                        = event.value;
                 }
                 else if(ABS_Y == event.code)
                 {

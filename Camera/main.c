@@ -35,25 +35,6 @@ static int fd_touch = -1;
 #define RECORD_VIDEO 2
 static int touch_type = 0;  /* 点击的类型 */
 
-/**
- * 边界检查
- * 
- * @author gec (15/01/19)
- * 
- * @param x 当前点击区域的横坐标
- * @param y 当前点击区域的纵坐标
- * @param bd 索要检查的限制区域
- * 
- * @return int 
- */
-int check_boundary(int x, int y, struct Boundary bd)
-{
-	if (x > bd.p1->x && y > bd.p1->y && x < bd.p2->x && y < bd.p2->y)
-	{
-		return 1;
-	}
-	return 0;
-}
 
 
 void* image2video(void *num)

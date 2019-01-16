@@ -6,7 +6,9 @@
 		<Project File="../CrossLine/CrossLine.vpj"/>
 		<Project File="../GuaGuaLe/GuaGuaLe.vpj"/>
 		<Project File="../JpgShow/JpgShow.vpj"/>
+		<Project File="../Menu/Menu.vpj"/>
 		<Project File="../MusicPlayer/MusicPlayer.vpj"/>
+		<Project File="../Socket/Socket.vpj"/>
 		<Project File="../VideoPlayer/VideoPlayer.vpj"/>
 	</Projects>
 </Workspace>

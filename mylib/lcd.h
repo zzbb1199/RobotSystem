@@ -11,10 +11,6 @@ struct Point
 {
 	int x,y;
 };
-struct Boundary
-{
-	struct Point *p1,*p2;
-};
 
 
 #endif

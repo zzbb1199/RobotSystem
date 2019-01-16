@@ -1,27 +1,61 @@
 #include "touch.h"
-void get_xy(int fd,int *x,int *y)
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+static int fd_touch = -1;   /* 触摸板资源 */
+
+int touch_open()
 {
-	struct input_event event;
-	int count =0 ;
-	while(1)
+	fd_touch = open("/dev/input/event0", O_RDONLY);
+	if (-1 == fd_touch)
 	{
-		read(fd,&event,sizeof(event));
-        if(EV_ABS == event.type)
-        {
-            if(ABS_X == event.code)
-            {
-                *x = event.value;
-                count++;
-            }
-            else if(ABS_Y == event.code)
-            {
-                *y = event.value;
-                count++;
-            }
-        }
-        if(count == 2)
-        {
-        	return ;
-        }
+		perror("open touch failed\n");
+		return -1;
 	}
 }
+
+int touch_close()
+{
+	close(fd_touch);
+}
+
+void get_xy(int *x, int *y)
+{
+	struct input_event event;
+	int count = 0;
+	while (1)
+	{
+		read(fd_touch, &event, sizeof(event));
+		if (EV_ABS == event.type)
+		{
+			if (ABS_X == event.code)
+			{
+				*x = event.value;
+				count++;
+			}
+			else if (ABS_Y == event.code)
+			{
+				*y = event.value;
+				count++;
+			}
+		}
+		if (count == 2)
+		{
+			return;
+		}
+	}
+}
+
+
+
+int check_boundary(int x, int y, struct Boundary bd)
+{
+//	if (x > bd.p1->x && y > bd.p1->y && x < bd.p2->x && y < bd.p2->y)
+//	{
+//		return 1;
+//	}
+	return 0;
+}
+
+
