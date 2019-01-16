@@ -7,10 +7,6 @@
 
 #define EN_LCD_SHOW_JPG		1
 
-struct Point
-{
-	int x,y;
-};
 
 
 #endif

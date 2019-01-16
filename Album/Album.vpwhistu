@@ -1,5 +1,5 @@
 [Global]
-CurrentProject=../Socket/Socket.vpj
+CurrentProject=../SlideUnLock/SlideUnLock.vpj
 [ProjectDates]
 Album.vpj=20190115123135000
 ../Camera/Camera.vpj=20190115084312000
@@ -10,6 +10,7 @@ Album.vpj=20190115123135000
 ../MusicPlayer/MusicPlayer.vpj=20190115083531000
 ../Socket/Socket.vpj=0
 ../VideoPlayer/VideoPlayer.vpj=20190115083630000
+../SlideUnLock/SlideUnLock.vpj=20190116113110000
 [ActiveConfig]
 Album.vpj=Debug
 MusicPlayer/MusicPlayer.vpj=Debug
@@ -21,6 +22,7 @@ MusicPlayer/MusicPlayer.vpj=Debug
 ../CrossLine/CrossLine.vpj=Debug
 ../Menu/Menu.vpj=Debug
 ../Socket/Socket.vpj=Debug
+../SlideUnLock/SlideUnLock.vpj=Debug
 [TreeExpansion2]
 +@ Album.vpj
 -@ ../Camera/Camera.vpj

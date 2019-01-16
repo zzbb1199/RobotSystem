@@ -48,14 +48,70 @@ void get_xy(int *x, int *y)
 }
 
 
-
+/**
+ * 
+ * 
+ * @author gec (16/01/19)
+ * 
+ * @param x 
+ * @param y 
+ * @param bd 
+ * 
+ * @return int 
+ */
 int check_boundary(int x, int y, struct Boundary bd)
 {
-//	if (x > bd.p1->x && y > bd.p1->y && x < bd.p2->x && y < bd.p2->y)
-//	{
-//		return 1;
-//	}
+	if (x > bd.p1->x && y > bd.p1->y && x < bd.p2->x && y < bd.p2->y)
+	{
+		return 1;
+	}
 	return 0;
 }
 
 
+int scroll_delta(int *delta_x, int *delta_y)
+{
+	struct input_event event;
+	int x, y,count = 0;;
+	int start_x, start_y, end_x, end_y;
+	while (1)
+	{
+		read(fd_touch, &event, sizeof(event));
+		if (EV_ABS == event.type)
+		{
+			if (ABS_X == event.code)
+			{
+				x = event.value;
+				count++;
+			}
+			else if (ABS_Y == event.code)
+			{
+				y = event.value;
+				count++;
+			}
+		}
+		if (2 == count)
+		{
+			count = 0;
+			if (EV_KEY == event.type)
+			{
+				if (BTN_TOUCH == event.code && 1 == event.value)
+				{
+					start_x = x;
+					start_y = y;
+				}
+				else if (BTN_TOUCH == event.code && 0 == event.value)
+				{
+					end_x = x;
+					end_y = y;
+					//一次滑动完成
+					*delta_x = start_x - end_x;
+					*delta_y = start_y - end_y;
+					printf("delta x=%d,delta_y = %d\n", delta_x, delta_y);
+					return 0;
+				}
+			}
+		}
+		return 0;
+	}
+}

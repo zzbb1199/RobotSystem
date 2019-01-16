@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lcd.h"
-
+#include "touch.h"
 #if EN_LCD_SHOW_JPG
 	#include "jpeglib.h"
 #endif
@@ -420,7 +420,7 @@ void draw_backgroud(int color)
 //LCD任意地址绘制图片
 int lcd_draw_bmp(const char *image_path)
 {
-	draw_backgroud( 0x000000);
+	draw_backgroud(0x000000);
 
 	//open image
 	int fd_image = open(image_path, O_RDONLY);
@@ -435,15 +435,15 @@ int lcd_draw_bmp(const char *image_path)
 	char image_info[54];
 	read(fd_image, image_info, 54);
 
-    printf("=========this image'info========\n");
-    printf("image path:%s\n",image_path);
+	printf("=========this image'info========\n");
+	printf("image path:%s\n", image_path);
 	int width = image_info[19] << 8 | image_info[18];
 	int height = image_info[23] << 8 | image_info[22];
-    printf("widht=%d\n",width);
-    printf("height=%d\n",height);
-    printf("width=%x\n",width);
-    printf("height=%x\n",height);
-	
+	printf("widht=%d\n", width);
+	printf("height=%d\n", height);
+	printf("width=%x\n", width);
+	printf("height=%x\n", height);
+
 	char buffer[width * height * 3];
 	int ret = read(fd_image, buffer, width * height * 3);
 
@@ -471,7 +471,7 @@ int lcd_draw_bmp(const char *image_path)
 			//printf("(%d,%d)\n",x,y);
 			color_index = (y - start_y) * width + x - start_x;
 			*(g_pfb_memory + (LCD_HEIGHT - 1 - y) * LCD_WIDTH + x) =
-				 buffer[color_index * 3 + 0] << 0 |
+				buffer[color_index * 3 + 0] << 0 |
 				buffer[color_index * 3 + 1] << 8 |
 				buffer[color_index * 3 + 2] << 16;
 		}
@@ -508,4 +508,37 @@ void draw_image(char *image_path)
 	}
 }
 
+void draw_line(struct Point p_start, struct Point p_end, int color)
+{
+	int x, y;
+	for (y = p_start.y; y < p_end.y; y++)
+	{
+		for (x = p_start.x; x < p_end.x; x++)
+		{
+			*(g_pfb_memory + (LCD_WIDTH)*y + x) = color;
+		}
+	}
+}
 
+static int min(int a, int b)
+{
+	return a < b ? a : b;
+}
+void draw_rect(struct Point start, int width, int height, int color)
+{
+	int start_x = start.x;
+	int start_y = start.y;
+
+	int end_x = min(start_x + width, LCD_WIDTH);
+	int end_y = min(start_y + height, LCD_HEIGHT);
+
+	int x, y;
+	for (y = start_y; y < end_y; y++)
+	{
+		for (x = start_x; x < end_x; x++)
+		{
+			*(g_pfb_memory + (LCD_WIDTH)*y + x) = color;
+		}
+	}
+
+}

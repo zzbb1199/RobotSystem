@@ -10,6 +10,13 @@
 #include <unistd.h>
 #include <stdio.h>
 
+struct Point
+{
+	int x,y;
+}; 
+
+
+
 struct Boundary
 {
     struct Point *p1,*p2;
@@ -61,4 +68,16 @@ int touch_close();
  * @return int 
  */
 int check_boundary(int x, int y, struct Boundary bd);
+
+/**
+ * 华东距离检测
+ * 
+ * @author gec (16/01/19)
+ * 
+ * @param delta_x x axis
+ * @param delta_y y axis
+ * 
+ * @return int 
+ */
+int scroll_delta(int *delta_x, int *delta_y);
 #endif

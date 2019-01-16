@@ -41,6 +41,10 @@ int desotry();
  */
 int init_boundary();
 
+
+
+
+
 /**
  * 主程序
  * 
@@ -52,35 +56,38 @@ int init_boundary();
  */
 int main(void)
 {
-    init();
-    /* 显示菜单界面 */
-    draw_image("./Image/menu.bmp");
-    /* 监控触摸event */
-    int x, y;
-    while (1)
-    {
-	get_xy(&x, &y);
-	 /* 相册 */
-	if (check_boundary(x, y, album_bd)) /* check函数待完善 */
+	init();
+	/* 显示菜单界面 */
+	draw_image("./Image/main_menu.bmp");
+	/* 监控触摸event */
+	int x, y;
+	while (1)
 	{
+		get_xy(&x, &y);
+		printf("%d,%d\n", x, y);
+		/* 相册 */
+		if (check_boundary(x, y, album_bd)) /* check函数待完善 */
+		{
+			printf("album\n");
+		}
+		/* 音乐 */
+		else if (check_boundary(x, y, music_bd))
+		{
+			printf("music\n");
+		}
+		/* 视频 */
+		else if (check_boundary(x, y, video_bd))
+		{
+			printf("video\n");
+		}
+		/* 更多 */
+		else if (check_boundary(x, y, more_bd))
+		{
+			printf("more\n");
+		}
 	}
-	/* 音乐 */
-	else if (check_boundary(x, y, music_bd))
-	{
-
-	}
-	/* 视频 */
-	else if (check_boundary(x,y,video_bd))
-	{
-	}
-	/* 更多 */
-	else if (check_boundary(x,y,more_bd))
-	{
-
-	}
-    }
-    desotry(); 
-    return 0;
+	desotry();
+	return 0;
 }
 
 
@@ -117,6 +124,9 @@ int init_boundary()
 
 	music_bd.p1 = malloc(sizeof(struct Boundary));
 	music_bd.p2 = malloc(sizeof(struct Boundary));
+
+	more_bd.p1 = malloc(sizeof(struct Boundary));
+	more_bd.p2 = malloc(sizeof(struct Boundary));
 
 	/* 初始化坐标点 */
 	album_bd.p1->x = 407;
