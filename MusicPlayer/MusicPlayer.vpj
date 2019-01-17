@@ -269,8 +269,8 @@
 			<F N="../lcd_info.h"/>
 			<F N="../memory_share.h"/>
 			<F N="../music.h"/>
+			<F N="music_player_main.h"/>
 			<F N="../touch.h"/>
-			<F N="../video_player.h"/>
 		</Folder>
 		<Folder
 			Name="Other Files"
@@ -288,7 +288,7 @@
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{DD673E14-11A5-4B84-876E-CB351805301F}">
-			<F N="main.c"/>
+			<F N="music_player_main.c"/>
 		</Folder>
 	</Files>
 </Project>

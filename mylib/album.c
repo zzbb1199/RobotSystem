@@ -29,8 +29,8 @@ int init_album(char *path[], int num)
  */
 int next_image()
 {
-	i = (i + 1) % image_num;
-	draw_image(image_path[i]);
+	album_i = (album_i + 1) % image_num;
+	draw_image(image_path[album_i]);
 	return 0;
 }
 
@@ -44,7 +44,7 @@ int next_image()
  */
 int pre_image()
 {
-	i = (i - 1 + image_num) % image_num;
-	draw_image( image_path[i]);
+	album_i = (album_i - 1 + image_num) % image_num;
+	draw_image(image_path[album_i]);
 	return 0;
 }

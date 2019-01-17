@@ -3,13 +3,13 @@
 	<Projects>
 		<Project File="Album.vpj"/>
 		<Project File="../Camera/Camera.vpj"/>
+		<Project File="../Chat/Chat.vpj"/>
 		<Project File="../CrossLine/CrossLine.vpj"/>
 		<Project File="../GuaGuaLe/GuaGuaLe.vpj"/>
-		<Project File="../JpgShow/JpgShow.vpj"/>
 		<Project File="../Menu/Menu.vpj"/>
 		<Project File="../MusicPlayer/MusicPlayer.vpj"/>
+		<Project File="../Scheduler/Scheduler.vpj"/>
 		<Project File="../SlideUnLock/SlideUnLock.vpj"/>
-		<Project File="../Socket/Socket.vpj"/>
 		<Project File="../VideoPlayer/VideoPlayer.vpj"/>
 	</Projects>
 </Workspace>

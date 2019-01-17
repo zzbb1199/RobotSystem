@@ -1,12 +1,14 @@
 /**
  * 相册操作头文件
  */
+#ifndef __ALBUM_H__
+#define __ALBUM_H__
+
 #include "lcd.h"
 #include <stdio.h>
 
-static int *addr = NULL;
 
-static int i = 0;   /*当前是第几张图片*/
+static int album_i = 0;   /*当前是第几张图片*/
 
 static char *image_path[50]; /*相册路径*/
 
@@ -24,7 +26,7 @@ static int image_num = -1;  /*相片数量*/
  * 
  * @return int 
  */
-int init_album( char *path[], int num);
+int init_album(char *path[], int num);
 
 /**
  * 下一张图片
@@ -44,3 +46,5 @@ int next_image();
  * @return int 
  */
 int pre_image();
+
+#endif

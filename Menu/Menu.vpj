@@ -260,7 +260,7 @@
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{8B134C08-31C6-435C-ABBC-61CF2ADE772D}">
 			<F N="../mylib/lcd.c"/>
-			<F N="main.c"/>
+			<F N="menu_main.c"/>
 			<F N="../mylib/touch.c"/>
 		</Folder>
 		<Folder
@@ -268,6 +268,7 @@
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
 			GUID="{C4D51CEA-17FB-40EC-B53A-AE4D53D75C86}">
 			<F N="../mylib/lcd.h"/>
+			<F N="menu_main.h"/>
 			<F N="../mylib/touch.h"/>
 		</Folder>
 		<Folder

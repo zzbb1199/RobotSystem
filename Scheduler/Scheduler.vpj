@@ -9,7 +9,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdCamera"
+		OutputFile="%bdScheduler"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -134,7 +134,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdCamera"
+		OutputFile="%bdScheduler"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -258,50 +258,28 @@
 		<Folder
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
-			GUID="{3D3364E0-D140-40B9-8405-7DF8E04C3B29}">
-			<F N="../mylib/album.c"/>
-			<F N="camera_main.c"/>
-			<F N="../mylib/common.c"/>
-			<F N="../mylib/dir.c"/>
-			<F N="../mylib/draw.c"/>
-			<F N="../mylib/lcd.c"/>
-			<F N="../mylib/memory_share.c"/>
-			<F N="../mylib/music.c"/>
-			<F N="../mylib/touch.c"/>
+			GUID="{8315FE38-0972-4958-9640-211A63BBE01F}">
+			<F N="main.c"/>
+			<F N="../mylib/stack.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{33732F17-D568-4326-AD93-12E0D0D4B1D0}">
-			<F N="../mylib/album.h"/>
-			<F N="../lib/libjpeg/api_v4l2.h"/>
-			<F N="camera_main.h"/>
-			<F N="../mylib/dir.h"/>
-			<F N="../mylib/draw.h"/>
-			<F N="../lib/libjpeg/jconfig.h"/>
-			<F N="../lib/libjpeg/jerror.h"/>
-			<F N="../lib/libjpeg/jmorecfg.h"/>
-			<F N="../lib/libjpeg/jpeglib.h"/>
-			<F N="../mylib/lcd.h"/>
-			<F N="../mylib/lcd_info.h"/>
-			<F N="../mylib/memory_share.h"/>
-			<F N="../mylib/music.h"/>
-			<F N="../mylib/public_resource.h"/>
-			<F N="../mylib/touch.h"/>
-			<F N="../mylib/video_player.h"/>
+			GUID="{F571D26D-F1F9-440E-B07F-17EBFD6C0E10}">
+			<F N="../mylib/stack.h"/>
 		</Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"
-			GUID="{826DD1B3-BEBD-4137-9960-7CFFB0DF08A3}"/>
+			GUID="{7B22EEEF-051F-4F2E-9109-9D1E2094A73E}"/>
 		<Folder
 			Name="Bitmaps"
 			Filters="*.bmp"
-			GUID="{D51FCDBA-B6F0-4A3E-AB8D-A40195937084}"/>
+			GUID="{8B401776-3960-4042-B939-CD5A8345DA82}"/>
 		<Folder
 			Name="Other Files"
 			Filters=""
-			GUID="{C9274817-48C0-4A74-87C1-8D0D3F0FF26A}">
+			GUID="{0ED72F0F-042C-47BF-8289-472B3D4983D0}">
 			<F
 				N="Makefile"
 				Type="Makefile"/>

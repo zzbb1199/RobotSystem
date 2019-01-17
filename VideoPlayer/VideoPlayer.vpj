@@ -259,13 +259,15 @@
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{4C50FC6F-6E69-4C2F-9A10-9129BB1C8AA2}">
-			<F N="main.c"/>
-			<F N="../video_player.c"/>
+			<F N="video_player_main.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{ACAEA204-0D78-4E4B-82FD-ECC54033D1E0}"></Folder>
+			GUID="{ACAEA204-0D78-4E4B-82FD-ECC54033D1E0}">
+			<F N="../mylib/video.h"/>
+			<F N="video_player_main.h"/>
+		</Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"

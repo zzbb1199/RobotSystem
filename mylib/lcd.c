@@ -39,7 +39,12 @@ static int *g_pfb_memory;
 volatile int g_jpg_in_jpg_x;
 volatile int g_jpg_in_jpg_y;
 
-void lcd_close(void);
+
+
+static int min(int a, int b)
+{
+	return a < b ? a : b;
+}
 
 //初始化LCD
 int lcd_open(void)
@@ -71,7 +76,6 @@ void lcd_draw_point(unsigned int x, unsigned int y, unsigned int color)
 }
 
 #if EN_LCD_SHOW_JPG
-void draw_backgroud(int color);
 int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pjpg_buf, unsigned int jpg_buf_size, unsigned int jpg_half)
 {
 	draw_backgroud(0x000000);
@@ -417,11 +421,73 @@ void draw_backgroud(int color)
 }
 
 
+int lcd_draw_bmp_with_start(const char *image_path, int start_x, int start_y)
+{
+	//open image
+	printf("draw image start %d,%d\n", start_x, start_y);
+//	start_y = LCD_HEIGHT - start_y;
+	int fd_image = open(image_path, O_RDONLY);
+	if (-1 == fd_image)
+	{
+		perror("open image failed");
+		return -1;
+	}
+
+	//处理offset
+	//lseek(fd_image,54,SEEK_SET);
+	char image_info[54];
+	read(fd_image, image_info, 54);
+
+	printf("=========this image'info========\n");
+	printf("image path:%s\n", image_path);
+	int width = image_info[19] << 8 | image_info[18];
+	int height = image_info[23] << 8 | image_info[22];
+	printf("widht=%d\n", width);
+	printf("height=%d\n", height);
+	printf("width=%x\n", width);
+	printf("height=%x\n", height);
+
+	char buffer[width * height * 3];
+	int ret = read(fd_image, buffer, width * height * 3);
+
+	if (width > LCD_WIDTH || height > LCD_HEIGHT)
+	{
+		printf("this image is too large, please change a image and try again!\n'");
+		return -1;
+	}
+
+	//wait for optimize
+	int end_x, end_y;
+//	start_x = LCD_WIDTH / 2 - width / 2;
+//	start_y = LCD_HEIGHT / 2 - height / 2;
+	end_x = min(start_x+width,LCD_WIDTH);
+	end_y = min(start_y+height,LCD_HEIGHT);
+
+	//output
+	int x, y;
+	int color_index;
+	for (y = start_y; y < end_y; y++)
+	{
+		for (x = start_x; x < end_x; x++)
+		{
+			//printf("(%d,%d)\n",x,y);
+			color_index = (y - start_y) * width + x - start_x;
+			*(g_pfb_memory + (height - (y - start_y) + start_y) * LCD_WIDTH + x) =
+				buffer[color_index * 3 + 0] << 0 |
+				buffer[color_index * 3 + 1] << 8 |
+				buffer[color_index * 3 + 2] << 16;
+		}
+	}
+
+	printf("\n");
+
+	close(fd_image);
+	return 0;
+}
+
 //LCD任意地址绘制图片
 int lcd_draw_bmp(const char *image_path)
 {
-	draw_backgroud(0x000000);
-
 	//open image
 	int fd_image = open(image_path, O_RDONLY);
 	if (-1 == fd_image)
@@ -480,7 +546,6 @@ int lcd_draw_bmp(const char *image_path)
 	printf("\n");
 
 	close(fd_image);
-	return 0;
 }
 
 //LCD关闭
@@ -520,10 +585,6 @@ void draw_line(struct Point p_start, struct Point p_end, int color)
 	}
 }
 
-static int min(int a, int b)
-{
-	return a < b ? a : b;
-}
 void draw_rect(struct Point start, int width, int height, int color)
 {
 	int start_x = start.x;
