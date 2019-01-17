@@ -13,6 +13,7 @@
 #define MORE  0x06
 #define GUAGUA 0x07
 #define CROSS_LINE 0x08
+#define CAMERA 0x09
 
 ///**
 // * 退出到上一级别功能

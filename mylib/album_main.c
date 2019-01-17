@@ -66,6 +66,7 @@ int album_main(int *condition)
     int start_x,start_y;
     int end_x,end_y;
     int threshold = 20; //判决门限
+    int exit_threshold = 600;   /* 退出判定 */
     int delta_x,delta_y;
     //滑动换图
     struct input_event event;
@@ -108,6 +109,11 @@ int album_main(int *condition)
         else if(delta_x < -threshold)
         {
             pre_image();
+        }
+
+        if(-delta_x >= exit_threshold)
+        {
+            break;
         }
         printf("\n");
     }

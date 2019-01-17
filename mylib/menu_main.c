@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "scheduler.h"
-static struct Boundary album_bd;
+static struct Boundary camera_bd;
 static struct Boundary video_bd;
 static struct Boundary music_bd;
 static struct Boundary locking_bd;
@@ -68,10 +68,10 @@ int menu_main(int *condition)
 		get_xy(&x, &y);
 		printf("%d,%d\n", x, y);
 		/* 相册 */
-		if (check_boundary(x, y, album_bd)) /* check函数待完善 */
+		if (check_boundary(x, y, camera_bd)) /* check函数待完善 */
 		{
-			printf("album\n");
-			*condition = ALBUM;
+			printf("camera\n");
+			*condition = CAMERA;
 			break;
 		}
 		/* 音乐 */
@@ -140,8 +140,8 @@ static int desotry()
 static int init_boundary()
 {
 	/* 为个边界分配内存 */
-	album_bd.p1 = malloc(sizeof(struct Boundary));
-	album_bd.p2 = malloc(sizeof(struct Boundary));
+	camera_bd.p1 = malloc(sizeof(struct Boundary));
+	camera_bd.p2 = malloc(sizeof(struct Boundary));
 
 	video_bd.p1 = malloc(sizeof(struct Boundary));
 	video_bd.p2 = malloc(sizeof(struct Boundary));
@@ -159,10 +159,10 @@ static int init_boundary()
 	guaguale_bd.p2 = malloc(sizeof(struct Boundary));
 
 	/* 初始化坐标点 */
-	album_bd.p1->x = 407;
-	album_bd.p1->y = 71;
-	album_bd.p2->x = 493;
-	album_bd.p2->y = 142;
+	camera_bd.p1->x = 407;
+	camera_bd.p1->y = 71;
+	camera_bd.p2->x = 493;
+	camera_bd.p2->y = 142;
 
 	video_bd.p1->x = 407;
 	video_bd.p1->y = 206;
@@ -188,4 +188,6 @@ static int init_boundary()
 	guaguale_bd.p1->y = 378;
 	guaguale_bd.p2->x = 493;
 	guaguale_bd.p2->y = 430;
+	
+	return 0;
 }

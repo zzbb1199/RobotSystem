@@ -281,6 +281,7 @@
 			Name="Other Files"
 			Filters=""
 			GUID="{C9274817-48C0-4A74-87C1-8D0D3F0FF26A}">
+			<F N="../lib/libjpeg/api_v4l2.h"/>
 			<F N="../mylib/camera_main.h"/>
 			<F
 				N="Makefile"

@@ -13,6 +13,11 @@ int touch_open()
 		perror("open touch failed\n");
 		return -1;
 	}
+	else
+	{
+		printf("open touch sucess\n");
+	}
+	return 0;
 }
 
 int touch_close()

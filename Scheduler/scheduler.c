@@ -41,6 +41,9 @@ int main(void)
 			break;
 		case MORE:
 			break;
+		case CAMERA:
+            camera_main(&condition);
+			break;
 		case GUAGUA:
 			guaguale_main(&condition);
 			break;

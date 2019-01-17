@@ -7,6 +7,7 @@
 #include "memory_share.h"
 #include "guaguale_main.h"
 #include "public_resource.h"
+#include "scheduler.h"
 
 static int min(int a, int b)
 {
@@ -21,11 +22,39 @@ static int init()
 {
 	lcd_open();
 
-	touch_open();
+//	touch_open();
 
 	// 画一个背景
 	draw_backgroud(0x000000);
+}
+static int destory()
+{
 
+	lcd_close();
+
+//	touch_close();
+
+	close(fd_image);
+	close(fd_touch);
+}
+
+
+
+int guaguale_main(int *condition)
+{
+	//init
+	init();
+
+
+	fd_touch = open("/dev/input/event0", O_RDONLY);
+	if (-1 == fd_touch)
+	{
+		printf("open fd_touch failed\n");
+	}
+	else
+	{
+		printf("open fd_touch success\n");
+	}
 	//open image
 	char *image_path = "./Image/image1.bmp";
 	fd_image = open(image_path, O_RDONLY);
@@ -66,60 +95,91 @@ static int init()
 	end_x = LCD_WIDTH / 2 + width / 2;
 	end_y = LCD_HEIGHT / 2 + height / 2;
 
+	printf("pic start %d,%d\n", start_x, start_y);
+	printf("pic end %d,%d\n", end_x, end_y);
+
 	//output
 	int x, y;
 	int x1, y1;
 	int x2, y2;
 	int color_index;
-	//核心程序
+	int count = 0;
+
+	/* delta计算辅助变量 */
+	int delta_s_x;
+	int delta_e_x;
+	int delta_x;
+	const int exit_threshold = 600;
+	struct input_event event;
 	while (1)
 	{
-		get_xy( &x1, &y1);
-		//检测是否超过边界
-		if (x1 < start_x || y1 < start_y || x1 > end_x || y1 > end_y)
+		read(fd_touch, &event, sizeof(event));
+		if (EV_ABS == event.type)
 		{
-			continue;
-		}
-		//绘制点边界
-		x2 = min(x1 + 20, WIDTH);
-		y2 = min(y1 + 20, HEIGHT);
-		x1 = max(x1 - 20, 0);
-		y1 = max(y1 - 20, 0);
-
-//		printf("erase point %d,%d -- %d,%d\n", x1, y1, x2, y2);
-		//绘制点
-		for (y = y1; y < y2; y++)
-		{
-			for (x = x1; x < x2; x++)
+			if (ABS_X == event.code)
 			{
-				//printf("(%d,%d)\n",x,y);
-				color_index = (HEIGHT - (y - start_y) -1) * width + x - start_x;
-				lcd_draw_point(x, y, buffer[color_index * 3 + 0] << 0 |
-							   buffer[color_index * 3 + 1] << 8 |
-							   buffer[color_index * 3 + 2] << 16);
+				x1 = event.value;
+				count++;
+			}
+			else if (ABS_Y == event.code)
+			{
+				y1 = event.value;
+				count++;
+			}
+		}
+		if (2 == count)
+		{
+			count = 0;
+			printf("guaguale touch %d,%d\n", x1, y1);
+			//检测是否超过边界
+			if (x1 < start_x || y1 < start_y || x1 > end_x || y1 > end_y)
+			{
+				continue;
+			}
+
+			//绘制点边界
+			x2 = min(x1 + 20, LCD_WIDTH);
+			y2 = min(y1 + 20, LCD_HEIGHT);
+			x1 = max(x1 - 20, 0);
+			y1 = max(y1 - 20, 0);
+
+			//绘制点
+			for (y = y1; y < y2; y++)
+			{
+				for (x = x1; x < x2; x++)
+				{
+					//printf("(%d,%d)\n",x,y);
+					color_index = (LCD_HEIGHT - (y - start_y) - 1) * width + x - start_x;
+					lcd_draw_point(x, y, buffer[color_index * 3 + 0] << 0 |
+								   buffer[color_index * 3 + 1] << 8 |
+								   buffer[color_index * 3 + 2] << 16);
+				}
+			}
+		}
+
+		/* 起始点检测 */
+		if (EV_KEY == event.type)
+		{
+			if (BTN_TOUCH == event.code && 1 == event.value)
+			{
+				delta_s_x = x;
+			}
+			else if (BTN_TOUCH == event.code && 0 == event.value)
+			{
+				delta_e_x = x;
+				delta_x =  delta_s_x  - delta_e_x;
+				/* 判定是否退出 */
+				if (-delta_x > exit_threshold)
+				{
+					*condition = MENU;
+					break;
+				}
 			}
 		}
 	}
-	printf("\n");
-}
-static int destory()
-{
-
-    lcd_close();
-
-    touch_close();
-
-	close(fd_image);
-}
-
-
-
-int guaguale_main(int *condtion)
-{
-	//init
-	init();
 
 	destory();
+	return 0;
 }
 
 

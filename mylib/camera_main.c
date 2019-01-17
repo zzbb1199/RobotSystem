@@ -21,10 +21,17 @@ static FrameBuffer freambuf; /* 一帧数据 */
 
 #define NO_TOUCH_BLOCK 0
 #define TOUCH_BLOCK 1
-static volatile int touch_block = 0; /* 添加触摸屏阻塞锁 */
+static volatile int touch_block; /* 添加触摸屏阻塞锁 */
 
 static unsigned int record_touch_times = 0; /* 录屏点击次数 */
 
+pthread_t touch_event_thread; /* 监控触摸屏县城 */
+
+pthread_t thread_image2video; /* 视频转换线程 */
+
+static int isconvert_video;
+
+static int touch_type;  /* 点击的类型 */
 
 
 
@@ -32,14 +39,18 @@ static unsigned int record_touch_times = 0; /* 录屏点击次数 */
  * 点击事件定义
  */
 #define NO_TOUCH_EVENT 0
-#define TAKE_PHOTO 1
-#define RECORD_VIDEO 2
-static int touch_type = 0;  /* 点击的类型 */
+#define TAKE_PHOTO_EVENT 1
+#define RECORD_VIDEO_EVENT 2
+#define BACK_EVENT 3
+#define ALBUM_EVENT 4
+
+
 
 
 
 void* image2video(void *num)
 {
+	isconvert_video = 1;
 	int *record_video_num = (int *)num;
 	printf("==========convert from image to video start===============\n");
 	char cmd[50];
@@ -47,7 +58,7 @@ void* image2video(void *num)
 			, *(record_video_num)++);
 	system(cmd);
 	printf("==========convert from image to video end===============\n");
-	return NULL;
+	return (void *)0;
 }
 
 void* touch_event()
@@ -70,28 +81,57 @@ void* touch_event()
 	record_video_bd.p2->x = 80;
 	record_video_bd.p2->y = 480;
 
+	struct Boundary back_bd;
+	back_bd.p1 = (struct Point *)malloc(sizeof(struct Point));
+	back_bd.p2 = (struct Point *)malloc(sizeof(struct Point));
+	back_bd.p1->x = 0;
+	back_bd.p1->y = 0;
+	back_bd.p2->x = 80;
+	back_bd.p2->y = 240;
+
+	struct Boundary album_bd;
+	album_bd.p1 = (struct Point *)malloc(sizeof(struct Point));
+	album_bd.p2 = (struct Point *)malloc(sizeof(struct Point));
+	album_bd.p1->x = 720;
+	album_bd.p1->y = 240;
+	album_bd.p2->x = 800;
+	album_bd.p2->y = 480;
+
 	/* 保存触摸点 */
 	int x, y;
 
 	while (1)
 	{
 		get_xy(&x, &y);
+		printf("%d,%d\n", x, y);
 		/* 检查是否触摸在拍照区域 */
 		if (!touch_block && check_boundary(x, y, take_photo_bd))
 		{
-			touch_type = TAKE_PHOTO;
+			printf("take photo!!!!\n");
+			touch_type = TAKE_PHOTO_EVENT;
 			touch_block = TOUCH_BLOCK;
 			while (touch_block);  /* 启动触摸锁 */
 			/* 检查是否触摸在录屏区域 */
 		}
 		else if (!touch_block && check_boundary(x, y, record_video_bd))
 		{
-			touch_type = RECORD_VIDEO;
+			printf("record video\n");
+			touch_type = RECORD_VIDEO_EVENT;
 			record_touch_times++;
+		}
+		else if (!touch_block && check_boundary(x, y, back_bd))
+		{
+			printf("back event \n");
+			touch_type = BACK_EVENT;
+		}
+		else if (!touch_block && check_boundary(x, y, album_bd))
+		{
+			printf("album event\n");
+			touch_type = ALBUM_EVENT;
 		}
 	}
 
-	return NULL;
+	return (void *)0;
 }
 
 static int destory()
@@ -108,8 +148,15 @@ static int destory()
 	/* 关闭touch */
 	touch_close();
 
-	/* 关闭触摸屏 */
-	close(fd_touch);
+	/* 关闭触摸屏监控线程 */
+	pthread_cancel(touch_event_thread);
+
+	if (isconvert_video)
+	{
+		isconvert_video = 0;
+		/* 关闭转换县城 */
+		pthread_cancel(thread_image2video);
+	}
 
 	return 0;
 }
@@ -136,8 +183,19 @@ static int init()
 	system("rm ./Video/video?.avi");
 	system("rm  ./Video/Image/*");
 
+	/* 初始化点击事件 */	
+	touch_type = 0;
+	touch_block = 0;
+
+	/* 初始化转换视频标志位 */
+	isconvert_video = 0;
+
+	/* 初始化帧 */
+	bzero(freambuf.buf, sizeof(freambuf));
+	freambuf.length = 0;
+
 	/* 创建触摸屏事件thread */
-	pthread_t touch_event_thread;
+	
 	int ret = pthread_create(&touch_event_thread, NULL,
 							 touch_event, 0);
 	if (!ret)
@@ -166,6 +224,7 @@ int camera_main(int *condition)
 	/* 录屏的第几个视频 */
 	int record_video_num = 1;
 	
+	
 
 	/* 图片名字 */
 	char image_name[50];
@@ -180,7 +239,7 @@ int camera_main(int *condition)
 		/* 显示摄像头图像*/
 		lcd_draw_jpg(80, 0, NULL, freambuf.buf, freambuf.length, 0);
 
-		if (TAKE_PHOTO == touch_type)
+		if (TAKE_PHOTO_EVENT == touch_type)
 		{
 
 			/* 初始化需要将文件写入到的地方 */
@@ -204,7 +263,7 @@ int camera_main(int *condition)
 			/* 解开点击事件 */
 			touch_type = NO_TOUCH_EVENT;
 		}
-		else if (RECORD_VIDEO == touch_type)
+		else if (RECORD_VIDEO_EVENT == touch_type)
 		{
 
 			/* 初始化照片写入地方 */
@@ -221,7 +280,7 @@ int camera_main(int *condition)
 			printf("write_ret %d\n", write_ret);
 			/* 回收资源 */
 			close(fd_write2file);
-			
+
 			record_image_num++;
 
 			if (2 == record_touch_times)
@@ -229,7 +288,7 @@ int camera_main(int *condition)
 				record_touch_times = 0;
 				record_image_num = 0;
 				/* 开启转视频的线程 */
-				pthread_t thread_image2video;
+			
 				int create_thread_ret = pthread_create(&thread_image2video,
 													   NULL, image2video,
 													   &record_video_num);
@@ -243,11 +302,19 @@ int camera_main(int *condition)
 				touch_type = NO_TOUCH_EVENT;
 			}
 		}
+		else if (BACK_EVENT == touch_type)
+		{
+			*condition = MENU;
+			break;
+		}
+		else if (ALBUM_EVENT == touch_type)
+		{
+			*condition = ALBUM;
+			break;
+		}
 
 	}
-
 	destory();
-	*condition = MENU;
 
 	return 0;
 }
