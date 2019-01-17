@@ -12,7 +12,6 @@
 #include "lcd.h"
 #include "album.h"
 #include "public_resource.h"
-#include "album_main.h"
 
 static void init()
 {
@@ -51,7 +50,7 @@ static void destory()
     lcd_close();
 }
 
-int album_main(void)
+int main(void)
 {
     //init
     init();

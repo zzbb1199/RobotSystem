@@ -259,13 +259,15 @@
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{DF3875E2-DD03-475B-B14D-A90B865C57C2}">
-			<F N="cross_line_main.c"/>
+			<F N="../mylib/cross_line_main.c"/>
+			<F N="../mylib/lcd.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
 			GUID="{2696B25B-6B87-4E54-BB19-2D83F4FC584C}">
-			<F N="cross_line_main.h"/>
+			<F N="../mylib/cross_line_main.h"/>
+			<F N="../mylib/lcd.h"/>
 		</Folder>
 		<Folder
 			Name="Resource Files"

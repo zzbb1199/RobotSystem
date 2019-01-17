@@ -259,13 +259,14 @@
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{8315FE38-0972-4958-9640-211A63BBE01F}">
-			<F N="main.c"/>
+			<F N="scheduler.c"/>
 			<F N="../mylib/stack.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
 			GUID="{F571D26D-F1F9-440E-B07F-17EBFD6C0E10}">
+			<F N="scheduler.h"/>
 			<F N="../mylib/stack.h"/>
 		</Folder>
 		<Folder

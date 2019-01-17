@@ -6,7 +6,8 @@
 #include "lcd.h"
 #include "touch.h"
 #include <stdio.h>
-#include ‘<stdlib.h>
+#include <stdlib.h>
+#include "scheduler.h"
 
 static struct Boundary album_bd;
 static struct Boundary video_bd;
@@ -54,7 +55,7 @@ static int init_boundary();
  * 
  * @return int 
  */
-int menu_main(void)
+int menu_main(int *condition)
 {
 	init();
 	/* 显示菜单界面 */

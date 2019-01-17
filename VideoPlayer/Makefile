@@ -6,7 +6,7 @@ CSources := $(wildcard *.c ../mylib/*.c )
 Objs := $(CSources:.c=.o)
 
 
-GuaGuaLe:$(Objs)
+VideoPlayer:$(Objs)
 	echo "compling"
 	$(CC) $^ -o $@   $(CFLAGS)
 

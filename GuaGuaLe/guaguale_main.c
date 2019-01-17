@@ -6,7 +6,8 @@
 #include "lcd.h"
 #include "memory_share.h"
 #include "guaguale_main.h"
-
+#include "public_resource.h"
+#include "scheduler.h"
 
 static int min(int a, int b)
 {
@@ -27,11 +28,11 @@ static int init()
 	draw_backgroud(0x000000);
 
 	//open image
-	char *image_path = "./image.bmp";
+	char *image_path = "./Image/image1.bmp";
 	fd_image = open(image_path, O_RDONLY);
 	if (-1 == fd_image)
 	{
-		perror("open image failed");
+		perror("open image failed!!!");
 		return -1;
 	}
 
@@ -52,7 +53,7 @@ static int init()
 	char buffer[width * height * 3];
 	int ret = read(fd_image, buffer, width * height * 3);
 
-	if (width > WIDTH || height > HEIGHT)
+	if (width > LCD_WIDTH || height > LCD_HEIGHT)
 	{
 		printf("this image is too large, please change a image and try again!\n'");
 		return -1;
@@ -61,10 +62,10 @@ static int init()
 	//定义图片边界
 	int start_x, start_y;
 	int end_x, end_y;
-	start_x = WIDTH / 2 - width / 2;
-	start_y = HEIGHT / 2 - height / 2;
-	end_x = WIDTH / 2 + width / 2;
-	end_y = HEIGHT / 2 + height / 2;
+	start_x = LCD_WIDTH / 2 - width / 2;
+	start_y = LCD_HEIGHT / 2 - height / 2;
+	end_x = LCD_WIDTH / 2 + width / 2;
+	end_y = LCD_HEIGHT / 2 + height / 2;
 
 	//output
 	int x, y;
@@ -114,12 +115,14 @@ static int destory()
 
 
 
-int guaguale_main(void)
+int guaguale_main(int *condition)
 {
 	//init
 	init();
 
 	destory();
+	*condition = MENU;
+	return 0;
 }
 
 

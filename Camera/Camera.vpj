@@ -260,7 +260,7 @@
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{3D3364E0-D140-40B9-8405-7DF8E04C3B29}">
 			<F N="../mylib/album.c"/>
-			<F N="camera_main.c"/>
+			<F N="../mylib/camera_main.c"/>
 			<F N="../mylib/common.c"/>
 			<F N="../mylib/dir.c"/>
 			<F N="../mylib/draw.c"/>
@@ -268,27 +268,6 @@
 			<F N="../mylib/memory_share.c"/>
 			<F N="../mylib/music.c"/>
 			<F N="../mylib/touch.c"/>
-		</Folder>
-		<Folder
-			Name="Header Files"
-			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{33732F17-D568-4326-AD93-12E0D0D4B1D0}">
-			<F N="../mylib/album.h"/>
-			<F N="../lib/libjpeg/api_v4l2.h"/>
-			<F N="camera_main.h"/>
-			<F N="../mylib/dir.h"/>
-			<F N="../mylib/draw.h"/>
-			<F N="../lib/libjpeg/jconfig.h"/>
-			<F N="../lib/libjpeg/jerror.h"/>
-			<F N="../lib/libjpeg/jmorecfg.h"/>
-			<F N="../lib/libjpeg/jpeglib.h"/>
-			<F N="../mylib/lcd.h"/>
-			<F N="../mylib/lcd_info.h"/>
-			<F N="../mylib/memory_share.h"/>
-			<F N="../mylib/music.h"/>
-			<F N="../mylib/public_resource.h"/>
-			<F N="../mylib/touch.h"/>
-			<F N="../mylib/video_player.h"/>
 		</Folder>
 		<Folder
 			Name="Resource Files"
@@ -302,6 +281,7 @@
 			Name="Other Files"
 			Filters=""
 			GUID="{C9274817-48C0-4A74-87C1-8D0D3F0FF26A}">
+			<F N="../mylib/camera_main.h"/>
 			<F
 				N="Makefile"
 				Type="Makefile"/>

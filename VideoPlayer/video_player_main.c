@@ -13,8 +13,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "video_player_main.h"
-
+#include "public_resource.h"
 
 /**
  * 初始化一些参数
@@ -31,6 +30,8 @@ static int fifo = -1;    /*fifo管道文件描述符*/
 
 #define VOL_THRESHOLD 5	/*音量变化门限*/
 
+#define EXIT_THRESEHOLD 300
+
 #define DOUBLE_THRESHOLD 300 /*双击检测门限: 第一次和第二次点击之间的最长时间差*/
 /**
  * x的绝对值
@@ -41,7 +42,7 @@ static int fifo = -1;    /*fifo管道文件描述符*/
  *
  * @return inollt
  */
-static int abs(int x)
+ int abs(int x)
 {
 	return x > 0 ? x : -x;
 }
@@ -93,6 +94,15 @@ static int scroll_tackle(int delta, int flag)
 		break;
 	case SCROLL_EXIT:
 		//退出视频播放
+		if (abs(delta) > EXIT_THRESEHOLD)
+		{
+			printf("exit!!!!\n");
+			system("killall -9 mplayer");
+			system("killall -9 VideoPlayer");
+			system("./Menu");
+//			system("kiall -9 VideoPlayer");
+			exit(0);
+		}
 		break;
 	default:
 		break;
@@ -156,7 +166,7 @@ static int init()
 	}
 	int video_num = -1;
 	//获取视频文件路径
-	read_files("./Video", ".avi", video_path, &video_num);
+	read_files("./Video", "video", video_path, &video_num);
 	//初始化视频播放器
 	init_video(video_path, video_num, fifo);
 
@@ -282,6 +292,7 @@ static int run()
 				printf("delta x=%d,delta_y = %d\n", delta_x, delta_y);
 				scroll_tackle(delta_x, SCROLL_X);
 				scroll_tackle(delta_y, SCROLL_Y);
+				scroll_tackle(delta_x, SCROLL_EXIT);
 			}
 		}
 
@@ -296,7 +307,7 @@ static int destory()
 	close(fifo);
 }
 
-int vdieo_player_main(void)
+int main(void)
 {
 	//init
 	init();

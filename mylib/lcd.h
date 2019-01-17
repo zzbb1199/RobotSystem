@@ -51,6 +51,5 @@ void lcd_draw_point(unsigned int x, unsigned int y, unsigned int color);
 
 int lcd_draw_bmp_with_start(const char *image_path, int start_x, int start_y);
 
-
-
+int draw_cross_line(struct Point line ,int color);
 #endif

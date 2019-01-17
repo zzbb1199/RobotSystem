@@ -93,7 +93,7 @@ static int init_threads();
  */
 static int destory();
 
-int chat_main(void)
+int main(void)
 {
 	/* 初始化 */
 	init();

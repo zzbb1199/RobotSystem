@@ -64,7 +64,7 @@ Status get_top(Sqstack *s, ElemType *e)
  * @return OK
  *          ERROR
  */
-Status push(Sqstack *s, ElemType e)
+Status push(Sqstack *s, ElemType *e)
 {
 	if (s->top - s->base >= s->stack_size) //如果当前空间已经不足
 	{
@@ -75,7 +75,7 @@ Status push(Sqstack *s, ElemType e)
 		s->top = s->base + s->stack_size;   //原因同上
 		s->stack_size += INCREMENT;
 	}
-	*(s->top++) = e;
+	*(s->top++) = *e;
 	return 0;
 }
 

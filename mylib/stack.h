@@ -5,19 +5,18 @@
 #ifndef __STACK_H__
 #define __STACK_H__
 
-
 #define Status int
-#define ElemType int
+#define ElemType  int
 /**
  * 栈结构--顺序栈实现
  */
 //----------------顺序栈定义------------
 #define INIT_SIZE 100       //初始化空间大小
 #define INCREMENT 10       //内存空间增量
-typedef struct{
-    ElemType *base;         //栈底指针
-    ElemType *top;          //栈首指针+1 （指向已分配内存但未赋值的内存空间）
-    int stack_size;         //当前栈最大存储空间
+typedef struct {
+	ElemType *base;         //栈底指针
+	ElemType *top;          //栈首指针+1 （指向已分配内存但未赋值的内存空间）
+	int stack_size;         //当前栈最大存储空间
 }Sqstack;
 
 //----------------顺序栈实现------------
@@ -51,7 +50,7 @@ Status get_top(Sqstack *s, ElemType *e);
  * @return OK
  *          ERROR
  */
-Status push(Sqstack *s, ElemType e);
+Status push(Sqstack *s, ElemType *e);
 
 /**
  * 栈s栈顶元素弹出，以e作为返回值

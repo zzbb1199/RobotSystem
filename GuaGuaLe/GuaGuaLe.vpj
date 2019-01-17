@@ -259,13 +259,13 @@
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{0E8C6FE6-221B-4D5F-AACF-048FC3547B13}">
-			<F N="guaguale_main.c"/>
+			<F N="../mylib/guaguale_main.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
 			GUID="{75E0D153-B131-464F-A476-F9BC044C3583}">
-			<F N="guaguale_main.h"/>
+			<F N="../mylib/guaguale_main.h"/>
 			<F N="../mylib/public_resource.h"/>
 		</Folder>
 		<Folder

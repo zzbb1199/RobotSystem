@@ -259,13 +259,13 @@
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{8A4C02E3-C3DB-43E3-9244-B26574C26214}">
-			<F N="chat_main.c"/>
+			<F N="../mylib/chat_main.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
 			GUID="{DEA6B248-7264-48A4-BDEB-62923A3E52B1}">
-			<F N="chat_main.h"/>
+			<F N="../mylib/chat_main.h"/>
 		</Folder>
 		<Folder
 			Name="Resource Files"

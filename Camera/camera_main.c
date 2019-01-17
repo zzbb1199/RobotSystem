@@ -15,7 +15,6 @@
 #include "lcd.h"
 #include "api_v4l2.h"
 #include "public_resource.h"
-#include "camera_main.h"
 
 static FrameBuffer freambuf; /* 一帧数据 */
 
@@ -132,6 +131,9 @@ static int init()
 	/* 初始化触摸屏 */
 	fd_touch = open("/dev/input/event0", O_RDONLY);
 
+	/* 清理多余视频 */
+	system("rm ./Video/video?.avi");
+	system("rm  ./Video/Image/*");
 
 	/* 创建触摸屏事件thread */
 	pthread_t touch_event_thread;
@@ -147,7 +149,7 @@ static int init()
 
 
 
-int camera_main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	/* 初始化程序资源 */
 	init();

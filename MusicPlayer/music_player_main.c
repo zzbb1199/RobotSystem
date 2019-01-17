@@ -11,6 +11,7 @@
 #include <fcntl.h>
 #include "lcd.h"
 #include "public_resource.h"
+#include "music_player_main.h"
 
 /**
  * 初始化一些参数
@@ -123,7 +124,7 @@ static int is_next_music(int x, int y)
 	return 0;
 }
 
-int music_player_main(void)
+int music_player_main(int *condition)
 {
 	//init
 	init();
@@ -161,5 +162,6 @@ int music_player_main(void)
 		 */
 
 	}
+	*condition = MENU;
 	return 0;
 }

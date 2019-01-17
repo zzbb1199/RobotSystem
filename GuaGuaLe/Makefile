@@ -7,7 +7,6 @@ Objs := $(CSources:.c=.o)
 
 
 GuaGuaLe:$(Objs)
-	echo "compling"
 	$(CC) $^ -o $@   $(CFLAGS)
 
 -include $(CSources:.c=.d)

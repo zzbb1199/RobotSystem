@@ -9,6 +9,7 @@
 #include <fcntl.h>
 #include "slide_unlock_main.h"
 #include "public_resource.h"
+#include "scheduler.h"
 
 #define LINE1_END_Y 380
 #define LINE2_START_Y 450
@@ -35,7 +36,7 @@ static int re_draw_rect(struct Point rect);
 static int init_slide();
 
 
-int main(void)
+int slide_unlock_main(int *condition)
 {
 	init();
 
@@ -43,6 +44,8 @@ int main(void)
 	run();
 
 	desotry();
+
+	*condition = MENU;
 	return 0;
 }
 
@@ -135,6 +138,7 @@ static int run()
 					 * 跳转!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					 */
 					printf("arrive unlock \n");
+					return 0;
 				}
 				re_draw_rect(rect);
 			}
@@ -152,6 +156,7 @@ static int run()
 					 * 跳转!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					 */
 					printf("up unlock!!!!\n");
+					return 0;
 					return;
 				}
 				else

@@ -7,7 +7,7 @@ Objs := $(CSources:.c=.o)
 
 
 Socket:
-	$(CC) main.c -g -I../mylib -o Socket -lpthread
+	$(CC) chat_main.c -g -I../mylib -o Chat -lpthread
 
 -include $(CSources:.c=.d)
 

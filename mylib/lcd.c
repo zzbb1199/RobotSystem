@@ -78,8 +78,7 @@ void lcd_draw_point(unsigned int x, unsigned int y, unsigned int color)
 #if EN_LCD_SHOW_JPG
 int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pjpg_buf, unsigned int jpg_buf_size, unsigned int jpg_half)
 {
-	draw_backgroud(0x000000);
-	printf("x=%d\n", x);
+//	printf("x=%d\n", x);
 	/*定义解码对象，错误处理对象*/
 	struct 	jpeg_decompress_struct 	cinfo;
 	struct 	jpeg_error_mgr 			jerr;
@@ -460,8 +459,8 @@ int lcd_draw_bmp_with_start(const char *image_path, int start_x, int start_y)
 	int end_x, end_y;
 //	start_x = LCD_WIDTH / 2 - width / 2;
 //	start_y = LCD_HEIGHT / 2 - height / 2;
-	end_x = min(start_x+width,LCD_WIDTH);
-	end_y = min(start_y+height,LCD_HEIGHT);
+	end_x = min(start_x + width, LCD_WIDTH);
+	end_y = min(start_y + height, LCD_HEIGHT);
 
 	//output
 	int x, y;
@@ -488,6 +487,7 @@ int lcd_draw_bmp_with_start(const char *image_path, int start_x, int start_y)
 //LCD任意地址绘制图片
 int lcd_draw_bmp(const char *image_path)
 {
+	draw_backgroud(0x00000);
 	//open image
 	int fd_image = open(image_path, O_RDONLY);
 	if (-1 == fd_image)
@@ -602,4 +602,36 @@ void draw_rect(struct Point start, int width, int height, int color)
 		}
 	}
 
+}
+
+
+int draw_cross_line(struct Point line, int color)
+{
+	//绘制第一条线 横轴
+	draw_backgroud(0x000000);
+	int start_x = 0;
+	int start_y = line.y;
+	int end_x = LCD_WIDTH;
+	int end_y = min(line.y + 10, LCD_HEIGHT);
+
+	int x, y;
+	for (x = start_x; x < end_x; x++)
+	{
+		for (y = start_y; y < end_y; y++)
+		{
+			*(g_pfb_memory + y * LCD_WIDTH + x) = color;
+		}
+	}
+	//第二条
+	start_x = line.x;
+	start_y = 0;
+	end_x = min(line.x + 10, LCD_WIDTH);
+	end_y = LCD_HEIGHT;
+	for (x = start_x; x < end_x; x++)
+	{
+		for (y = start_y; y < end_y; y++)
+		{
+			*(g_pfb_memory + y * LCD_WIDTH + x) = color;
+		}
+	}
 }

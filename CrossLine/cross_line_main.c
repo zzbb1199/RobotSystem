@@ -24,14 +24,14 @@ static int destory()
 
 
 
-int cross_line_main(void)
+int main(void)
 {
     //init
     init();
     struct Point line;
     line.x = 100;
     line.y = 100;
-    //draw_cross_line(addr,line);
+    draw_cross_line(line,0xffffff);
 
     struct input_event event;
     int x,y;
@@ -41,7 +41,7 @@ int cross_line_main(void)
         get_xy( &x, &y);
         line.x = x;
         line.y = y;
-        //draw_cross_line(addr, line); 
+		draw_cross_line(line, 0xffffff);
     }
 
     destory();
