@@ -1,5 +1,5 @@
 [Global]
-CurrentProject=../VocieReco/VocieReco.vpj
+CurrentProject=../RemoteControl/RemoteControl.vpj
 [ProjectDates]
 Album.vpj=20190117082819000
 ../Camera/Camera.vpj=20190117110016000
@@ -12,7 +12,8 @@ Album.vpj=20190117082819000
 ../Scheduler/Scheduler.vpj=20190119055906000
 ../SlideUnLock/SlideUnLock.vpj=20190117083910000
 ../VideoPlayer/VideoPlayer.vpj=20190117085510000
-../VocieReco/VocieReco.vpj=20190119070758000
+../VocieReco/VocieReco.vpj=20190119074444000
+../RemoteControl/RemoteControl.vpj=20190119082142000
 [ActiveConfig]
 Album.vpj=Debug
 MusicPlayer/MusicPlayer.vpj=Debug
@@ -29,67 +30,29 @@ MusicPlayer/MusicPlayer.vpj=Debug
 ../Chat/Chat.vpj=Debug
 ../VocieReco/VocieReco.vpj=Debug
 ../Menu2/Menu2.vpj=Debug
+../RemoteControl/RemoteControl.vpj=Debug
 [TreeExpansion2]
--@ Album.vpj
-  + Bitmaps
-  - Header Files
-  - Other Files
-  + Resource Files
-  - Source Files
++@ Album.vpj
 +@ ../Camera/Camera.vpj
+-@ ../Chat/Chat.vpj
   - Source Files
   - Header Files
   + Resource Files
   + Bitmaps
   + Other Files
-+@ ../Chat/Chat.vpj
-  + Source Files
-  - Header Files
-  - Resource Files
-  + Bitmaps
-  - Other Files
 +@ ../CrossLine/CrossLine.vpj
-  - Source Files
-  - Header Files
-  + Resource Files
-  + Bitmaps
-  + Other Files
 +@ ../GuaGuaLe/GuaGuaLe.vpj
-  - Source Files
-  - Header Files
-  + Resource Files
-  + Bitmaps
-  - Other Files
 +@ ../Menu/Menu.vpj
-  + Source Files
-  + Header Files
-  + Resource Files
-  + Bitmaps
-  + Other Files
 +@ ../MusicPlayer/MusicPlayer.vpj
-  + Bitmaps
-  - Header Files
-  + Other Files
-  + Resource Files
-  - Source Files
--@ ../Scheduler/Scheduler.vpj
-  - Source Files
-  - Header Files
-  + Resource Files
-  + Bitmaps
-  - Other Files
--@ ../SlideUnLock/SlideUnLock.vpj
-  - Source Files
-  - Header Files
-  + Resource Files
-  - Bitmaps
-  + Other Files
++@ ../Scheduler/Scheduler.vpj
++@ ../SlideUnLock/SlideUnLock.vpj
 +@ ../VideoPlayer/VideoPlayer.vpj
-  - Source Files
-  - Header Files
-  + Resource Files
++@ ../VocieReco/VocieReco.vpj
   + Bitmaps
-  + Other Files
+  + Header Files
+  - Other Files
+  - Resource Files
+  - Source Files
 scroll:0
 [State]
 MONITOR_CONFIGS: 675

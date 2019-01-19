@@ -18,15 +18,15 @@ static int init_boundary()
 	chat_bd.p1 = malloc(sizeof(struct Boundary));
 	chat_bd.p2 = malloc(sizeof(struct Boundary));
 
-	remote_control_bd.p1->x = 0;
-	remote_control_bd.p1->y = 0;
-	remote_control_bd.p2->x = 400;
-	remote_control_bd.p2->y = 480;
+	remote_control_bd.p1->x = 365;
+	remote_control_bd.p1->y = 96;
+	remote_control_bd.p2->x = 472;
+	remote_control_bd.p2->y = 192;
 
-	chat_bd.p1->x = 400;
-	chat_bd.p1->y = 0;
-	chat_bd.p2->x = 800;
-	chat_bd.p2->y = 480;
+	chat_bd.p1->x = 599;
+	chat_bd.p1->y = 106;
+	chat_bd.p2->x = 709;
+	chat_bd.p2->y = 199;
 
 
 	return 0;

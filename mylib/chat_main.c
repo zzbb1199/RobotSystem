@@ -38,7 +38,7 @@ static int my_send(char *msg);
  * 
  * @return int 
  */
-static int my_receive(char *msg,int len);
+static int my_receive(char *msg, int len);
 
 
 
@@ -97,34 +97,57 @@ static int destory();
 int chat_main(int *condition)
 {
 	/* 初始化 */
-	init();
-	/* 销毁资源 */
-	destory();
-	int x,y,delta_x,delta_y;
+	init(); /* 销毁资源 */
+	printf("init finish!!!\n");
+	int x, y, delta_x, delta_y;
 	const unsigned int exit_threshold = 600;
 	while (1)
 	{
 		scroll(&delta_x, &delta_y, &x, &y);
+		printf("%d,%d\n", x, y);
 		if (-delta_x > exit_threshold)
 		{
 			*condition = MENU2;
 			break;
 		}
 	}
+	destory();
 	return 0;
 }
 
 
 /***************************初始化 start**********************************************/
-static int init()
+
+static void* init_thread_event(void *p)
 {
-	addrlen = sizeof(struct  sockaddr_in);
 	/* 初始化sockets */
 	init_sockets();
 	/* 初始化线程 */
 	init_threads();
+}
+
+static int init()
+{
+
+	/* touch初始化 */
+	touch_open();
+	/* lcd初始化 */
+	lcd_open();
+	/* 绘制聊天bg */
+	draw_image("./Image/chat_background.bmp");
+	/* socket初始化 */
+	addrlen = sizeof(struct  sockaddr_in);
+	pthread_t thread_init;
+	int ret = pthread_create(&thread_init, NULL, init_thread_event, 0);
+	if (ret)
+	{
+		perror("create init thtread faield!");
+		return -1;
+	}
 	return 0;
 }
+
+
 /***************************初始化 end**********************************************/
 
 
@@ -150,7 +173,7 @@ static void* receiving_thread_event()
 	int ret = -1;
 	while (1)
 	{
-		ret = my_receive(msg,sizeof(msg));
+		ret = my_receive(msg, sizeof(msg));
 		if (-1 == ret)
 		{
 			continue;
@@ -183,7 +206,7 @@ static int my_send(char *msg)
 	return ret;
 }
 
-static int my_receive(char *msg,int msg_len)
+static int my_receive(char *msg, int msg_len)
 {
 	int ret = -1;
 	bzero(msg, sizeof(msg));
@@ -252,7 +275,7 @@ static int init_threads()
 
 	int ret1 = pthread_create(&sending_thread, NULL,
 							  sending_thread_event, 0);
-	
+
 	int ret2 = pthread_create(&reciving_thread, NULL,
 							  receiving_thread_event, 0);
 
@@ -266,5 +289,6 @@ static int init_threads()
 static int destory()
 {
 //	close(fd_my_socket);
+	touch_close();
 	return 0;
 }

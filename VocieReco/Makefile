@@ -1,35 +1,21 @@
-CC := arm-linux-gcc
-CFLAGS := -L ../lib/libjpeg -L ../lib -L ../lib/voice \
- -lapi_v4l2_arm -lpthread -ljpeg -lxml2 -lasound -lz -lvnet 
-INCLUDE :=-I ../mylib/ -I ../lib/libjpeg -I../lib/voice/libxml -I ./ \
- -I../Scheduler  
+LIBS = $(wildcard lib/*)
+CC = arm-none-linux-gnueabi-gcc
 
-CSources := $(wildcard *.c ../mylib/*.c )
+CPPFLAGS += -I ./inc
+CPPFLAGS += -I ./inc/libxml2
+LDFLAGS  += -L ./lib
 
-Objs := $(CSources:.c=.o)
-Objs += $(wildcard ../lib/voice/*so*)
+LDFLAGS += -lxml2
+LDFLAGS += -lasound
+LDFLAGS += -lz
+LDFLAGS += -lvnet 
+LDFLAGS += -lpthread
 
+LDFLAGS += -Wl,-rpath=. -Wl,-rpath=./lib
 
-VoiceRecon:$(Objs)
-	echo "compling"
-	$(CC) $^ -o $@   $(CFLAGS) -Wl,-rpath=. -Wl,-rpath=../lib/voice -Wall
-
--include $(CSources:.c=.d)
-
-
-%.d : %.c
-	rm -f $@; \
-	$(CC) -MM $(INCLUDE) $< > $@.$$$$; \
-	sed -e 's,^.*:,$*.o $@:,g'  < $@.$$$$ > $@; \
-	rm -f $@.$$$$
-
-%.o : %.c
-	$(CC) -c $(INCLUDE) $< -o $@
-
-.PHONY : clean
+voicectl:voicectl.c common.c $(LIBS)
+	$(CC) $^ -o $@ $(CPPFLAGS) $(LDFLAGS) -Wall
 
 clean:
-	@echo $(CSources)
-	rm main $(CSources:.c=.d) $(CSources:.c=.o)
-
+	rm voicectl
 

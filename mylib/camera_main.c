@@ -69,9 +69,9 @@ void* touch_event()
 	take_photo_bd.p1 = (struct Point *)malloc(sizeof(struct Point));
 	take_photo_bd.p2 = (struct Point *)malloc(sizeof(struct Point));
 	take_photo_bd.p1->x = 720;
-	take_photo_bd.p1->y = 0;
+	take_photo_bd.p1->y = 240;
 	take_photo_bd.p2->x = 800;
-	take_photo_bd.p2->y = 240;
+	take_photo_bd.p2->y = 480;
 
 	/* 初始化录像拍照边界 */
 	struct Boundary record_video_bd;
@@ -94,9 +94,9 @@ void* touch_event()
 	album_bd.p1 = (struct Point *)malloc(sizeof(struct Point));
 	album_bd.p2 = (struct Point *)malloc(sizeof(struct Point));
 	album_bd.p1->x = 720;
-	album_bd.p1->y = 240;
+	album_bd.p1->y = 0;
 	album_bd.p2->x = 800;
-	album_bd.p2->y = 480;
+	album_bd.p2->y = 240;
 
 	/* 保存触摸点 */
 	int x, y;
