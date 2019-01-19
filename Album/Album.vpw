@@ -7,9 +7,11 @@
 		<Project File="../CrossLine/CrossLine.vpj"/>
 		<Project File="../GuaGuaLe/GuaGuaLe.vpj"/>
 		<Project File="../Menu/Menu.vpj"/>
+		<Project File="../Menu2/Menu2.vpj"/>
 		<Project File="../MusicPlayer/MusicPlayer.vpj"/>
 		<Project File="../Scheduler/Scheduler.vpj"/>
 		<Project File="../SlideUnLock/SlideUnLock.vpj"/>
 		<Project File="../VideoPlayer/VideoPlayer.vpj"/>
+		<Project File="../VocieReco/VocieReco.vpj"/>
 	</Projects>
 </Workspace>

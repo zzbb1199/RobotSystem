@@ -50,6 +50,16 @@ int main(void)
 		case CROSS_LINE:
 			cross_line_main(&condition);
 			break;
+		case MENU2:
+			menu2_main(&condition);
+			break;
+		case CHAT:
+			printf("conditon = %d\n", condition);
+			chat_main(&condition);
+			break;
+		case REMOTE_CONTROL:
+			condition = MENU2;
+			break;
 		default:
 			printf("there is no func named that\n");
 			printf("function = %s\n", __FUNCTION__);

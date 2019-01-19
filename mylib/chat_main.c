@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include "chat_main.h"
 #include "scheduler.h"
+#include "touch.h"
 
 static int fd_my_socket = -1; /* 我的邮箱地址 */
 
@@ -99,8 +100,17 @@ int chat_main(int *condition)
 	init();
 	/* 销毁资源 */
 	destory();
-	while (1);
-	*condition = MENU;
+	int x,y,delta_x,delta_y;
+	const unsigned int exit_threshold = 600;
+	while (1)
+	{
+		scroll(&delta_x, &delta_y, &x, &y);
+		if (-delta_x > exit_threshold)
+		{
+			*condition = MENU2;
+			break;
+		}
+	}
 	return 0;
 }
 

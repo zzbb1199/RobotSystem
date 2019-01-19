@@ -14,6 +14,10 @@
 #define GUAGUA 0x07
 #define CROSS_LINE 0x08
 #define CAMERA 0x09
+#define MENU2 0x0a
+#define REMOTE_CONTROL 0x0b
+#define CHAT 0x0c
+
 
 ///**
 // * 退出到上一级别功能

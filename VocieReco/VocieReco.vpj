@@ -9,7 +9,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdMenu"
+		OutputFile="%bdVocieReco"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -134,7 +134,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdMenu"
+		OutputFile="%bdVocieReco"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -256,37 +256,36 @@
 	</Config>
 	<Files>
 		<Folder
-			Name="Source Files"
-			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
-			GUID="{8B134C08-31C6-435C-ABBC-61CF2ADE772D}">
-			<F N="../mylib/lcd.c"/>
-			<F N="../mylib/menu2_main.c"/>
-			<F N="../mylib/menu_main.c"/>
-			<F N="../mylib/touch.c"/>
-		</Folder>
+			Name="Bitmaps"
+			Filters="*.bmp"
+			GUID="{3A1D4532-A653-4BC4-BC41-82A141EE212E}"/>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{C4D51CEA-17FB-40EC-B53A-AE4D53D75C86}">
-			<F N="../mylib/lcd.h"/>
-			<F N="../mylib/menu_main.h"/>
-			<F N="../mylib/touch.h"/>
+			GUID="{E0CD6AEA-4DF1-4B9C-B4C7-8482753BCBB7}">
+			<F N="vocide_recon.h"/>
+			<F N="voice_common.h"/>
+		</Folder>
+		<Folder
+			Name="Other Files"
+			Filters=""
+			GUID="{B4A08694-6ACF-46BF-8F41-682106F483E9}">
+			<F
+				N="../../Resources/科大讯飞/gec6818/Makefile"
+				Type="Makefile"/>
 		</Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"
-			GUID="{A07D4EE2-9980-4F36-AA89-D1888A8D24E5}"/>
+			GUID="{F60A90CE-D150-4DEA-B40B-F4629906D9F9}"/>
 		<Folder
-			Name="Bitmaps"
-			Filters="*.bmp"
-			GUID="{B8EB7DEC-EDD8-435E-9080-B4B0E6B72DE7}"/>
-		<Folder
-			Name="Other Files"
-			Filters=""
-			GUID="{22CC9241-5783-419B-969C-0DE8B642B385}">
-			<F
-				N="Makefile"
-				Type="Makefile"/>
+			Name="Source Files"
+			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
+			GUID="{9AFB3F67-EA99-4047-8BE3-C36F65D74AFA}">
+			<F N="voice_recon.c"/>
 		</Folder>
+		<F
+			N="Makefile"
+			Type="Makefile"/>
 	</Files>
 </Project>

@@ -3,6 +3,8 @@
 
 int menu_main(void);
 
+int menu2_main(void);
+
 #endif
 
 

@@ -54,8 +54,9 @@ void* image2video(void *num)
 	int *record_video_num = (int *)num;
 	printf("==========convert from image to video start===============\n");
 	char cmd[50];
-	sprintf(cmd, "%s ./Video/video%d.avi", "ffmpeg -f image2 -i ./Video/Image/image%d.jpg"
-			, *(record_video_num)++);
+	sprintf(cmd, "%svideo%d.avi", "ffmpeg -f image2 -i ./Video/Image/image%d.jpg ./Video/",
+			*(record_video_num)++);
+
 	system(cmd);
 	printf("==========convert from image to video end===============\n");
 	return (void *)0;
@@ -194,6 +195,9 @@ static int init()
 	bzero(freambuf.buf, sizeof(freambuf));
 	freambuf.length = 0;
 
+	/* 绘制拍照背景 */
+	draw_image("./Image/photograph_interface.bmp");
+
 	/* 创建触摸屏事件thread */
 	
 	int ret = pthread_create(&touch_event_thread, NULL,
@@ -289,13 +293,16 @@ int camera_main(int *condition)
 				record_image_num = 0;
 				/* 开启转视频的线程 */
 			
-				int create_thread_ret = pthread_create(&thread_image2video,
-													   NULL, image2video,
-													   &record_video_num);
-				if (!create_thread_ret)
-				{
-					perror("create image to video thread error!");
-				}
+//				int create_thread_ret = pthread_create(&thread_image2video,
+//													   NULL, image2video,
+//													   &record_video_num);
+//				if (!create_thread_ret)
+//				{
+//					perror("create image to video thread error!");
+//				}
+
+				image2video(&record_video_num);
+
 				/* 释放点击锁 */
 				touch_block = NO_TOUCH_BLOCK;
 				/* 解开点击事件 */

@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "scheduler.h"
+
 static struct Boundary camera_bd;
 static struct Boundary video_bd;
 static struct Boundary music_bd;
@@ -59,14 +60,28 @@ static int init_boundary();
 int menu_main(int *condition)
 {
 	init();
-	/* 显示菜单界面 */
-	draw_image("./Image/main_menu.bmp");
+
 	/* 监控触摸event */
 	int x, y;
+	int delta_x = 0; 
+	int delta_y = 0;
+	const int chang_menu_threshold = 300; /* 更换men门限 */
 	while (1)
 	{
-		get_xy(&x, &y);
-		printf("%d,%d\n", x, y);
+		scroll(&delta_x, &delta_y, &x, &y);
+		printf("x %d, y%d delta_x %d delta_y %d\n", x, y,delta_x,delta_y);
+		/**
+		 * 滑屏处理区域
+		 */
+		if (delta_x > chang_menu_threshold)
+		{
+			*condition = MENU2;
+			break;
+
+		}
+		/**
+		 * 点击时间判定区域
+		 */
 		/* 相册 */
 		if (check_boundary(x, y, camera_bd)) /* check函数待完善 */
 		{
@@ -109,11 +124,13 @@ int menu_main(int *condition)
 			*condition = GUAGUA;
 			break;
 		}
+
+
+	
 	}
 	desotry();
 	return 0;
 }
-
 
 
 
@@ -123,6 +140,8 @@ static int init()
 	lcd_open();
 	/* 打开触摸班 */
 	touch_open();
+	/* 显示菜单界面 */
+	draw_image("./Image/main_menu.bmp");
 	/* 初始化边界 */
 	init_boundary();
 	return 0;

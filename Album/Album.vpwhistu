@@ -1,18 +1,18 @@
 [Global]
-CurrentProject=../Scheduler/Scheduler.vpj
+CurrentProject=../VocieReco/VocieReco.vpj
 [ProjectDates]
 Album.vpj=20190117082819000
 ../Camera/Camera.vpj=20190117110016000
+../Chat/Chat.vpj=20190117083209000
 ../CrossLine/CrossLine.vpj=20190117083331000
 ../GuaGuaLe/GuaGuaLe.vpj=20190117083439000
-../JpgShow/JpgShow.vpj=0
-../Menu/Menu.vpj=20190117083613000
+../Menu/Menu.vpj=20190119055623000
+../Menu2/Menu2.vpj=0
 ../MusicPlayer/MusicPlayer.vpj=20190117083812000
-../Scheduler/Scheduler.vpj=20190117062149000
+../Scheduler/Scheduler.vpj=20190119055906000
 ../SlideUnLock/SlideUnLock.vpj=20190117083910000
-../Socket/Socket.vpj=0
 ../VideoPlayer/VideoPlayer.vpj=20190117085510000
-../Chat/Chat.vpj=20190117083209000
+../VocieReco/VocieReco.vpj=20190119070758000
 [ActiveConfig]
 Album.vpj=Debug
 MusicPlayer/MusicPlayer.vpj=Debug
@@ -27,6 +27,8 @@ MusicPlayer/MusicPlayer.vpj=Debug
 ../SlideUnLock/SlideUnLock.vpj=Debug
 ../Scheduler/Scheduler.vpj=Debug
 ../Chat/Chat.vpj=Debug
+../VocieReco/VocieReco.vpj=Debug
+../Menu2/Menu2.vpj=Debug
 [TreeExpansion2]
 -@ Album.vpj
   + Bitmaps

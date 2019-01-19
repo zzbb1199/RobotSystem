@@ -74,49 +74,63 @@ int check_boundary(int x, int y, struct Boundary bd)
 }
 
 
-int scroll_delta(int *delta_x, int *delta_y)
+int scroll(int *delta_x, int *delta_y,int *x, int *y)
 {
 	struct input_event event;
-	int x, y,count = 0;;
+	int count = 0;;
 	int start_x, start_y, end_x, end_y;
+	*x = -1;
+	*y = -1;
+	*delta_x = 0;
+	*delta_y = 0;
 	while (1)
 	{
 		read(fd_touch, &event, sizeof(event));
+		//printf("====type :%d,code :%d  value:%d====\n", event.type, event.code,event.value);
 		if (EV_ABS == event.type)
 		{
 			if (ABS_X == event.code)
 			{
-				x = event.value;
+				count = 0;
+				//printf("set x\n");
+				*x = event.value;
 				count++;
 			}
 			else if (ABS_Y == event.code)
 			{
-				y = event.value;
+				//printf("set y\n");
+				*y = event.value;
 				count++;
 			}
 		}
-		if (2 == count)
+
+
+		if (EV_KEY == event.type)
 		{
-			count = 0;
-			if (EV_KEY == event.type)
+			//printf("press event\n");
+			if (BTN_TOUCH == event.code && 1 == event.value)
 			{
-				if (BTN_TOUCH == event.code && 1 == event.value)
-				{
-					start_x = x;
-					start_y = y;
-				}
-				else if (BTN_TOUCH == event.code && 0 == event.value)
-				{
-					end_x = x;
-					end_y = y;
+					//printf("set start\n");
+					start_x = *x;
+					start_y = *y;
+			}
+			else if (BTN_TOUCH == event.code && 0 == event.value)
+			{
+					//printf("set end\n");
+					end_x = *x;
+					end_y = *y;
 					//一次滑动完成
 					*delta_x = start_x - end_x;
 					*delta_y = start_y - end_y;
-					printf("delta x=%d,delta_y = %d\n", delta_x, delta_y);
-					return 0;
-				}
+					//printf("delta x=%d,delta_y = %d\n", *delta_x, *delta_y);
+				return 0;
 			}
 		}
-		return 0;
+
+		if (2 == count)
+		{
+			count = 0;
+		}
 	}
+	return 0;
 }

@@ -79,5 +79,5 @@ int check_boundary(int x, int y, struct Boundary bd);
  * 
  * @return int 
  */
-int scroll_delta(int *delta_x, int *delta_y);
+int scroll(int *delta_x, int *delta_y,int *x,int *y);
 #endif

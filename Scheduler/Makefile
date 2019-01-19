@@ -8,7 +8,7 @@ CSources := $(wildcard *.c ../mylib/*.c)
 
 Objs := $(CSources:.c=.o)
 
-Scheduler:$(Objs)
+Main:$(Objs)
 	$(CC) $^ -o $@   $(CFLAGS)
 
 -include $(CSources:.c=.d)
