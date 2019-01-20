@@ -1,6 +1,6 @@
 #ifndef __CHAT_MAIN_H__
 #define __CHAT_MAIN_H__
 
-int chat_main(int *condition);
+int chat_main();
 
 #endif

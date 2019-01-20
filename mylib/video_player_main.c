@@ -43,7 +43,7 @@ static int fifo = -1;    /*fifo管道文件描述符*/
  *
  * @return inollt
  */
- int abs(int x)
+int abs(int x)
 {
 	return x > 0 ? x : -x;
 }
@@ -146,18 +146,9 @@ static int init()
 		perror("open fifo error");
 		return -1;
 	}
-	// 视频播放器初始化
-	char *video_path[50];    /*视频文件路径*/
-	int i;
-	for (i = 0; i < 50; i++)
-	{
-		video_path[i] = (char *)malloc(sizeof(char) * 50);
-	}
-	int video_num = -1;
-	//获取视频文件路径
-	read_files("./Video", "video", video_path, &video_num);
+
 	//初始化视频播放器
-	init_video(video_path, video_num, fifo);
+	init_video(fifo);
 
 	return 0;
 }
@@ -244,7 +235,7 @@ static int run()
 		//下面括号中的代码实现，暂停和双击检测
 		if (2 == count)
 		{
-			count = 0;	/*必须在这里更新count*/
+			count = 0;  /*必须在这里更新count*/
 			if (!is_scroll) /*如果当前还在滑动的话，一定不是上述两个功能*/
 			{
 				//功能一：暂停或者播放
@@ -303,16 +294,24 @@ static int destory()
 	close(fifo);
 }
 
-int video_player_main(int *condition)
+int video_player_main(int comefrom)
 {
 	//init
 	init();
-
+	/* play the first video */
+	start_video();
 	//run
 	run();
 
 	destory();
-	*condition = MENU;
+	if (VOICE_RECON == comefrom)
+	{
+		back2voice();
+	}
+	else
+	{
+		condition = MENU;
+	}
 	return 0;
 }
 

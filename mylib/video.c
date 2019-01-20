@@ -13,22 +13,20 @@ static int send_cmd(char *cmd)
 	return 0;
 }
 
-int init_video(char *name[], int num, int fifo)
+int init_video( int fifo)
 {
-	if (0 == num)
-	{
-		printf("current video nums is 0!");
-		return -1;
-	}
-	int i;
-	for (i =  0; i < num; i++)
-	{
-		video_path[i] = name[i];
-	}
-	video_num = num;
 
 	fd_fifo = fifo;
 
+	//获取视频文件路径
+	read_files("./Video", "video", video_path, &video_num);
+
+	
+	return 0;
+}
+
+int start_video()
+{
 	//开始播放第一个视频
 	char cmd[100];
 	bzero(cmd, 100);

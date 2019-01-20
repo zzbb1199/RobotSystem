@@ -2,20 +2,9 @@
 #include "album.h"
 
 
-int init_album(char *path[], int num)
+int init_album()
 {
-	if (num <= 0)
-	{
-		return -1;
-	}
-	int i;
-	printf("loaded files:\n");
-	for (i = 0; i < num; i++)
-	{
-		image_path[i] = path[i];
-		printf("%s\n", image_path[i]);
-	}
-	image_num = num;
+	read_files("./Image", "image", image_path, &image_num);
 	draw_image(image_path[0]);
 	return 0;
 }

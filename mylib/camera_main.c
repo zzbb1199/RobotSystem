@@ -212,7 +212,7 @@ static int init()
 
 
 
-int camera_main(int *condition)
+int camera_main()
 {
 	/* 初始化程序资源 */
 	init();
@@ -293,15 +293,18 @@ int camera_main(int *condition)
 				record_image_num = 0;
 				/* 开启转视频的线程 */
 			
-//				int create_thread_ret = pthread_create(&thread_image2video,
-//													   NULL, image2video,
-//													   &record_video_num);
-//				if (!create_thread_ret)
-//				{
-//					perror("create image to video thread error!");
-//				}
+				int create_thread_ret = pthread_create(&thread_image2video,
+													   NULL, image2video,
+													   &record_video_num);
+				if (!create_thread_ret)
+				{
+					perror("create image to video thread error!");
+				}
+				else
+				{
+					printf("create image 2 video thread success!\n");
+				}
 
-				image2video(&record_video_num);
 
 				/* 释放点击锁 */
 				touch_block = NO_TOUCH_BLOCK;
@@ -311,12 +314,12 @@ int camera_main(int *condition)
 		}
 		else if (BACK_EVENT == touch_type)
 		{
-			*condition = MENU;
+			condition = MENU;
 			break;
 		}
 		else if (ALBUM_EVENT == touch_type)
 		{
-			*condition = ALBUM;
+			condition = ALBUM;
 			break;
 		}
 

@@ -1,7 +1,7 @@
 #ifndef __SCHEDULER_H__
 #define __SCHEDULER_H__
 
-
+extern int condition;
 /**
  * 功能宏定义
  */
@@ -17,6 +17,7 @@
 #define MENU2 0x0a
 #define REMOTE_CONTROL 0x0b
 #define CHAT 0x0c
+#define VOICE_RECON 0x0d
 
 
 ///**

@@ -1,15 +1,27 @@
 CC := arm-linux-gcc
-CFLAGS := -L ../lib/libjpeg -lapi_v4l2_arm -lpthread -ljpeg
-INCLUDE :=-I ../mylib/ -I ../lib/libjpeg  -I ./
-#-I../Album -I../Camera -I../CrossLine \
-          -I../GuaGuaLe -I../Menu -I../MusicPlayer -I../SlideUnlock -I../Chat \
-	   -I../VideoPlayer
+CFLAGS := -L ../lib/libjpeg \
+	 -L ../lib/libvoice 
+CFLAGS += -lxml2 \
+	-ljpeg \
+	-lasound \
+	-lz \
+	-lvnet \
+	-lapi_v4l2_arm \
+	-lpthread 
+INCLUDE :=-I ../mylib/   \
+	-I ../lib/libjpeg \
+	 -I ./           \
+	 -I../lib/incvoice \
+	 -I ../lib/incvoice/libxml 
+
+VOICE_LIB = #$(wildcard ../lib/voice_lib/*)
+
 CSources := $(wildcard *.c ../mylib/*.c)
 
 Objs := $(CSources:.c=.o)
 
 Main:$(Objs)
-	$(CC) $^ -o $@   $(CFLAGS)
+	$(CC) $(VOICE_LIB) $^ -o $@   $(CFLAGS)
 
 -include $(CSources:.c=.d)
 

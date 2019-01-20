@@ -9,7 +9,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "lcd.h"
 #include "public_resource.h"
 #include "scheduler.h"
 
@@ -34,14 +33,14 @@ static struct Boundary music_back_bd;
 static int init_boundary()
 {
 	pre_music_bd.p1 = (struct Point *)malloc(sizeof(struct Point));
-	pre_music_bd.p2 = (struct Point *)malloc(sizeof(struct Point)); 
+	pre_music_bd.p2 = (struct Point *)malloc(sizeof(struct Point));
 	pre_music_bd.p1->x = 163;
 	pre_music_bd.p1->y = 365;
 	pre_music_bd.p2->x = 198;
-	pre_music_bd.p2->y = 409; 
+	pre_music_bd.p2->y = 409;
 
 	pause_bd.p1 = (struct Point *)malloc(sizeof(struct Point));
-	pause_bd.p2= (struct Point *)malloc(sizeof(struct Point));
+	pause_bd.p2 = (struct Point *)malloc(sizeof(struct Point));
 	pause_bd.p1->x = 220;
 	pause_bd.p1->y = 365;
 	pause_bd.p2->x = 268;
@@ -55,7 +54,7 @@ static int init_boundary()
 	next_music_bd.p2->y = 409;
 
 	music_back_bd.p1 = malloc(sizeof(struct Point));
-	music_back_bd.p2 = malloc(sizeof(struct Point)); 
+	music_back_bd.p2 = malloc(sizeof(struct Point));
 	music_back_bd.p1->x = 31;
 	music_back_bd.p1->y = 35;
 	music_back_bd.p2->x = 96;
@@ -65,23 +64,13 @@ static int init_boundary()
 
 static int init()
 {
-	lcd_open();
+
 
 	touch_open();
 
-	char *music_path[50];    /*音乐文件路径*/
-	int i;
-	for (i = 0; i < 50;i++)
-	{
-		music_path[i] = (char *)malloc(sizeof(char) * 50);
-	}
-	int music_num = -1;
-	//获取音乐文件路径
-	read_files("./Music", "mp3", music_path, &music_num);
 	//初始化音乐播放器
 	init_music(music_path, music_num);
-	//绘制背景图
-	draw_image("./Image/music_pause.bmp");
+
 	//初始化图片封面的边界条件
 	init_boundary();
 	return 0;
@@ -90,7 +79,6 @@ static int init()
 static int destory()
 {
 	touch_close();
-
 	lcd_close();
 	return 0;
 }
@@ -102,7 +90,7 @@ static int destory()
  * 
  * @return int 
  */
-static int is_pre_music(int x,int y)
+static int is_pre_music(int x, int y)
 {
 	if (x > pre_music_bd.p1->x && y > pre_music_bd.p1->y &&
 		x < pre_music_bd.p2->x && y < pre_music_bd.p2->y)
@@ -143,48 +131,46 @@ static int is_back(int x, int y)
 	return 0;
 }
 
-int music_player_main(int *condition)
+int music_player_main(int comefrom)
 {
 	//init
 	init();
-	int isplayed = 1;
+	/* 播放一首音乐 */
+	start_music();
 	int x, y;
 	while (1)
 	{
-		get_xy( &x, &y);
+		get_xy(&x, &y);
 		printf("%d,%d\n", x, y);
-		if (is_pre_music(x,y))
+		if (is_pre_music(x, y))
 		{
 			printf("pre music\n");
 			pre_music();
-			draw_image("./Image/music_pause.bmp");
+
 		}
-		else if (is_pause(x,y))
+		else if (is_pause(x, y))
 		{
 			pause_or_play();
-			if (isplayed)
-			{
-				draw_image("./Image/music_play.bmp");
-				isplayed = 0;
-			}
-			else
-			{
-				draw_image("./Image/music_pause.bmp");
-				isplayed = 1;
-			}
 		}
-		else if (is_next_music(x,y))
+		else if (is_next_music(x, y))
 		{
 			next_music();
-			draw_image( "./Image/music_pause.bmp");
 		}
 		else if (is_back(x, y))
 		{
 			printf("is_back\n");
-			*condition = MENU;
+			printf("kill music\n");
+			system("killall -9 madplay");
+			if (VOICE_RECON == comefrom)
+			{
+				back2voice();
+			}
+			else
+			{
+				condition = MENU;
+			}
 			break;
 		}
 	}
-	system("killall -9 madplay");
 	return 0;
 }

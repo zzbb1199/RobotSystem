@@ -14,51 +14,53 @@
 #include "chat_main.h"
 #include "video_player_main.h"
 #include "scheduler.h"
+#include "voice_recon_main.h"
 
-
+condition = -1;
 int main(void)
 {
-	int condition = LOCK; /* LOCK as main */
+	condition = LOCK; /* LOCK as main */
 	while (1)
 	{
-		printf("func %d\n", condition);
+		printf("============goto func======== %d\n", condition);
 		switch (condition)
 		{
 		case LOCK:
-			slide_unlock_main(&condition);
+			slide_unlock_main();
 			break;
 		case MENU:
-			menu_main(&condition);
+			menu_main();
 			break;
 		case MUSIC_PLAYER:
-			music_player_main(&condition);
+			music_player_main(MENU);
 			break;
 		case VIDEO_PLAYER:
-			video_player_main(&condition);
+			video_player_main(MENU);
 			break;
 		case ALBUM:
-			album_main(&condition);
-			break;
-		case MORE:
+			album_main(MENU);
 			break;
 		case CAMERA:
-            camera_main(&condition);
+			camera_main();
 			break;
 		case GUAGUA:
-			guaguale_main(&condition);
+			guaguale_main();
 			break;
 		case CROSS_LINE:
-			cross_line_main(&condition);
+			cross_line_main();
 			break;
 		case MENU2:
-			menu2_main(&condition);
+			menu2_main();
 			break;
 		case CHAT:
 			printf("conditon = %d\n", condition);
-			chat_main(&condition);
+			chat_main();
 			break;
 		case REMOTE_CONTROL:
 			condition = MENU2;
+			break;
+		case VOICE_RECON:
+			voice_recon_main();
 			break;
 		default:
 			printf("there is no func named that\n");

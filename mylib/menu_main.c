@@ -14,7 +14,7 @@ static struct Boundary video_bd;
 static struct Boundary music_bd;
 static struct Boundary locking_bd;
 static struct Boundary guaguale_bd;
-static struct Boundary more_bd;
+static struct Boundary chat_bd;
 
 
 /**
@@ -57,7 +57,7 @@ static int init_boundary();
  * 
  * @return int 
  */
-int menu_main(int *condition)
+int menu_main()
 {
 	init();
 
@@ -75,7 +75,7 @@ int menu_main(int *condition)
 		 */
 		if (delta_x > chang_menu_threshold)
 		{
-			*condition = MENU2;
+			condition = MENU2;
 			break;
 
 		}
@@ -86,42 +86,42 @@ int menu_main(int *condition)
 		if (check_boundary(x, y, camera_bd)) /* check函数待完善 */
 		{
 			printf("camera\n");
-			*condition = CAMERA;
+			condition = CAMERA;
 			break;
 		}
 		/* 音乐 */
 		else if (check_boundary(x, y, music_bd))
 		{
 			printf("music\n");
-			*condition = MUSIC_PLAYER;
+			condition = MUSIC_PLAYER;
 			break;
 		}
 		/* 视频 */
 		else if (check_boundary(x, y, video_bd))
 		{
 			printf("video\n");
-			*condition = VIDEO_PLAYER;
+			condition = VIDEO_PLAYER;
 			break;
 		}
 		/* 更多 */
-		else if (check_boundary(x, y, more_bd))
+		else if (check_boundary(x, y, chat_bd))
 		{
-			printf("more\n");
-			*condition = MORE;
+			printf("chat_bd\n");
+			condition = CHAT;
 //			break;
 		}
 		/* 锁屏 */
 		else if (check_boundary(x, y, locking_bd))
 		{
 			printf("locd\n");
-			*condition = LOCK;
+			condition = LOCK;
 			break;
 		}
 		/* 刮刮乐 */
 		else if (check_boundary(x, y, guaguale_bd))
 		{
 			printf("guagua\n");
-			*condition = GUAGUA;
+			condition = GUAGUA;
 			break;
 		}
 
@@ -168,8 +168,8 @@ static int init_boundary()
 	music_bd.p1 = malloc(sizeof(struct Boundary));
 	music_bd.p2 = malloc(sizeof(struct Boundary));
 
-	more_bd.p1 = malloc(sizeof(struct Boundary));
-	more_bd.p2 = malloc(sizeof(struct Boundary));
+	chat_bd.p1 = malloc(sizeof(struct Boundary));
+	chat_bd.p2 = malloc(sizeof(struct Boundary));
 
 	locking_bd.p1 = malloc(sizeof(struct Boundary));
 	locking_bd.p2 = malloc(sizeof(struct Boundary)); 
@@ -193,10 +193,10 @@ static int init_boundary()
 	music_bd.p2->x = 701;
 	music_bd.p2->y = 142;
 
-	more_bd.p1->x = 638;
-	more_bd.p1->y = 361;
-	more_bd.p2->x = 707;
-	more_bd.p2->y = 429;
+	chat_bd.p1->x = 638;
+	chat_bd.p1->y = 361;
+	chat_bd.p2->x = 707;
+	chat_bd.p2->y = 429;
 
 	locking_bd.p1->x = 626;
 	locking_bd.p1->y = 206;

@@ -36,7 +36,7 @@ static int re_draw_rect(struct Point rect);
 static int init_slide();
 
 
-int slide_unlock_main(int *condition)
+int slide_unlock_main()
 {
 	init();
 
@@ -45,7 +45,8 @@ int slide_unlock_main(int *condition)
 
 	desotry();
 
-	*condition = MENU;
+	condition = MENU;
+	printf("!!!!chagne condition =%d !!!\n", condition);
 	return 0;
 }
 

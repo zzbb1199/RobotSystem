@@ -26,7 +26,7 @@ static int image_num = -1;  /*相片数量*/
  * 
  * @return int 
  */
-int init_album(char *path[], int num);
+int init_album();
 
 /**
  * 下一张图片

@@ -265,6 +265,7 @@
 			GUID="{673CFB99-4D2C-4777-9D8A-DE9CD0454352}">
 			<F N="../mylib/album.h"/>
 			<F N="../mylib/album_main.c"/>
+			<F N="../mylib/album_main.h"/>
 			<F N="../mylib/lcd.h"/>
 			<F N="../mylib/public_resource.h"/>
 		</Folder>
@@ -285,7 +286,6 @@
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{0E9A4AF6-BB16-4266-AECD-FCF45B1CDD95}">
 			<F N="../mylib/album.c"/>
-			<F N="../mylib/album_main.h"/>
 			<F N="../mylib/dir.c"/>
 			<F N="../mylib/lcd.c"/>
 		</Folder>

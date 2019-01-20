@@ -94,7 +94,7 @@ static int init_threads();
  */
 static int destory();
 
-int chat_main(int *condition)
+int chat_main()
 {
 	/* 初始化 */
 	init(); /* 销毁资源 */
@@ -107,7 +107,7 @@ int chat_main(int *condition)
 		printf("%d,%d\n", x, y);
 		if (-delta_x > exit_threshold)
 		{
-			*condition = MENU2;
+			condition = MENU2;
 			break;
 		}
 	}

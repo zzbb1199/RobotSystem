@@ -25,7 +25,7 @@ static int destory()
 
 
 
-int cross_line_main(int *condition)
+int cross_line_main()
 {
     //init
     init();
@@ -46,7 +46,7 @@ int cross_line_main(int *condition)
     }
 
     destory();
-	*condition   = MENU;
+	condition   = MENU;
 	return 0;
 }
 

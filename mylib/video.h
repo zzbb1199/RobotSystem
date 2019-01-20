@@ -32,7 +32,7 @@ static int fd_fifo = -1;    /*视频控制管道文件*/
  *  
  * @return int 
  */
-int init_video(char *name[], int num, int fd_fifo);
+int init_video(int fd_fifo);
 /**
  * 播放或暂停
  * 

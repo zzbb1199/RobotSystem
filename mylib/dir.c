@@ -1,6 +1,6 @@
 
 #include "dir.h"
-
+#include <stdlib.h>
 int read_files(char *dir_path, char *type
 			   , char *save_path[], int *num)
 {
@@ -41,6 +41,7 @@ int read_files(char *dir_path, char *type
 				continue;
 			}
 		}
+		save_path[i] = malloc(50 * sizeof(char));
 		sprintf(save_path[i], "%s%s%s", dir_path, "/", file_name);
 //		strcpy(save_path[i], file_name);
 		i++;

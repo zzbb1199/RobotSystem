@@ -1,20 +1,26 @@
 #include "music.h"
 
 
-int init_music(char *path[], int num)
+int init_music()
 {
-	int i;
-	for (i = 0; i < num;i++)
-	{
-		music_path[i] = path[i];
-	}
-	music_num = num;
-	//播放第一首音乐
+	lcd_open(); 
+	//获取音乐文件路径
+	read_files("./Music", "mp3", music_path, &music_num);
+	//绘制背景图
+	draw_image("./Image/music_pause.bmp");
+	return 0;
+}
+
+
+int start_music()
+{
+
+//	//播放第一首音乐
 	char cmd[50] = "madplay ";
 	strcat(cmd, music_path[0]);
 	strcat(cmd, " &");
 	printf("system call:%s\n", cmd);
-	system(cmd);	/*播放*/
+	system(cmd);    /*播放*/
 	isplayed = 1;
 	return 0;
 }
@@ -37,11 +43,13 @@ int pause_or_play()
 {
 	if (isplayed)
 	{
+		draw_image("./Image/music_play.bmp");
 		pause_music();
 		isplayed = 0;
 	}
 	else
 	{
+		draw_image("./Image/music_pause.bmp");
 		play_music();
 		isplayed = 1;
 	}
@@ -52,11 +60,12 @@ int pre_music()
 {
 	printf("pre_music\n");
 	system("killall -9 madplay");       /*结束还在播放的进程，这里还有bug，需要判定以下是否有播放进程存在*/
-	i =  (i - 1 + music_num) % music_num;   /*得到上一个音乐index*/
+	music_i =  (music_i - 1 + music_num) % music_num;   /*得到上一个音乐index*/
 	char cmd[30];
 	bzero(cmd, 30);
-	printf("current music%s\n", music_path[i]);
-	sprintf(cmd, "%s%s%s", "madplay ", music_path[i]," &");
+	printf("current music%s\n", music_path[music_i]);
+	sprintf(cmd, "%s%s%s", "madplay ", music_path[music_i]," &");
+	draw_image("./Image/music_pause.bmp");
 	system(cmd);
 }
 
@@ -64,10 +73,11 @@ int next_music()
 {
 	printf("next_music\n");
 	system("killall -9 madplay");       /*结束还在播放的进程，这里还有bug，需要判定以下是否有播放进程存在*/
-	i =  (i + 1) % music_num;   /*得到下一个音乐index*/
+	music_i =  (music_i + 1) % music_num;   /*得到下一个音乐index*/
 	char cmd[30];
 	bzero(cmd, 30);
-	printf("current music%s\n", music_path[i]);
-	sprintf(cmd, "%s%s%s", "madplay ", music_path[i]," &");
+	printf("current music%s\n", music_path[music_i]);
+	sprintf(cmd, "%s%s%s", "madplay ", music_path[music_i]," &");
+	draw_image("./Image/music_pause.bmp");
 	system(cmd);
 }

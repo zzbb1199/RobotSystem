@@ -7,7 +7,7 @@
 #include "menu_main.h"
 
 
-static struct Boundary chat_bd;
+static struct Boundary voice_recon_bd;
 static struct Boundary remote_control_bd;
 // static struct Boundary mus_bd;
 static int init_boundary()
@@ -15,18 +15,18 @@ static int init_boundary()
 	remote_control_bd.p1 = malloc(sizeof(struct Boundary));
 	remote_control_bd.p2 = malloc(sizeof(struct Boundary));
 
-	chat_bd.p1 = malloc(sizeof(struct Boundary));
-	chat_bd.p2 = malloc(sizeof(struct Boundary));
+	voice_recon_bd.p1 = malloc(sizeof(struct Boundary));
+	voice_recon_bd.p2 = malloc(sizeof(struct Boundary));
 
 	remote_control_bd.p1->x = 365;
 	remote_control_bd.p1->y = 96;
 	remote_control_bd.p2->x = 472;
 	remote_control_bd.p2->y = 192;
 
-	chat_bd.p1->x = 599;
-	chat_bd.p1->y = 106;
-	chat_bd.p2->x = 709;
-	chat_bd.p2->y = 199;
+	voice_recon_bd.p1->x = 599;
+	voice_recon_bd.p1->y = 106;
+	voice_recon_bd.p2->x = 709;
+	voice_recon_bd.p2->y = 199;
 
 
 	return 0;
@@ -52,7 +52,7 @@ static int desotry()
 	return 0;
 }
 
-int menu2_main(int *condition)
+int menu2_main()
 {
 	init();
 	int x, y;
@@ -67,7 +67,7 @@ int menu2_main(int *condition)
 		 */
 		if (-delta_x > chang_menu_threshold)
 		{
-			*condition = MENU;
+			condition = MENU;
 			break;
 
 		}
@@ -78,19 +78,16 @@ int menu2_main(int *condition)
 		if (check_boundary(x, y, remote_control_bd)) /* check函数待完善 */
 		{
 			printf("remote_control\n");
-			*condition = REMOTE_CONTROL;
+			condition = REMOTE_CONTROL;
 			break;
 		}
 		/* chat */
-		else if (check_boundary(x, y, chat_bd))
+		else if (check_boundary(x, y, voice_recon_bd))
 		{
-			printf("chat\n");
-			*condition = CHAT;
+			printf("voice_recon_bd\n");
+			condition = VOICE_RECON;
 			break;
 		}
-
-
-
 	}
 	desotry();
 	return 0;

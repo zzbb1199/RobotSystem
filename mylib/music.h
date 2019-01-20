@@ -13,7 +13,7 @@ static char * music_path[50]; /*音乐的名字*/
 
 static int music_num = 0; /*音乐一共多少首*/
 
-static int i = 0;	/*当前播放到第几首*/
+static int music_i = 0;	/*当前播放到第几首*/
 
 static int isplayed = 0;	/*当前是否在播放*/
 
@@ -27,7 +27,7 @@ static int isplayed = 0;	/*当前是否在播放*/
  * 
  * @return int 
  */
-int init_music(char *path[], int music_num);
+int init_music();
 
 /**
  * 
