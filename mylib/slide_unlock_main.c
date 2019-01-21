@@ -18,12 +18,16 @@
 
 
 static struct Point rect;
-/* 绘制滑动引导线 */
+/* 滑动引导线坐標 */
 static struct Point line1_start;
 static struct Point line1_end;
 
 static struct Point line2_start;
 static struct Point line2_end;
+
+/* 解锁样式 */
+is_progress_bar = 0;
+
 
 static int run();
 
@@ -59,6 +63,8 @@ static int init()
 	/* 触摸板 */
 	fd_touch = open("/dev/input/event0", O_RDONLY);
 
+//	/* 初始化滑動样式 */
+//	is_progress_bar = 0;
 	init_slide();
 	return 0;
 }
@@ -71,7 +77,7 @@ static int init_slide()
 
 	rect.x = 0;
 	rect.y = 385;
-	
+
 	line1_start.x = 0;
 	line1_start.y = LINE1_END_Y - 10;
 
@@ -108,6 +114,8 @@ static int desotry()
 static int run()
 {
 
+	printf("current lock style %s\n",
+		    is_progress_bar == 1 ? "progress bar" : "slide bar");
 	struct input_event event;
 	int x, y, count = 0;;
 	int pre_x  = -1, pre_y = -1;
@@ -180,7 +188,7 @@ static int run()
 					/* 重新绘制 */
 					rect.x = 0;
 					pre_x = -1;
-
+					lcd_draw_bmp_with_start("./Image/lock_screen_slice.bmp", 0, LINE1_END_Y); 
 					re_draw_rect(rect);
 					isscroll = 0;
 				}
@@ -201,6 +209,9 @@ static int re_draw_rect(struct Point rect)
 //	{
 //		LCD_WIDTH, LINE2_START_Y };
 //	draw_line(line1_end_left, line2_start_right, 0x000000);
-	lcd_draw_bmp_with_start("./Image/lock_screen_slice.bmp", 0, LINE1_END_Y);
+	if (!is_progress_bar)
+	{
+		lcd_draw_bmp_with_start("./Image/lock_screen_slice.bmp", 0, LINE1_END_Y);
+	}
 	draw_rect(rect, 80, RECT_HEIGHT, 0xfbcdef);
 }

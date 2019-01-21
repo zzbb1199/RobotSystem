@@ -69,6 +69,8 @@ int touch_close();
  */
 int check_boundary(int x, int y, struct Boundary bd);
 
+int free_boundary(struct Boundary *bd);
+
 /**
  * 华东距离检测
  * 

@@ -62,6 +62,16 @@ static int init_boundary()
 	return 0;
 }
 
+
+static int destory_boundary()
+{
+	free_boundary(&pre_music_bd);
+	free_boundary(&pause_bd);
+	free_boundary(&next_music_bd);
+	free_boundary(&music_back_bd);
+	return 0;
+}
+
 static int init()
 {
 
@@ -80,6 +90,7 @@ static int destory()
 {
 	touch_close();
 	lcd_close();
+	destory_boundary();
 	return 0;
 }
 

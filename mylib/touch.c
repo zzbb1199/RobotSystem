@@ -134,3 +134,16 @@ int scroll(int *delta_x, int *delta_y,int *x, int *y)
 	}
 	return 0;
 }
+
+int free_boundary(struct Boundary *bd)
+{
+	if (bd->p1)
+	{
+		free(bd->p1);
+	}
+	if (bd->p2)
+	{
+		free(bd->p2);
+	}
+	return 0;
+}

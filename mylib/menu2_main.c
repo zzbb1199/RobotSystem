@@ -9,6 +9,7 @@
 
 static struct Boundary voice_recon_bd;
 static struct Boundary remote_control_bd;
+static struct Boundary lock_style_bd;
 // static struct Boundary mus_bd;
 static int init_boundary()
 {
@@ -17,6 +18,9 @@ static int init_boundary()
 
 	voice_recon_bd.p1 = malloc(sizeof(struct Boundary));
 	voice_recon_bd.p2 = malloc(sizeof(struct Boundary));
+
+	lock_style_bd.p1 = malloc(sizeof(struct Boundary));
+	lock_style_bd.p2 = malloc(sizeof(struct Boundary));
 
 	remote_control_bd.p1->x = 365;
 	remote_control_bd.p1->y = 96;
@@ -27,6 +31,11 @@ static int init_boundary()
 	voice_recon_bd.p1->y = 106;
 	voice_recon_bd.p2->x = 709;
 	voice_recon_bd.p2->y = 199;
+	
+	lock_style_bd.p1->x = 374;
+	lock_style_bd.p1->y = 334;
+	lock_style_bd.p2->x = 459;
+	lock_style_bd.p2->y = 412;
 
 
 	return 0;
@@ -43,12 +52,23 @@ static int init()
 	return 0;
 }
 
+
+static int desotry_boundary()
+{
+	free_boundary(&voice_recon_bd);
+	free_boundary(&remote_control_bd);
+	free_boundary(&lock_style_bd);
+	return 0;
+}
+
 static int desotry()
 {
 	/* 关闭lcd */
 	lcd_close();
 	/* 关闭触摸班 */
 	touch_close();
+	/* 释放触摸边界内存 */
+	desotry_boundary();
 	return 0;
 }
 
@@ -86,6 +106,13 @@ int menu2_main()
 		{
 			printf("voice_recon_bd\n");
 			condition = VOICE_RECON;
+			break;
+		}
+		/* 锁屏样式 */
+		else if (check_boundary(x, y, lock_style_bd))
+		{
+			printf("lock_style\n");
+			condition = LOCK_STYLE;
 			break;
 		}
 	}

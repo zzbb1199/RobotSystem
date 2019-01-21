@@ -260,6 +260,7 @@
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{20200D42-BD92-400A-ADEE-727112952F76}">
 			<F N="../mylib/lcd.c"/>
+			<F N="../mylib/lock_style_main.c"/>
 			<F N="../mylib/slide_unlock_main.c"/>
 			<F N="../mylib/touch.c"/>
 		</Folder>
@@ -268,6 +269,7 @@
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
 			GUID="{C818B8E5-80DD-4E3F-B25A-981EC87FEC9C}">
 			<F N="../mylib/lcd.h"/>
+			<F N="../mylib/lock_style_main.h"/>
 			<F N="../mylib/slide_unlock_main.h"/>
 			<F N="../mylib/touch.h"/>
 		</Folder>

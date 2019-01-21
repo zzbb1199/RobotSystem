@@ -79,7 +79,7 @@ int album_main(int comefrom)
     }
     else
     {
-        condition = MENU;
+        condition = CAMERA;
     }
     return 0;
 }

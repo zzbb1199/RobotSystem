@@ -2,6 +2,7 @@
 #define __SCHEDULER_H__
 
 extern int condition;
+extern int is_progress_bar;
 /**
  * 功能宏定义
  */
@@ -18,6 +19,7 @@ extern int condition;
 #define REMOTE_CONTROL 0x0b
 #define CHAT 0x0c
 #define VOICE_RECON 0x0d
+#define LOCK_STYLE 0X0e
 
 
 ///**

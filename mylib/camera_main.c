@@ -44,10 +44,6 @@ static int touch_type;  /* 点击的类型 */
 #define BACK_EVENT 3
 #define ALBUM_EVENT 4
 
-
-
-
-
 void* image2video(void *num)
 {
 	isconvert_video = 1;
@@ -112,19 +108,27 @@ void* touch_event()
 			touch_type = TAKE_PHOTO_EVENT;
 			touch_block = TOUCH_BLOCK;
 			while (touch_block);  /* 启动触摸锁 */
-			/* 检查是否触摸在录屏区域 */
+			
 		}
+		/* 检查是否触摸在录屏区域 */
 		else if (!touch_block && check_boundary(x, y, record_video_bd))
 		{
 			printf("record video\n");
 			touch_type = RECORD_VIDEO_EVENT;
 			record_touch_times++;
 		}
+		/* 返回区域 */
 		else if (!touch_block && check_boundary(x, y, back_bd))
 		{
 			printf("back event \n");
+			/* 释放资源 */
+			free_boundary(&take_photo_bd);
+			free_boundary(&record_video_bd);
+			free_boundary(&back_bd);
+			free_boundary(&album_bd);
 			touch_type = BACK_EVENT;
-		}
+		} 
+		/* 相册quyu  */
 		else if (!touch_block && check_boundary(x, y, album_bd))
 		{
 			printf("album event\n");

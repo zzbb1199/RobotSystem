@@ -15,6 +15,7 @@
 #include "video_player_main.h"
 #include "scheduler.h"
 #include "voice_recon_main.h"
+#include "lock_style_main.h"
 
 condition = -1;
 int main(void)
@@ -61,6 +62,9 @@ int main(void)
 			break;
 		case VOICE_RECON:
 			voice_recon_main();
+			break;
+		case LOCK_STYLE:
+			lock_style_main();
 			break;
 		default:
 			printf("there is no func named that\n");

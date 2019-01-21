@@ -40,7 +40,7 @@ static int destory()
 
 
 
-int guaguale_main(int *condition)
+int guaguale_main()
 {
 	//init
 	init();
@@ -171,7 +171,8 @@ int guaguale_main(int *condition)
 				/* 判定是否退出 */
 				if (-delta_x > exit_threshold)
 				{
-					*condition = MENU;
+					printf("exit guaguale\n");
+					condition = MENU;
 					break;
 				}
 			}

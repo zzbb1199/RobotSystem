@@ -45,7 +45,14 @@ static int desotry();
 static int init_boundary();
 
 
-
+/**
+ * 销毁菜单选项边界
+ * 
+ * @author gec (21/01/19)
+ * 
+ * @return int 
+ */
+static int destory_boundary();
 
 
 /**
@@ -153,6 +160,7 @@ static int desotry()
 	lcd_close();
 	/* 关闭触摸班 */
 	touch_close();
+	destory_boundary();
 	return 0;
 }
 
@@ -208,5 +216,16 @@ static int init_boundary()
 	guaguale_bd.p2->x = 493;
 	guaguale_bd.p2->y = 430;
 	
+	return 0;
+}
+
+static int destory_boundary()
+{
+	free_boundary(&camera_bd);
+	free_boundary(&video_bd);
+	free_boundary(&music_bd);
+	free_boundary(&chat_bd);
+	free_boundary(&locking_bd);
+	free_boundary(&guaguale_bd);
 	return 0;
 }
