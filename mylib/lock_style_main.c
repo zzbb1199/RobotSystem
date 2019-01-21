@@ -14,16 +14,18 @@ static int init_boundary()
 	slide_bar.p1 = malloc(sizeof(struct Boundary));
 	slide_bar.p2 = malloc(sizeof(struct Boundary));
 
-	progress_bar.p1->x = 0;
-	progress_bar.p1->y = 0;
-	progress_bar.p2->x = 400;
-	progress_bar.p2->y = 480;
 
 
-	slide_bar.p1->x = 400;
-	slide_bar.p1->y = 0;
-	slide_bar.p2->x = 800;
-	slide_bar.p2->y = 480;
+	progress_bar.p1->x = 629;
+	progress_bar.p1->y = 944;
+	progress_bar.p2->x = 727;
+	progress_bar.p2->y = 183;
+
+	slide_bar.p1->x = 628;
+	slide_bar.p1->y = 308;
+	slide_bar.p2->x = 734;
+	slide_bar.p2->y = 397;
+
 
 	return 0;
 }
@@ -45,7 +47,7 @@ static int init()
 	init_boundary();
 
 	/* 绘制选择样式背景图 */
-	draw_image("./Image/lock_screen.bmp");
+	draw_image("./Image/unlock_style_background.bmp");
 	return 0;
 }
 

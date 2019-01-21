@@ -1,18 +1,21 @@
 CC := arm-linux-gcc
 CFLAGS := -L ../lib/libjpeg \
-	 -L ../lib/libvoice 
+	 -L ../lib/libvoice \
+	 -L ../lib/libfont
 CFLAGS += -lxml2 \
 	-ljpeg \
 	-lasound \
 	-lz \
 	-lvnet \
 	-lapi_v4l2_arm \
-	-lpthread 
+	-lpthread 	\
+	-lfont
 INCLUDE :=-I ../mylib/   \
 	-I ../lib/libjpeg \
 	 -I ./           \
 	 -I../lib/incvoice \
-	 -I ../lib/incvoice/libxml 
+	 -I ../lib/incvoice/libxml \
+	 -I ../lib/incfont
 
 VOICE_LIB = #$(wildcard ../lib/voice_lib/*)
 
@@ -39,6 +42,6 @@ Main:$(Objs)
 
 clean:
 	@echo $(CSources)
-	rm main $(CSources:.c=.d) $(CSources:.c=.o)
+	rm Main $(CSources:.c=.d) $(CSources:.c=.o)
 
 

@@ -292,6 +292,8 @@ static int destory()
 	system("killall -9 mplayer");
 	close(fd_touch);
 	close(fifo);
+	/* 清除video */
+	destory_video();
 }
 
 int video_out_destory()

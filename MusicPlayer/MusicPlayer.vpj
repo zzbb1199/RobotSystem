@@ -268,6 +268,7 @@
 			<F N="../draw.h"/>
 			<F N="../lcd_info.h"/>
 			<F N="../memory_share.h"/>
+			<F N="../mylib/music.h"/>
 			<F N="../mylib/music_player_main.h"/>
 			<F N="../touch.h"/>
 		</Folder>

@@ -123,4 +123,17 @@ int next_video()
 }
 
 
+int destory_video()
+{
+	int i;
+	for (i = 0; i < video_num;i++)
+	{
+		if (video_path[i])
+		{
+			free(video_path[i]);
+		}
+	}
+	return 0;
+}
+
 

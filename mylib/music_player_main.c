@@ -74,8 +74,6 @@ static int destory_boundary()
 
 static int init()
 {
-
-
 	touch_open();
 
 	//初始化音乐播放器
@@ -89,8 +87,10 @@ static int init()
 static int destory()
 {
 	touch_close();
-	lcd_close();
+
 	destory_boundary();
+
+	destory_music();
 	return 0;
 }
 

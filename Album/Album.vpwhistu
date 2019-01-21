@@ -7,11 +7,11 @@ Album.vpj=20190120101849000
 ../CrossLine/CrossLine.vpj=20190120101849000
 ../GuaGuaLe/GuaGuaLe.vpj=20190120101849000
 ../Menu/Menu.vpj=20190120101849000
-../MusicPlayer/MusicPlayer.vpj=20190120101849000
+../MusicPlayer/MusicPlayer.vpj=20190121030417000
 ../RemoteControl/RemoteControl.vpj=20190120101849000
 ../Scheduler/Scheduler.vpj=20190120101849000
-../SlideUnLock/SlideUnLock.vpj=20190121014538000
-../VideoPlayer/VideoPlayer.vpj=20190120101849000
+../SlideUnLock/SlideUnLock.vpj=20190121024043000
+../VideoPlayer/VideoPlayer.vpj=20190121030923000
 ../VocieReco/VocieReco.vpj=20190120101849000
 [ActiveConfig]
 Album.vpj=Debug

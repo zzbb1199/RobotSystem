@@ -266,6 +266,7 @@
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
 			GUID="{ACAEA204-0D78-4E4B-82FD-ECC54033D1E0}">
+			<F N="../mylib/video.h"/>
 			<F N="../mylib/video_player_main.h"/>
 		</Folder>
 		<Folder

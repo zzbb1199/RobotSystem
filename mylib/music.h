@@ -57,4 +57,9 @@ int pre_music();
  */
 int next_music();
 
+
+/**
+ * destory music
+ */
+int destory_music();
 #endif

@@ -106,7 +106,14 @@ int pre_video();
  */
 int next_video();
 
-
+/**
+ * 销毁视频
+ * 
+ * @author gec (21/01/19)
+ * 
+ * @return int 
+ */
+int destory_video();
 #endif
 
 
