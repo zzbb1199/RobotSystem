@@ -16,15 +16,15 @@ static int init_boundary()
 
 
 
-	progress_bar.p1->x = 629;
-	progress_bar.p1->y = 944;
-	progress_bar.p2->x = 727;
-	progress_bar.p2->y = 183;
+	slide_bar.p1->x = 629;
+	slide_bar.p1->y = 944;
+	slide_bar.p2->x = 727;
+	slide_bar.p2->y = 183;
 
-	slide_bar.p1->x = 628;
-	slide_bar.p1->y = 308;
-	slide_bar.p2->x = 734;
-	slide_bar.p2->y = 397;
+	progress_bar.p1->x = 628;
+	progress_bar.p1->y = 308;
+	progress_bar.p2->x = 734;
+	progress_bar.p2->y = 397;
 
 
 	return 0;
