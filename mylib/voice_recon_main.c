@@ -92,6 +92,7 @@ static clear_thread()
 	if (is_video_start)
 	{
 		is_video_start = 0;
+		video_out_destory();
 		if (0 != pthread_cancel(video_thread))
 		{
 			printf("cancel video thread failed\n");
@@ -100,6 +101,7 @@ static clear_thread()
 		{
 			printf("cancel video thread success\n");
 		}
+		printf("function = %s,line = %d\n", __FUNCTION__, __LINE__);
 	}
 	return  0;
 }
@@ -171,10 +173,10 @@ static int start_video_thread()
 {
 	clear_thread();
 
-	int ret = pthread_create(&album_thread, NULL, video_thread_event, NULL);
+	int ret = pthread_create(&video_thread, NULL, video_thread_event, NULL);
 	if (ret)
 	{
-		perror("create album thread error!");
+		perror("create video thread error!");
 		return -1;
 	}
 	is_video_start = 1;
@@ -337,7 +339,7 @@ static void* voice_thread_event()
 static int init()
 {
 
-	sockfd = init_sock("172.16.1.1"); //由命令行传入一个对方的IP 等效于socket+bind+listen+accept
+	sockfd = init_sock("172.16.1.3"); //由命令行传入一个对方的IP 等效于socket+bind+listen+accept
 
 	/* 初始化輔助變量集合 */
 	is_music_start = 0;
@@ -361,9 +363,13 @@ static int init()
 static int destory()
 {
 	pthread_cancel(voice_thread);
+	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__);
 	clear_thread();
+	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__); 
 	close(sockfd);
+	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__); 
 	lcd_close();
+	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__); 
 }
 
 

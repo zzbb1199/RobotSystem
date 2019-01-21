@@ -277,7 +277,6 @@ static int run()
 				{
 					printf("delta_x %d thresehold %d\n", delta_x, EXIT_THRESEHOLD);
 					printf("exit!!!!\n");
-					system("killall -9 mplayer");
 					break;
 				}
 			}
@@ -290,8 +289,16 @@ static int run()
 
 static int destory()
 {
+	system("killall -9 mplayer");
 	close(fd_touch);
 	close(fifo);
+}
+
+int video_out_destory()
+{
+	printf("video out desotry!\n");
+	destory();
+	return 0;
 }
 
 int video_player_main(int comefrom)
