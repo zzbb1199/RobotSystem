@@ -95,7 +95,7 @@ int menu2_main()
 		 * 点击时间判定区域
 		 */
 		/* 远程控制 */
-		if (check_boundary(x, y, remote_control_bd)) /* check函数待完善 */
+		if (check_boundary(x, y, remote_control_bd)) 
 		{
 			printf("remote_control\n");
 			condition = REMOTE_CONTROL;

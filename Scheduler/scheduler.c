@@ -16,6 +16,8 @@
 #include "scheduler.h"
 #include "voice_recon_main.h"
 #include "lock_style_main.h"
+#include "remote_control_main.h"
+
 
 condition = -1;
 int main(void)
@@ -58,7 +60,7 @@ int main(void)
 			chat_main();
 			break;
 		case REMOTE_CONTROL:
-			condition = MENU2;
+			remote_control_main();
 			break;
 		case VOICE_RECON:
 			voice_recon_main();

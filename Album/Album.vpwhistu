@@ -13,6 +13,7 @@ Album.vpj=20190120101849000
 ../SlideUnLock/SlideUnLock.vpj=20190121024043000
 ../VideoPlayer/VideoPlayer.vpj=20190121030923000
 ../VocieReco/VocieReco.vpj=20190120101849000
+../RemoteContrl/RemoteContrl.vpj=20190121061355000
 [ActiveConfig]
 Album.vpj=Debug
 MusicPlayer/MusicPlayer.vpj=Debug
@@ -30,6 +31,7 @@ MusicPlayer/MusicPlayer.vpj=Debug
 ../VocieReco/VocieReco.vpj=Debug
 ../Menu2/Menu2.vpj=Debug
 ../RemoteControl/RemoteControl.vpj=Debug
+../RemoteContrl/RemoteContrl.vpj=Debug
 [TreeExpansion2]
 +@ Album.vpj
   + Bitmaps
