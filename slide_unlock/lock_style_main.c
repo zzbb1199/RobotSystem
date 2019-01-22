@@ -17,9 +17,9 @@ static int init_boundary()
 
 
 	slide_bar.p1->x = 629;
-	slide_bar.p1->y = 944;
+	slide_bar.p1->y = 98;
 	slide_bar.p2->x = 727;
-	slide_bar.p2->y = 183;
+	slide_bar.p2->y = 176;
 
 	progress_bar.p1->x = 628;
 	progress_bar.p1->y = 308;
