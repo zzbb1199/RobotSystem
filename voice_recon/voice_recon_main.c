@@ -66,6 +66,7 @@ static clear_thread()
 	if (is_music_start)
 	{
 		is_music_start = 0;
+		music_out_desotry();
 		if (0 != pthread_cancel(music_thread))
 		{
 			printf("cancel music thread failed\n");
@@ -330,7 +331,14 @@ static void* voice_thread_event()
 			/****************ALBUM*****************/
 		case EXIT:
 			printf("exit voice control!!!\n");
-			is_exit = 1;
+			if (is_album_start || is_music_start || is_video_start)
+			{
+				back2voice();
+			}
+			else
+			{
+				is_exit = 1;
+			}
 			break;
 		}
 	}
@@ -367,11 +375,11 @@ static int destory()
 	pthread_cancel(voice_thread);
 	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__);
 	clear_thread();
-	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__); 
+	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__);
 	close(sockfd);
-	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__); 
+	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__);
 	lcd_close();
-	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__); 
+	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__);
 }
 
 
