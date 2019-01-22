@@ -317,7 +317,10 @@ int video_player_main(int comefrom)
 	{
 		back2voice();
 	}
-	else
+	else if (REMOTE_CONTROL == comefrom)
+	{
+		back2remotecontrol();
+	}else 
 	{
 		condition = MENU;
 	}

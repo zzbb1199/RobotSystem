@@ -81,7 +81,7 @@ int udp_init()
 	int ret;
 	//初始化该结构体
 	bindaddr.sin_family=AF_INET;
-	bindaddr.sin_addr.s_addr=inet_addr("192.168.1.99");////开发板无线网卡的ip地址
+	bindaddr.sin_addr.s_addr=inet_addr("192.168.1.100");////开发板无线网卡的ip地址
 	bindaddr.sin_port=htons(2234);//端口号也需要转换
 
 	//买手机---》创建一个udp套接字(数据报套接字)用于通信

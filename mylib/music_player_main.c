@@ -11,6 +11,7 @@
 #include <fcntl.h>
 #include "public_resource.h"
 #include "scheduler.h"
+#include "remote_control_main.h"
 
 /**
  * 初始化一些参数
@@ -175,6 +176,10 @@ int music_player_main(int comefrom)
 			if (VOICE_RECON == comefrom)
 			{
 				back2voice();
+			}
+			else if (REMOTE_CONTROL == comefrom)
+			{
+				back2remotecontrol();
 			}
 			else
 			{
