@@ -95,6 +95,12 @@ static int destory()
 	return 0;
 }
 
+int music_out_desotry()
+{
+	printf("music out desotry!!\n");
+	destory();
+	return 0;
+}
 /**
  * 是否点击了一首前
  * 

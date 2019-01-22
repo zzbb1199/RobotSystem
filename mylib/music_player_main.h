@@ -3,6 +3,7 @@
 
 int music_player_main(int comefrom);
 
+int music_out_desotry();
 
 #endif
 

@@ -163,4 +163,6 @@ int destory_music()
 			free(music_path[i]);
 		}
 	}
+	/* kill */
+	system("killall -9 madplay");
 }

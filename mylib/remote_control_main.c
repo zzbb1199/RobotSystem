@@ -9,17 +9,43 @@
 #include "music_player_main.h"
 #include "video_player_main.h"
 #include "api_v4l2.h"
+#include "music.h"
+#include "video.h"
 
 /**
  * 定义功能识别码
  */
 #define CAMERA_PLAY "GET_VIDEO"
-#define MUSIC_PLAY "ENTER_KUGOU"
+
+#define MUSIC_PLAY1 "ENTER_KUGOU" 
+#define MUSIC_PLAY2 "ENTER_KUGOUCONT"
+
 #define VIDEO_PLAY  "MUSIC_STOP_CONT"
-#define BACK 	"BACKR_KUGOU"
-#define PRE_EVENT "MUSIC_PREV_CONT"
-#define NEXT_EVENT "MUSIC_NEXT_CONT"
-#define PLAY_OR_PUASE "MUSIC_PLAY_CONT"
+
+#define BACK1	"BACKC_PLAYU" 	
+#define BACK2 "BACKC_PREVU"
+#define BACK3 "BACKR_KUGOU"
+#define BACK4 "BACKC_PLAY_CONT"
+#define BACK5 "BACKC_NEXT_CONT"
+#define BACK6 "BACKC_NEXTUCONT"
+#define BACK7 "BACKC_PREVUCONT"
+#define BACK8 "BACKC_PLAYUCONT"
+#define BACK9 "BACKC_STOP_CONT"
+#define BACK10 "BACKR_KUGOUCONT"
+
+
+#define PRE_EVENT1 "MUSIC_PREVU"
+#define PRE_EVENT2 "MUSIC_PREV_CONT"
+#define PRE_EVENT3 "MUSIC_PREVUCONT"
+
+#define NEXT_EVENT1 "MUSIC_NEXTU"
+#define NEXT_EVENT2 "MUSIC_NEXT_CONT"
+#define NEXT_EVENT3 "MUSIC_NEXTUCONT"
+
+#define PLAY_OR_PAUSE1 "MUSIC_PLAYU"
+#define PLAY_OR_PAUSE2 "MUSIC_PLAY_CONT"
+#define PLAY_OR_PAUSE3 "MUSIC_PLAYUCONT"
+
 #define LED_ON "LED_ON"
 #define LED_OFF "LED_OFFLED_OFF"
 #define BEEP "BEEPOFFLED_OFF"
@@ -69,19 +95,20 @@ static clear_func_thread()
 //	}
 	if (is_music_start)
 	{
-		is_music_start = 0;
+		music_out_desotry();
 		if (0 != pthread_cancel(music_thread))
 		{
 			printf("cancel music thread failed\n");
 		}
 		else
 		{
+			is_music_start = 0;
 			printf("cancel video thread success\n");
 		}
 	}
 	if (is_video_start)
 	{
-		is_video_start = 0;
+
 		video_out_destory();
 		if (0 != pthread_cancel(video_thread))
 		{
@@ -89,6 +116,7 @@ static clear_func_thread()
 		}
 		else
 		{
+			is_video_start = 0;
 			printf("cancel video thread success\n");
 		}
 		printf("function = %s,line = %d\n", __FUNCTION__, __LINE__);
@@ -119,8 +147,12 @@ int back2remotecontrol()
 static void* send_camera_thread_event()
 {
 
+	printf("======================start camera thread =====================\n");
+	is_camera_start = 1;
 	FrameBuffer freambuf;
-
+	/* 初始化 */
+	bzero(freambuf.buf, sizeof(freambuf.buf));
+	freambuf.length = 0;
 	/* 初始化摄像头设备*/
 	linux_v4l2_device_init("/dev/video7");
 
@@ -152,19 +184,19 @@ static void* send_camera_thread_event()
 	/* 卸载摄像头*/
 	linux_v4l2_device_uinit();
 
-
+	printf("exit camera thread success\n");
 	return (void *)0;
 }
 
 static int start_send_camera_thread()
 {
 	int ret = pthread_create(&send_camera_thread, NULL, send_camera_thread_event, 0);
-	if (!ret)
+	if (ret)
 	{
 		printf("create send camera thread failed\n");
 		return -1;
 	}
-	is_camera_start = 1;
+	return 0;
 }
 
 /********************start_music_thread*******************/
@@ -182,7 +214,7 @@ static int start_music_thread()
 	int ret = pthread_create(&music_thread, NULL, muisc_thread_event, NULL);
 	if (ret)
 	{
-		perror("create album thread error!");
+		perror("create music thread error!");
 		return -1;
 	}
 	is_music_start = 1;
@@ -242,13 +274,28 @@ static int solve_msg(char *msg)
 	/** 传输摄像头数据 */
 	if (0 == strcmp(msg, CAMERA_PLAY))
 	{
+		printf("===============camers is start or not : %d=====\n", is_camera_start);
 		if (!is_camera_start)
 		{
 			start_send_camera_thread();
 		}
+		else
+		{
+			int ret = pthread_cancel(send_camera_thread);
+			if (ret)
+			{
+				perror("cancel camera thread failed\n");
+			}
+			else
+			{
+				printf("cancel camera thread success\n");
+				is_camera_start = 0;
+			}
+		}
 	}
 	/* 播放音乐 */
-	else if (0 == strcmp(msg, MUSIC_PLAY))
+	else if (0 == strcmp(msg, MUSIC_PLAY1)
+			 || 0 == strcmp(msg,MUSIC_PLAY2))
 	{
 		if (!is_music_start)
 		{
@@ -264,17 +311,65 @@ static int solve_msg(char *msg)
 		}
 	}
 	/* BACK */
-	else if (0 == strcmp(msg, BACK))
-	{}
+	else if (0 == strcmp(msg, BACK1) || 0 == strcmp(msg, BACK2)
+			 || 0 == strcmp(msg, BACK3) || 0 == strcmp(msg, BACK4)
+			 || 0 == strcmp(msg, BACK5) || 0 == strcmp(msg,BACK6)
+			 || 0 == strcmp(msg, BACK7) || 0 == strcmp(msg, BACK8)
+			 || 0 == strcmp(msg, BACK9) || 0 == strcmp(msg, BACK10))
+	{
+
+		if (is_music_start || is_video_start)
+		{
+			back2remotecontrol();
+		}
+		else
+		{
+			/* 退出 */
+			is_exit = 1;
+		}
+	}
 	/* 上一首或者上一部 */
-	else if (0 == strcmp(msg, PRE_EVENT))
-	{}
+	else if (0 == strcmp(msg, PRE_EVENT1)
+			 || 0 == strcmp(msg,PRE_EVENT2)
+			 || 0 == strcmp(msg,PRE_EVENT3))
+	{
+		if (is_music_start)
+		{
+			pre_music();
+		}
+		if (is_video_start)
+		{
+			pre_video();
+		}
+	}
 	/* 下一首或者下一部 */
-	else if (0 == strcmp(msg, NEXT_EVENT))
-	{}
+	else if (0 == strcmp(msg, NEXT_EVENT1)
+			 || 0 == strcmp(msg,NEXT_EVENT2)
+			 || 0 == strcmp(msg,NEXT_EVENT3))
+	{
+		if (is_music_start)
+		{
+			next_music();
+		}
+		if (is_video_start)
+		{
+			next_video();
+		}
+	}
 	/* 暂停音乐或者暂停视频 */
-	else if (0 == strcmp(msg, PLAY_OR_PUASE))
-	{}
+	else if (0 == strcmp(msg, PLAY_OR_PAUSE1)
+			 || 0 == strcmp(msg, PLAY_OR_PAUSE2)
+			 || 0 == strcmp(msg, PLAY_OR_PAUSE3))
+	{
+		if (is_music_start)
+		{
+			pause_or_play();
+		}
+		if (is_video_start)
+		{
+			play_or_pause();
+		}
+	}
 	/* LED_ON */
 	else if (0 == strcmp(msg, LED_ON))
 	{}
@@ -335,12 +430,16 @@ static void* touch_thread_event()
 	while (1)
 	{
 		scroll(&delta_x, &delta_y, &x, &y);
-//		printf("%d,%d,deltax %d", x, y, delta_x);
-		if (-delta_x > exit_threshold)
+		if (!is_music_start && !is_video_start)
 		{
-			is_exit = 1;
-			break;
+			if (-delta_x > exit_threshold)
+			{
+				is_exit = 1;
+				break;
+			}
 		}
+//		printf("%d,%d,deltax %d", x, y, delta_x);
+	
 	}
 	return 0;
 }
