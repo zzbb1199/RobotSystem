@@ -16,36 +16,12 @@
  * 定义功能识别码
  */
 #define CAMERA_PLAY "GET_VIDEO"
-
-#define MUSIC_PLAY1 "ENTER_KUGOU" 
-#define MUSIC_PLAY2 "ENTER_KUGOUCONT"
-
+#define MUSIC_PLAY "ENTER_KUGOU"
 #define VIDEO_PLAY  "MUSIC_STOP_CONT"
-
-#define BACK1	"BACKC_PLAYU" 	
-#define BACK2 "BACKC_PREVU"
-#define BACK3 "BACKR_KUGOU"
-#define BACK4 "BACKC_PLAY_CONT"
-#define BACK5 "BACKC_NEXT_CONT"
-#define BACK6 "BACKC_NEXTUCONT"
-#define BACK7 "BACKC_PREVUCONT"
-#define BACK8 "BACKC_PLAYUCONT"
-#define BACK9 "BACKC_STOP_CONT"
-#define BACK10 "BACKR_KUGOUCONT"
-
-
-#define PRE_EVENT1 "MUSIC_PREVU"
-#define PRE_EVENT2 "MUSIC_PREV_CONT"
-#define PRE_EVENT3 "MUSIC_PREVUCONT"
-
-#define NEXT_EVENT1 "MUSIC_NEXTU"
-#define NEXT_EVENT2 "MUSIC_NEXT_CONT"
-#define NEXT_EVENT3 "MUSIC_NEXTUCONT"
-
-#define PLAY_OR_PAUSE1 "MUSIC_PLAYU"
-#define PLAY_OR_PAUSE2 "MUSIC_PLAY_CONT"
-#define PLAY_OR_PAUSE3 "MUSIC_PLAYUCONT"
-
+#define BACK	"BACK"
+#define PRE_EVENT "MUSIC_PREV"
+#define NEXT_EVENT "MUSIC_NEXT"
+#define PLAY_OR_PAUSE "MUSIC_PLAY"
 #define LED_ON "LED_ON"
 #define LED_OFF "LED_OFFLED_OFF"
 #define BEEP "BEEPOFFLED_OFF"
@@ -272,7 +248,7 @@ static int solve_msg(char *msg)
 {
 
 	/** 传输摄像头数据 */
-	if (0 == strcmp(msg, CAMERA_PLAY))
+	if (strstr(msg, CAMERA_PLAY))
 	{
 		printf("===============camers is start or not : %d=====\n", is_camera_start);
 		if (!is_camera_start)
@@ -294,30 +270,24 @@ static int solve_msg(char *msg)
 		}
 	}
 	/* 播放音乐 */
-	else if (0 == strcmp(msg, MUSIC_PLAY1)
-			 || 0 == strcmp(msg,MUSIC_PLAY2))
+	else if (strstr(msg, MUSIC_PLAY)) 
 	{
 		if (!is_music_start)
 		{
 			start_music_thread();
 		}
 	}
-	/* 视频播放 */
-	else if (0 == strcmp(msg, VIDEO_PLAY))
+/* 视频播放 */
+	else if (strstr(msg, VIDEO_PLAY))
 	{
 		if (!is_video_start)
 		{
 			start_video_thread();
 		}
 	}
-	/* BACK */
-	else if (0 == strcmp(msg, BACK1) || 0 == strcmp(msg, BACK2)
-			 || 0 == strcmp(msg, BACK3) || 0 == strcmp(msg, BACK4)
-			 || 0 == strcmp(msg, BACK5) || 0 == strcmp(msg,BACK6)
-			 || 0 == strcmp(msg, BACK7) || 0 == strcmp(msg, BACK8)
-			 || 0 == strcmp(msg, BACK9) || 0 == strcmp(msg, BACK10))
+/* BACK */
+	else if (strstr(msg, BACK))
 	{
-
 		if (is_music_start || is_video_start)
 		{
 			back2remotecontrol();
@@ -328,10 +298,8 @@ static int solve_msg(char *msg)
 			is_exit = 1;
 		}
 	}
-	/* 上一首或者上一部 */
-	else if (0 == strcmp(msg, PRE_EVENT1)
-			 || 0 == strcmp(msg,PRE_EVENT2)
-			 || 0 == strcmp(msg,PRE_EVENT3))
+/* 上一首或者上一部 */
+	else if (strstr(msg, PRE_EVENT))
 	{
 		if (is_music_start)
 		{
@@ -343,9 +311,7 @@ static int solve_msg(char *msg)
 		}
 	}
 	/* 下一首或者下一部 */
-	else if (0 == strcmp(msg, NEXT_EVENT1)
-			 || 0 == strcmp(msg,NEXT_EVENT2)
-			 || 0 == strcmp(msg,NEXT_EVENT3))
+	else if (strstr(msg, NEXT_EVENT))
 	{
 		if (is_music_start)
 		{
@@ -357,9 +323,7 @@ static int solve_msg(char *msg)
 		}
 	}
 	/* 暂停音乐或者暂停视频 */
-	else if (0 == strcmp(msg, PLAY_OR_PAUSE1)
-			 || 0 == strcmp(msg, PLAY_OR_PAUSE2)
-			 || 0 == strcmp(msg, PLAY_OR_PAUSE3))
+	else if (strstr(msg, PLAY_OR_PAUSE))
 	{
 		if (is_music_start)
 		{
@@ -371,13 +335,13 @@ static int solve_msg(char *msg)
 		}
 	}
 	/* LED_ON */
-	else if (0 == strcmp(msg, LED_ON))
+	else if (strstr(msg, LED_ON))
 	{}
 	/* LED_OFF */
-	else if (0 == strcmp(msg, LED_OFF))
+	else if (strstr(msg, LED_OFF))
 	{}
 	/* 蜂鸣器 */
-	else if (0 == strcmp(msg, BEEP))
+	else if (strstr(msg, BEEP))
 	{}
 	return 0;
 }
@@ -439,7 +403,7 @@ static void* touch_thread_event()
 			}
 		}
 //		printf("%d,%d,deltax %d", x, y, delta_x);
-	
+
 	}
 	return 0;
 }
