@@ -1,10 +1,9 @@
 #include "music.h"
 #include "font.h"
 #include "lcd.h"
+#include "scheduler.h"
 
 
-#define MUSIC_NAME_X_MIDDLE 242
-#define MUSIC_NAME_Y_MIDDLE 332
 #define LITTER_ZOOM_SIZE 2
 #define EVERY_LITTER_SIZE 16*LITTER_ZOOM_SIZE
 
@@ -12,10 +11,23 @@ static char current_name[20];
 
 static int draw_music_name(char *name)
 {
+	
+	int music_name_x_middle = 0 ,music_name_y_middle =0 ;
+	if (theme_choose == THEME1)
+	{
+		music_name_x_middle = 242;
+		music_name_y_middle = 332;
+	}
+	else if (theme_choose == THEME2)
+	{
+		music_name_x_middle = 210;
+		music_name_y_middle = 301;
+	}
+
 	int name_len = strlen(name);
 	strcpy(current_name, name);
-	unsigned int start_x = MUSIC_NAME_X_MIDDLE -  name_len/3 * EVERY_LITTER_SIZE;
-	unsigned int start_y = MUSIC_NAME_Y_MIDDLE - (int)EVERY_LITTER_SIZE / 2;
+	unsigned int start_x = music_name_x_middle -  name_len / 3 * EVERY_LITTER_SIZE;
+	unsigned int start_y = music_name_y_middle - (int)EVERY_LITTER_SIZE / 2;
 	Display_characterX(start_x, start_y, name, 0x000000, LITTER_ZOOM_SIZE);
 	return 0;
 }

@@ -7,7 +7,7 @@
 static struct Boundary theme1_bd;
 static struct Boundary theme2_bd;
 
-int theme_choose = THEME1;
+
 static int init_boundary()
 {
 	/* 分配内存 */
@@ -17,24 +17,41 @@ static int init_boundary()
 	theme2_bd.p1 = malloc(sizeof(struct Boundary));
 	theme2_bd.p2 = malloc(sizeof(struct Boundary));
 
-	theme1_bd.p1->x = 515;
-	theme1_bd.p1->y = 84;
-	theme1_bd.p2->x = 618;
-	theme1_bd.p2->y = 169;
+	if(THEME1 == theme_choose )
+	{
+		printf("theme1 icon coord set\n"); 
+		theme1_bd.p1->x = 515;
+		theme1_bd.p1->y = 84;
+		theme1_bd.p2->x = 618;
+		theme1_bd.p2->y = 169;
 
 
-	theme2_bd.p1->x = 515;
-	theme2_bd.p1->y = 290;
-	theme2_bd.p2->x = 620;
-	theme2_bd.p2->y = 380;
+		theme2_bd.p1->x = 515;
+		theme2_bd.p1->y = 290;
+		theme2_bd.p2->x = 620;
+		theme2_bd.p2->y = 380;
+	}
+	else if(THEME2 == theme_choose)
+	{
+		printf("theme2 icon coord set\n");
+		theme1_bd.p1->x = 84;
+		theme1_bd.p1->y = 122;
+		theme1_bd.p2->x = 178;
+		theme1_bd.p2->y = 206;
+
+
+		theme2_bd.p1->x = 84;
+		theme2_bd.p1->y = 306;
+		theme2_bd.p2->x = 171;
+		theme2_bd.p2->y = 383;
+	}
+
 
 	return 0;
 }
 
 static int init()
 {
-	theme_choose = 0;
-
 	lcd_open();
 
 	touch_open();
@@ -59,6 +76,7 @@ static int destory()
 
 int theme_change_main()
 {
+	printf("theme choose is %d\n", theme_choose);
 	init();
 
 	int x,y,delta_x,delta_y;
@@ -66,13 +84,14 @@ int theme_change_main()
 	while(1)
 	{
 		scroll(&delta_x, &delta_y, &x, &y);
+		printf("%d,%d\n", x, y);
 		/* 主题一 */
 		if(check_boundary(x,y,theme1_bd))
 		{
 			printf("theme 1\n");
 			theme_choose = THEME1;
-			system("cp ./Theme1/* ./Image");
-			sleep(2);
+			system("echo \"theme1\" > theme && cp ./Theme1/* ./Image");
+			sleep(1);
 			break;
 		}
 		/* 主题二 */
@@ -80,8 +99,8 @@ int theme_change_main()
 		{
 			printf("theme 2\n");
 			theme_choose = THEME2;
-			system("cp ./Theme2/* ./Image");
-			sleep(2);
+			system("echo \"theme2\" > theme && cp ./Theme2/* ./Image");
+			sleep(1);
 			break;
 		}
 		if(-delta_x > exit_threshold)

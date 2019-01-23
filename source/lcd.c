@@ -547,7 +547,15 @@ void draw_image(char *image_path)
 	else if (strstr(image_path, "jpg"))
 	{
 		printf("jpg type\n");
-		lcd_draw_jpg(0, 0, image_path, NULL, 0, 0);
+		if (strstr(image_path, "image")) /* 符合相机拍照规则 */
+		{
+			draw_backgroud(0x000000);
+			lcd_draw_jpg(80, 0, image_path, NULL, 0, 0);
+		}
+		else
+		{
+			lcd_draw_jpg(0, 0, image_path, NULL, 0, 0);
+		}
 	}
 }
 

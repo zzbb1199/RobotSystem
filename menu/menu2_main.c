@@ -65,10 +65,10 @@ static int init_boundary()
 		lock_style_bd.p2->x = 135;
 		lock_style_bd.p2->y = 327;
 
-//		theme_choose_bd.p1->x = 590;
-//		theme_choose_bd.p1->y = 325;
-//		theme_choose_bd.p2->x = 713;
-//		theme_choose_bd.p2->y = 422;
+		theme_choose_bd.p1->x = 220;
+		theme_choose_bd.p1->y = 275;
+		theme_choose_bd.p2->x = 286;
+		theme_choose_bd.p2->y = 324;
 	}
 
 	return 0;

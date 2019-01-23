@@ -97,11 +97,15 @@ int lock_style_main()
 		{
 			printf("choose progress bar\n");
 			is_progress_bar = 1;
+			sleep(1);
+			break;
 		}
 		else if(check_boundary(x, y, slide_bar))
 		{
 			printf("choose slide bar\n");
 			is_progress_bar = 0;
+			sleep(1); 
+			break;
 		}
 	}
 
