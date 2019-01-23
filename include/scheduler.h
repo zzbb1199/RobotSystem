@@ -1,8 +1,9 @@
 #ifndef __SCHEDULER_H__
 #define __SCHEDULER_H__
 
-extern int condition;
-extern int is_progress_bar;
+extern int condition;	/* 功能调度 */
+extern int is_progress_bar; /* 解锁样式选择 */
+extern int theme_choose;	/* 主题选择 */
 /**
  * 功能宏定义
  */
@@ -20,8 +21,10 @@ extern int is_progress_bar;
 #define CHAT 0x0c
 #define VOICE_RECON 0x0d
 #define LOCK_STYLE 0X0e
+#define THEME_CHOOSE 0x0f
 
-
+#define THEME1 1
+#define THEME2 2
 ///**
 // * 退出到上一级别功能
 // *

@@ -15,16 +15,30 @@ static int init_boundary()
 	slide_bar.p2 = malloc(sizeof(struct Boundary));
 
 
+	if(theme_choose == THEME1)
+	{
+		slide_bar.p1->x = 629;
+		slide_bar.p1->y = 98;
+		slide_bar.p2->x = 727;
+		slide_bar.p2->y = 176;
 
-	slide_bar.p1->x = 629;
-	slide_bar.p1->y = 98;
-	slide_bar.p2->x = 727;
-	slide_bar.p2->y = 176;
+		progress_bar.p1->x = 628;
+		progress_bar.p1->y = 308;
+		progress_bar.p2->x = 734;
+		progress_bar.p2->y = 397;
+	}
+	else if(theme_choose == THEME2)
+	{
+		slide_bar.p1->x = 75;
+		slide_bar.p1->y = 123;
+		slide_bar.p2->x = 173;
+		slide_bar.p2->y = 184;
 
-	progress_bar.p1->x = 628;
-	progress_bar.p1->y = 308;
-	progress_bar.p2->x = 734;
-	progress_bar.p2->y = 397;
+		progress_bar.p1->x = 75;
+		progress_bar.p1->y = 250;
+		progress_bar.p2->x = 175;
+		progress_bar.p2->y = 298;
+	}
 
 
 	return 0;
@@ -47,7 +61,7 @@ static int init()
 	init_boundary();
 
 	/* 绘制选择样式背景图 */
-	draw_image("./Image/unlock_style_background.bmp");
+	draw_image("./Image/unlock_style_background.jpg");
 	return 0;
 }
 

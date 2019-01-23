@@ -258,17 +258,7 @@
 		<Folder
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
-			GUID="{3D3364E0-D140-40B9-8405-7DF8E04C3B29}">
-			<F N="../mylib/album.c"/>
-			<F N="../mylib/camera_main.c"/>
-			<F N="../mylib/common.c"/>
-			<F N="../mylib/dir.c"/>
-			<F N="../mylib/draw.c"/>
-			<F N="../mylib/lcd.c"/>
-			<F N="../mylib/memory_share.c"/>
-			<F N="../mylib/music.c"/>
-			<F N="../mylib/touch.c"/>
-		</Folder>
+			GUID="{3D3364E0-D140-40B9-8405-7DF8E04C3B29}"></Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"

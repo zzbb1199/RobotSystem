@@ -9,7 +9,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdSlideUnLock"
+		OutputFile="%bdTheme"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -134,7 +134,7 @@
 		Type="gnuc"
 		DebugCallbackName="gdb"
 		Version="1"
-		OutputFile="%bdSlideUnLock"
+		OutputFile="%bdTheme"
 		CompilerConfigName="Latest Version">
 		<Menu>
 			<Target
@@ -258,30 +258,28 @@
 		<Folder
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
-			GUID="{20200D42-BD92-400A-ADEE-727112952F76}">
-			<F N="../source/lcd.c"/>
-			<F N="lock_style_main.c"/>
-			<F N="slide_unlock_main.c"/>
+			GUID="{26AF2192-03C2-4889-AB46-C8BFCA1F55E0}">
+			<F N="theme_change_main.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
-			GUID="{C818B8E5-80DD-4E3F-B25A-981EC87FEC9C}">
+			GUID="{90C65DD9-BE25-4E04-A22D-E70F53AD6A34}">
 			<F N="../include/lcd.h"/>
-			<F N="lock_style_main.h"/>
-			<F N="slide_unlock_main.h"/>
+			<F N="theme_change_main.h"/>
+			<F N="../include/touch.h"/>
 		</Folder>
 		<Folder
 			Name="Resource Files"
 			Filters="*.ico;*.cur;*.dlg"
-			GUID="{799BCAC2-696C-45D9-B4CE-2B82FF47AE10}"/>
+			GUID="{F2E97FEC-B3D3-4D26-9AB5-1697449C31AC}"/>
 		<Folder
 			Name="Bitmaps"
 			Filters="*.bmp"
-			GUID="{7CE7A91B-26BD-48C8-AA2E-EC64E9F10D48}"/>
+			GUID="{E2F954DB-B65E-4B0F-AFAF-E884AE53E536}"/>
 		<Folder
 			Name="Other Files"
 			Filters=""
-			GUID="{F7714123-352C-48C2-8495-CA546050EE42}"></Folder>
+			GUID="{0A3EC281-31A1-412B-B99D-BDB04F12579C}"/>
 	</Files>
 </Project>

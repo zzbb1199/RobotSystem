@@ -1,6 +1,6 @@
 /**
- * 系统主界面 
- *  
+ * 系统主界面
+ *
  */
 
 #include "lcd.h"
@@ -19,50 +19,50 @@ static struct Boundary chat_bd;
 
 /**
  * 初始化程序中所要用到的资源
- * 
+ *
  * @author gec (16/01/19)
- * 
- * @return int 
+ *
+ * @return int
  */
 static int init();
 
 /**
  * 销毁索要用到的资源
- * 
+ *
  * @author gec (16/01/19)
- * 
- * @return int 
+ *
+ * @return int
  */
 static int desotry();
 
 /**
  * 初始化菜单选项边界
- * 
+ *
  * @author gec (16/01/19)
- * 
- * @return int 
+ *
+ * @return int
  */
 static int init_boundary();
 
 
 /**
  * 销毁菜单选项边界
- * 
+ *
  * @author gec (21/01/19)
- * 
- * @return int 
+ *
+ * @return int
  */
 static int destory_boundary();
 
 
 /**
  * 主程序
- * 
+ *
  * @author gec (16/01/19)
- * 
- * @param void 
- * 
- * @return int 
+ *
+ * @param void
+ *
+ * @return int
  */
 int menu_main()
 {
@@ -70,13 +70,13 @@ int menu_main()
 
 	/* 监控触摸event */
 	int x, y;
-	int delta_x = 0; 
+	int delta_x = 0;
 	int delta_y = 0;
 	const int chang_menu_threshold = 300; /* 更换men门限 */
 	while (1)
 	{
 		scroll(&delta_x, &delta_y, &x, &y);
-		printf("x %d, y%d delta_x %d delta_y %d\n", x, y,delta_x,delta_y);
+		printf("x %d, y%d delta_x %d delta_y %d\n", x, y, delta_x, delta_y);
 		/**
 		 * 滑屏处理区域
 		 */
@@ -133,7 +133,7 @@ int menu_main()
 		}
 
 
-	
+
 	}
 	desotry();
 	return 0;
@@ -148,7 +148,7 @@ static int init()
 	/* 打开触摸班 */
 	touch_open();
 	/* 显示菜单界面 */
-	draw_image("./Image/main_menu.bmp");
+	draw_image("./Image/main_menu.jpg");
 	/* 初始化边界 */
 	init_boundary();
 	return 0;
@@ -180,42 +180,78 @@ static int init_boundary()
 	chat_bd.p2 = malloc(sizeof(struct Boundary));
 
 	locking_bd.p1 = malloc(sizeof(struct Boundary));
-	locking_bd.p2 = malloc(sizeof(struct Boundary)); 
+	locking_bd.p2 = malloc(sizeof(struct Boundary));
 
 	guaguale_bd.p1 = malloc(sizeof(struct Boundary));
 	guaguale_bd.p2 = malloc(sizeof(struct Boundary));
 
 	/* 初始化坐标点 */
-	camera_bd.p1->x = 407;
-	camera_bd.p1->y = 71;
-	camera_bd.p2->x = 493;
-	camera_bd.p2->y = 142;
+	if (THEME1 == theme_choose)
+	{
+		camera_bd.p1->x = 407;
+		camera_bd.p1->y = 71;
+		camera_bd.p2->x = 493;
+		camera_bd.p2->y = 142;
 
-	video_bd.p1->x = 407;
-	video_bd.p1->y = 206;
-	video_bd.p2->x = 493;
-	video_bd.p2->y = 271;
+		video_bd.p1->x = 407;
+		video_bd.p1->y = 206;
+		video_bd.p2->x = 493;
+		video_bd.p2->y = 271;
 
-	music_bd.p1->x = 639;
-	music_bd.p1->y = 71;
-	music_bd.p2->x = 701;
-	music_bd.p2->y = 142;
+		music_bd.p1->x = 639;
+		music_bd.p1->y = 71;
+		music_bd.p2->x = 701;
+		music_bd.p2->y = 142;
 
-	chat_bd.p1->x = 638;
-	chat_bd.p1->y = 361;
-	chat_bd.p2->x = 707;
-	chat_bd.p2->y = 429;
+		chat_bd.p1->x = 638;
+		chat_bd.p1->y = 361;
+		chat_bd.p2->x = 707;
+		chat_bd.p2->y = 429;
 
-	locking_bd.p1->x = 626;
-	locking_bd.p1->y = 206;
-	locking_bd.p2->x = 690;
-	locking_bd.p2->y = 271;
+		locking_bd.p1->x = 626;
+		locking_bd.p1->y = 206;
+		locking_bd.p2->x = 690;
+		locking_bd.p2->y = 271;
 
-	guaguale_bd.p1->x = 407;
-	guaguale_bd.p1->y = 378;
-	guaguale_bd.p2->x = 493;
-	guaguale_bd.p2->y = 430;
-	
+		guaguale_bd.p1->x = 407;
+		guaguale_bd.p1->y = 378;
+		guaguale_bd.p2->x = 493;
+		guaguale_bd.p2->y = 430;
+	}
+	else if (THEME2 == theme_choose)
+	{
+		camera_bd.p1->x = 647;
+		camera_bd.p1->y = 125;
+		camera_bd.p2->x = 134;
+		camera_bd.p2->y = 180;
+
+		video_bd.p1->x = 741;
+		video_bd.p1->y = 222;
+		video_bd.p2->x = 127;
+		video_bd.p2->y = 273;
+
+		music_bd.p1->x = 209;
+		music_bd.p1->y = 119;
+		music_bd.p2->x = 257;
+		music_bd.p2->y = 180;
+
+		chat_bd.p1->x = 209;
+		chat_bd.p1->y = 328;
+		chat_bd.p2->x = 262;
+		chat_bd.p2->y = 377;
+
+		locking_bd.p1->x = 205;
+		locking_bd.p1->y = 228;
+		locking_bd.p2->x = 260;
+		locking_bd.p2->y = 279;
+
+		guaguale_bd.p1->x = 71;
+		guaguale_bd.p1->y = 329;
+		guaguale_bd.p2->x = 125;
+		guaguale_bd.p2->y = 378;
+	}
+
+
 	return 0;
 }
 

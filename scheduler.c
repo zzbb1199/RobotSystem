@@ -17,6 +17,7 @@
 #include "voice_recon_main.h"
 #include "lock_style_main.h"
 #include "remote_control_main.h"
+#include "theme_change_main.h"
 
 
 condition = -1;
@@ -67,6 +68,9 @@ int main(void)
 			break;
 		case LOCK_STYLE:
 			lock_style_main();
+			break;
+		case THEME_CHOOSE:
+			theme_change_main();
 			break;
 		default:
 			printf("there is no func named that\n");

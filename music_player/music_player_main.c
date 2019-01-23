@@ -34,31 +34,66 @@ static int init_boundary()
 {
 	pre_music_bd.p1 = (struct Point *)malloc(sizeof(struct Point));
 	pre_music_bd.p2 = (struct Point *)malloc(sizeof(struct Point));
-	pre_music_bd.p1->x = 163;
-	pre_music_bd.p1->y = 365;
-	pre_music_bd.p2->x = 198;
-	pre_music_bd.p2->y = 409;
 
 	pause_bd.p1 = (struct Point *)malloc(sizeof(struct Point));
 	pause_bd.p2 = (struct Point *)malloc(sizeof(struct Point));
-	pause_bd.p1->x = 220;
-	pause_bd.p1->y = 365;
-	pause_bd.p2->x = 268;
-	pause_bd.p2->y = 409;
 
 	next_music_bd.p1 = (struct Point *)malloc(sizeof(struct Point));
 	next_music_bd.p2 = (struct Point *)malloc(sizeof(struct Point));
-	next_music_bd.p1->x = 288;
-	next_music_bd.p1->y = 365;
-	next_music_bd.p2->x = 322;
-	next_music_bd.p2->y = 409;
+
 
 	music_back_bd.p1 = malloc(sizeof(struct Point));
 	music_back_bd.p2 = malloc(sizeof(struct Point));
-	music_back_bd.p1->x = 31;
-	music_back_bd.p1->y = 35;
-	music_back_bd.p2->x = 96;
-	music_back_bd.p2->y = 81;
+
+	if (theme_choose == THEME1)
+	{
+		pre_music_bd.p1->x = 163;
+		pre_music_bd.p1->y = 365;
+		pre_music_bd.p2->x = 198;
+		pre_music_bd.p2->y = 409;
+
+
+		pause_bd.p1->x = 220;
+		pause_bd.p1->y = 365;
+		pause_bd.p2->x = 268;
+		pause_bd.p2->y = 409;
+
+
+		next_music_bd.p1->x = 288;
+		next_music_bd.p1->y = 365;
+		next_music_bd.p2->x = 322;
+		next_music_bd.p2->y = 409;
+
+		music_back_bd.p1->x = 31;
+		music_back_bd.p1->y = 35;
+		music_back_bd.p2->x = 96;
+		music_back_bd.p2->y = 81;
+	}
+	else if (theme_choose == THEME2)
+	{
+		pre_music_bd.p1->x = 79;
+		pre_music_bd.p1->y = 332;
+		pre_music_bd.p2->x = 139;
+		pre_music_bd.p2->y = 388;
+
+
+		pause_bd.p1->x = 177;
+		pause_bd.p1->y = 330;
+		pause_bd.p2->x = 246;
+		pause_bd.p2->y = 391;
+
+
+		next_music_bd.p1->x = 282;
+		next_music_bd.p1->y = 326;
+		next_music_bd.p2->x = 341;
+		next_music_bd.p2->y = 389;
+
+		music_back_bd.p1->x = 25;
+		music_back_bd.p1->y = 26;
+		music_back_bd.p2->x = 70;
+		music_back_bd.p2->y = 56;
+	}
+
 	return 0;
 }
 

@@ -200,7 +200,7 @@ static int init()
 	freambuf.length = 0;
 
 	/* 绘制拍照背景 */
-	draw_image("./Image/photograph_interface.bmp");
+	draw_image("./Image/photograph_interface.jpg");
 
 	/* 创建触摸屏事件thread */
 

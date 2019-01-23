@@ -22,12 +22,12 @@ static int draw_music_name(char *name)
 
 /**
  * 去掉path,得到音乐名字
- * 
+ *
  * @author gec (21/01/19)
- * 
- * @param path 
- * 
- * @return int 
+ *
+ * @param path
+ *
+ * @return int
  */
 static int de_music_path(char *path,char *name)
 {
@@ -62,7 +62,8 @@ int start_music()
 
 //	//播放第一首音乐
 	//绘制背景图
-	draw_image("./Image/music_pause.bmp");
+	draw_image("./Image/music_pause.jpg");
+	draw_image("./Image/music_pause.jpg");
 
 	char name[20];
 	bzero(name, 20);
@@ -99,13 +100,13 @@ int pause_or_play()
 {
 	if (isplayed)
 	{
-		draw_image("./Image/music_play.bmp");
+		draw_image("./Image/music_play.jpg");
 		pause_music();
 		isplayed = 0;
 	}
 	else
 	{
-		draw_image("./Image/music_pause.bmp");
+		draw_image("./Image/music_pause.jpg");
 		play_music();
 		isplayed = 1;
 	}
@@ -121,7 +122,7 @@ int pre_music()
 	bzero(cmd, 30);
 	printf("current music%s\n", music_path[music_i]);
 	sprintf(cmd, "%s%s%s", "madplay ", music_path[music_i], " &");
-	draw_image("./Image/music_pause.bmp");
+	draw_image("./Image/music_pause.jpg");
 	/* 画歌名 */
 	char name[20];
 	bzero(name, 20);
@@ -139,7 +140,7 @@ int next_music()
 	bzero(cmd, 30);
 	printf("current music%s\n", music_path[music_i]);
 	sprintf(cmd, "%s%s%s", "madplay ", music_path[music_i], " &");
-	draw_image("./Image/music_pause.bmp");
+	draw_image("./Image/music_pause.jpg");
 
 	/* 画歌名 */
 	char name[20];

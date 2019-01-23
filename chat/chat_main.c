@@ -16,13 +16,13 @@ static int addrlen  = -1; /* 地址长度 */
 
 /**
  * 发送一次信息
- * 
+ *
  * @author gec (16/01/19)
- *  
+ *
 
- *  
+ *
  * @param msg  发送的信息
- * 
+ *
  * @return int 返回发送的字节数,错误则返回-1
  */
 static int my_send(char *msg);
@@ -30,13 +30,13 @@ static int my_send(char *msg);
 
 /**
  * 接受一次信息
- * 
+ *
  * @author gec (16/01/19)
- * 
- * @param msg 
+ *
+ * @param msg
 
- * 
- * @return int 
+ *
+ * @return int
  */
 static int my_receive(char *msg, int len);
 
@@ -44,19 +44,19 @@ static int my_receive(char *msg, int len);
 
 /**
  * 发送线程指针
- * 
+ *
  * @author gec (16/01/19)
- * 
- * @return void* 
+ *
+ * @return void*
  */
 static void* sending_thread_event();
 
 /**
  * 接受线程指针
- * 
+ *
  * @author gec (16/01/19)
- * 
- * @return void* 
+ *
+ * @return void*
  */
 static void* receiving_thread_event();
 
@@ -64,10 +64,10 @@ static void* receiving_thread_event();
 
 /**
  * 程序初始化
- * 
+ *
  * @author gec (16/01/19)
- * 
- * @return int 
+ *
+ * @return int
  */
 static int init();
 
@@ -78,19 +78,19 @@ static int init_sockets();
 
 /**
  * 初始化县城
- * 
+ *
  * @author gec (16/01/19)
- * 
- * @return int 
+ *
+ * @return int
  */
 static int init_threads();
 
 /**
  * 销毁资源
- * 
+ *
  * @author gec (16/01/19)
- * 
- * @return int 
+ *
+ * @return int
  */
 static int destory();
 
@@ -134,7 +134,7 @@ static int init()
 	/* lcd初始化 */
 	lcd_open();
 	/* 绘制聊天bg */
-	draw_image("./Image/chat_background.bmp");
+	draw_image("./Image/chat_background.jpg");
 	/* socket初始化 */
 	addrlen = sizeof(struct  sockaddr_in);
 	pthread_t thread_init;

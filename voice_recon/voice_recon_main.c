@@ -1,4 +1,5 @@
 ﻿#include "voice_common.h"
+#include "touch.h"
 #include "album.h"
 #include "music.h"
 #include "video.h"
@@ -14,9 +15,9 @@
 #define PCM_FILE "./cmd.pcm"
 
 /**
- * <cmd>:播放音乐!id(1)|上一首!id(2)|下一首!id(3)|音乐暂停!id(10)| 
- * 视频播放!id(4)|上一部!id(5)|下一部!id(6)| 
- * 视频暂停!id(7)|相册!id(8)|上一张!id(9)|下一张!id(10)|退出!id(999); 
+ * <cmd>:播放音乐!id(1)|上一首!id(2)|下一首!id(3)|音乐暂停!id(10)|
+ * 视频播放!id(4)|上一部!id(5)|下一部!id(6)|
+ * 视频暂停!id(7)|相册!id(8)|上一张!id(9)|下一张!id(10)|退出!id(999);
  */
 /* 定义语音识别码 */
 /**
@@ -48,17 +49,40 @@
 
 
 /* create threads */
-pthread_t music_thread;
-pthread_t album_thread;
-pthread_t video_thread;
-pthread_t voice_thread;
+static pthread_t music_thread;
+static pthread_t album_thread;
+static pthread_t video_thread;
+static pthread_t voice_thread;
+static pthread_t touch_thread;
 int is_music_start = 0, is_album_start = 0, is_video_start = 0; /* 功能辅助变量 */
 int is_exit = 0;
 
 
+static void* touch_thread_event()
+{
+	printf("=====================start touch thread===============\n");
+	int x, y, delta_x, delta_y;
+	const int exit_threshold = 500;
+	while (1)
+	{
+		scroll(&delta_x, &delta_y, &x, &y);
+		if (!is_music_start && !is_video_start)
+		{
+			if (-delta_x > exit_threshold)
+			{
+				is_exit = 1;
+				break;
+			}
+		}
+//		printf("%d,%d,deltax %d", x, y, delta_x);
+
+	}
+	return 0;
+}
+
 /**
  * clear all running thread
- * 
+ *
  * @author gec (15/12/16)
  */
 static clear_thread()
@@ -112,7 +136,7 @@ int back2voice()
 {
 	printf("back to voice\n");
 	lcd_open();
-	draw_image("./Image/voice_control.bmp");
+	draw_image("./Image/voice_control.jpg");
 	clear_thread();
 	return 0;
 }
@@ -190,6 +214,8 @@ static int start_video_thread()
 int sockfd = -1;
 static void* voice_thread_event()
 {
+	printf("======================start voice thread=============\n");
+	sockfd = init_sock("172.16.1.3"); //由命令行传入一个对方的IP 等效于socket+bind+listen+accept
 	int id_num = 0, num;
 	int is_music_played = 0;
 	printf("waiting for result...\n");
@@ -349,9 +375,10 @@ static int init()
 	/* 初始化 */
 	lcd_open();
 
-	draw_image("./Image/voice_control.bmp");
+	touch_open();
 
-	sockfd = init_sock("172.16.1.3"); //由命令行传入一个对方的IP 等效于socket+bind+listen+accept
+	draw_image("./Image/voice_control.jpg");
+
 
 	/* 初始化輔助變量集合 */
 	is_music_start = 0;
@@ -359,11 +386,19 @@ static int init()
 	is_video_start = 0;
 	is_exit = 0;
 
-
-
 	/* voice thread */
-	pthread_create(&voice_thread, NULL, voice_thread_event, NULL);
-
+	printf("creat voice thread\n");
+	int ret = pthread_create(&voice_thread, NULL, voice_thread_event, NULL);
+	if (ret)
+	{
+		perror("create voice thread error!");
+	}
+	/* touch thread */
+	ret = pthread_create(&touch_thread, NULL, touch_thread_event,NULL);
+	if (ret)
+	{
+		perror("create touch trhead error!");
+	}
 	printf("voice control init\n");
 	return 0;
 }
@@ -372,14 +407,16 @@ static int init()
 
 static int destory()
 {
+	touch_close();
+
 	pthread_cancel(voice_thread);
-	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__);
+	pthread_cancel(touch_thread);
 	clear_thread();
-	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__);
+	
 	close(sockfd);
-	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__);
+	
 	lcd_close();
-	printf("FUNC = %s ,LINE=%d\n", __FUNCTION__, __LINE__);
+	
 }
 
 

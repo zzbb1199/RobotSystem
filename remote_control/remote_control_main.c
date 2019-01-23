@@ -124,7 +124,7 @@ int back2remotecontrol()
 {
 	printf("back to remote control\n");
 	lcd_open();
-	draw_image("./Image/remote_control_background.bmp");
+	draw_image("./Image/remote_control_background.jpg");
 	clear_func_thread();
 	return 0;
 }
@@ -135,10 +135,10 @@ int back2remotecontrol()
 
 /**
  * 发送摄像头数据
- * 
+ *
  * @author gec (21/01/19)
- * 
- * @return void* 
+ *
+ * @return void*
  */
 static void* send_camera_thread_event()
 {
@@ -282,7 +282,7 @@ static void* lcd_plus_calc_event(void *param)
 	ioctl(fd, LED1, 1);
 	ioctl(fd, LED2, 1);
 	ioctl(fd, LED3, 1);
-	ioctl(fd, LED4, 1); 
+	ioctl(fd, LED4, 1);
 
 	while (1)
 	{
@@ -328,10 +328,10 @@ static int start_lcd_calc_thread()
 
 /**
  * 处理接受到的信息
- * 
+ *
  * @author gec (22/01/19)
- * 
- * @return int 
+ *
+ * @return int
  */
 static int solve_msg(char *msg)
 {
@@ -452,10 +452,10 @@ static int solve_msg(char *msg)
 
 /**
  * 接受事件线程
- * 
+ *
  * @author gec (21/01/19)
- * 
- * @return void* 
+ *
+ * @return void*
  */
 static void* receive_thread_event()
 {
@@ -485,10 +485,10 @@ static void* receive_thread_event()
 
 /**
  * 手势监控线程
- * 
+ *
  * @author gec (21/01/19)
- * 
- * @return void* 
+ *
+ * @return void*
  */
 static void* touch_thread_event()
 {
@@ -554,10 +554,10 @@ static int init_socket()
 
 /**
  * 开启各个线程
- * 
+ *
  * @author gec (21/01/19)
- * 
- * @return int 
+ *
+ * @return int
  */
 static int init_threads()
 {
@@ -596,7 +596,7 @@ static int init()
 	init_threads();
 
 	/* 绘制远程控制背景 */
-	draw_image("./Image/remote_control_background.bmp");
+	draw_image("./Image/remote_control_background.jpg");
 	return 0;
 }
 

@@ -263,14 +263,7 @@
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
 			GUID="{863AA6CC-F3B2-4FBA-8C45-53C55B885769}">
-			<F N="../album.h"/>
-			<F N="../dir.h"/>
-			<F N="../draw.h"/>
-			<F N="../lcd_info.h"/>
-			<F N="../memory_share.h"/>
-			<F N="../mylib/music.h"/>
-			<F N="../mylib/music_player_main.h"/>
-			<F N="../touch.h"/>
+			<F N="music_player_main.h"/>
 		</Folder>
 		<Folder
 			Name="Other Files"
@@ -288,8 +281,7 @@
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{DD673E14-11A5-4B84-876E-CB351805301F}">
-			<F N="../mylib/music.c"/>
-			<F N="../mylib/music_player_main.c"/>
+			<F N="music_player_main.c"/>
 		</Folder>
 	</Files>
 </Project>

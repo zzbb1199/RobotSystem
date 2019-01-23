@@ -11,6 +11,7 @@
 		<Project File="../remote_control/RemoteControl.vpj"/>
 		<Project File="../scheduler.vpj"/>
 		<Project File="../slide_unlock/SlideUnLock.vpj"/>
+		<Project File="../Theme/Theme.vpj"/>
 		<Project File="../video_player/VideoPlayer.vpj"/>
 		<Project File="../voice_recon/VocieReco.vpj"/>
 	</Projects>

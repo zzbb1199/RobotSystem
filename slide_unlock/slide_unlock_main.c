@@ -90,7 +90,7 @@ static int init_slide()
 	line2_end.x = LCD_WIDTH;
 	line2_end.y = LINE2_START_Y + 10;
 
-	draw_image("./Image/lock_screen.bmp");
+	draw_image("./Image/lock_screen.jpg");
 
 	draw_line(line1_start, line1_end, 0xffffff);
 	draw_line(line2_start, line2_end, 0xffffff);
@@ -188,7 +188,7 @@ static int run()
 					/* 重新绘制 */
 					rect.x = 0;
 					pre_x = -1;
-					lcd_draw_bmp_with_start("./Image/lock_screen_slice.bmp", 0, LINE1_END_Y); 
+					lcd_draw_bmp_with_start("./Image/lock_screen_slice.jpg", 0, LINE1_END_Y);
 					re_draw_rect(rect);
 					isscroll = 0;
 				}

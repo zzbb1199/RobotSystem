@@ -73,7 +73,8 @@ void lcd_draw_point(unsigned int x, unsigned int y, unsigned int color)
 }
 
 #if EN_LCD_SHOW_JPG
-int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pjpg_buf, unsigned int jpg_buf_size, unsigned int jpg_half)
+int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, 
+				 char *pjpg_buf, unsigned int jpg_buf_size, unsigned int jpg_half)
 {
 //	printf("x=%d\n", x);
 	/*定义解码对象，错误处理对象*/
@@ -175,8 +176,7 @@ int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pj
 
 				/* 显示像素点 */
 				lcd_draw_point(x, y, color);
-				/* 缓存像素点颜色数据 */
-//				color_buf[y][x] = color;
+
 
 				pcolor_buf += 6;
 
@@ -187,14 +187,6 @@ int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pj
 			y++;
 			x = x_s;
 		}
-		/* 复写 */
-//		for(y = save_y; y < y_e; y++)
-//		{
-//			for(x = save_x; x < x_e; x++)
-//			{
-//				*(g_pfb_memory + y * 800 + x) = color_buf[y][x];
-//			}
-//		}
 
 	}
 	else
@@ -219,8 +211,6 @@ int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pj
 
 				/* 显示像素点 */
 				lcd_draw_point(x, y, color);
-				/* 缓存像素点颜色数据 */
-//				color_buf[y][x] = color;
 				pcolor_buf += 3;
 
 				x++;
@@ -231,15 +221,6 @@ int lcd_draw_jpg(unsigned int x, unsigned int y, const char *pjpg_path, char *pj
 
 			x = x_s;
 		}
-
-		/* 复写数据到内存映射区域 */
-//		for(y = save_y; y < y_e; y++)
-//		{
-//			for(x = save_x; x < x_e; x++)
-//			{
-//				*(g_pfb_memory + y * 800 + x) = color_buf[y][x];
-//			}
-//		}
 	}
 
 
@@ -566,7 +547,7 @@ void draw_image(char *image_path)
 	else if (strstr(image_path, "jpg"))
 	{
 		printf("jpg type\n");
-		lcd_draw_jpg(80, 0, image_path, NULL, 0, 0);
+		lcd_draw_jpg(0, 0, image_path, NULL, 0, 0);
 	}
 }
 

@@ -27,7 +27,9 @@ INCLUDE :=-I ./include/   \
 	-I ./scheduler \
 	-I ./slide_unlock \
 	-I ./video_player \
-	-I ./voice_recon
+	-I ./voice_recon \
+	-I ./theme \
+	-I ./
 
 
 CSources := $(shell find -name "*.c")
