@@ -259,14 +259,13 @@
 			Name="Source Files"
 			Filters="*.c;*.C;*.cc;*.cpp;*.cp;*.cxx;*.c++;*.prg;*.pas;*.dpr;*.asm;*.s;*.bas;*.java;*.cs;*.sc;*.scala;*.e;*.cob;*.html;*.rc;*.tcl;*.py;*.pl;*.d;*.m;*.mm;*.go;*.groovy;*.gsh"
 			GUID="{B01FAE66-88A8-43E7-872E-DE821DF2B2A5}">
-			<F N="../mylib/remote_control_main.c"/>
-			<F N="../Wifi/wifi.c"/>
+			<F N="remote_control_main.c"/>
 		</Folder>
 		<Folder
 			Name="Header Files"
 			Filters="*.h;*.H;*.hh;*.hpp;*.hxx;*.h++;*.inc;*.sh;*.cpy;*.if"
 			GUID="{9EE0C8C5-896A-4FB9-8F06-21BCDD700812}">
-			<F N="../mylib/remote_control_main.h"/>
+			<F N="remote_control_main.h"/>
 		</Folder>
 		<Folder
 			Name="Resource Files"

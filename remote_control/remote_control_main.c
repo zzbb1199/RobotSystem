@@ -11,6 +11,10 @@
 #include "api_v4l2.h"
 #include "music.h"
 #include "video.h"
+#include <sys/ioctl.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
 
 /**
  * 定义功能识别码
@@ -23,9 +27,21 @@
 #define NEXT_EVENT "MUSIC_NEXT"
 #define PLAY_OR_PAUSE "MUSIC_PLAY"
 #define LED_ON "LED_ON"
-#define LED_OFF "LED_OFFLED_OFF"
+#define LED_OFF "LED_OFF"
 #define BEEP "BEEPOFFLED_OFF"
 
+/**
+ * LED相关
+ */
+
+#define TEST_MAGIC 'x'                           //定义幻数
+#define TEST_MAX_NR 2                            //定义命令的最大序数
+
+//定义LED的魔幻数
+#define LED1 _IO(TEST_MAGIC, 0)
+#define LED2 _IO(TEST_MAGIC, 1)
+#define LED3 _IO(TEST_MAGIC, 2)
+#define LED4 _IO(TEST_MAGIC, 3)
 
 /**
  * 定义socket相关
@@ -41,10 +57,14 @@ static int addrlen  = -1; /* 地址长度 */
 
 static int is_exit = 0; /* 退出辅助变量 */
 
+static int lcd_block = 0;
+static int lcd_num =  0;
+
 
 static int is_camera_start = 0;
 static int is_music_start = 0;
 static int is_video_start = 0;
+static int is_lcd_plus_calca_start = 0;
 
 
 static pthread_t receive_thread;
@@ -52,7 +72,7 @@ static pthread_t send_camera_thread;
 static pthread_t touch_thread;
 static pthread_t music_thread;
 static pthread_t video_thread;
-
+static pthread_t lcd_thread;
 
 /***************************清除功能线程******************************************/
 static clear_func_thread()
@@ -237,6 +257,75 @@ static int my_receive(char *msg, int msg_len)
 	return ret;
 }
 
+
+
+/*******************************LCD 二进制加法器***********************************/
+static void* lcd_plus_calc_event(void *param)
+{
+	printf("=====================start lcd plus thread==================\n");
+	int fd;
+	fd = open("/dev/Led", O_RDWR);                //打开设备下的LED，成功返回0
+	if (fd < 0)
+	{
+		perror("Can not open /dev/LED\n");
+		return 0;
+	}
+
+
+	int buf[4];
+	memset(buf, 0, 4);
+	int num = lcd_num;
+	int ret = 0;
+	int step = 3;
+
+
+	ioctl(fd, LED1, 1);
+	ioctl(fd, LED2, 1);
+	ioctl(fd, LED3, 1);
+	ioctl(fd, LED4, 1); 
+
+	while (1)
+	{
+		if (!lcd_block)
+		{
+			ret = 0;
+			step = 3;
+			num = lcd_num;
+			printf("current num %d\n", num);
+			buf[0] = buf[1] = buf[2] = buf[3] = 0;
+			while (num)
+			{
+				ret = num % 2;
+				buf[step--] = ret;
+				num /= 2;
+			}
+			printf("%d %d %d %d\n", buf[0], buf[1], buf[2], buf[3]);
+			ioctl(fd, LED1, buf[0] ^ 1);
+			ioctl(fd, LED2, buf[1] ^ 1);
+			ioctl(fd, LED3, buf[2] ^ 1);
+			ioctl(fd, LED4, buf[3] ^ 1);
+			lcd_block = 1;
+		}
+
+	}
+	close(fd);
+
+
+	return (void *)0;
+}
+
+static int start_lcd_calc_thread()
+{
+	int ret = pthread_create(&lcd_thread, NULL, lcd_plus_calc_event, 0);
+	if (ret)
+	{
+		perror("create lcd thread error!");
+		return -1;
+	}
+	return 0;
+}
+
+
 /**
  * 处理接受到的信息
  * 
@@ -270,7 +359,7 @@ static int solve_msg(char *msg)
 		}
 	}
 	/* 播放音乐 */
-	else if (strstr(msg, MUSIC_PLAY)) 
+	else if (strstr(msg, MUSIC_PLAY))
 	{
 		if (!is_music_start)
 		{
@@ -336,10 +425,25 @@ static int solve_msg(char *msg)
 	}
 	/* LED_ON */
 	else if (strstr(msg, LED_ON))
-	{}
+	{
+		if (!is_lcd_plus_calca_start)
+		{
+			is_lcd_plus_calca_start = 1;
+			start_lcd_calc_thread();
+		}
+		lcd_num++;
+		if (lcd_num == 16)
+		{
+			lcd_num = 0;
+		}
+		lcd_block = 0;
+	}
 	/* LED_OFF */
 	else if (strstr(msg, LED_OFF))
-	{}
+	{
+		lcd_num = 0;
+		lcd_block = 0;
+	}
 	/* 蜂鸣器 */
 	else if (strstr(msg, BEEP))
 	{}
@@ -407,6 +511,8 @@ static void* touch_thread_event()
 	}
 	return 0;
 }
+
+
 static int init_socket()
 {
 	/* 创建socket */
@@ -484,6 +590,8 @@ static int init()
 	is_music_start = 0;
 	is_video_start = 0;
 	is_exit = 0;
+	is_lcd_plus_calca_start = 0;
+	lcd_num = 0;
 	/* 初始化线程 */
 	init_threads();
 

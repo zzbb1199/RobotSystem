@@ -2,16 +2,16 @@
 <Workspace Version="10.0" VendorName="SlickEdit">
 	<Projects>
 		<Project File="Album.vpj"/>
-		<Project File="../Camera/Camera.vpj"/>
-		<Project File="../Chat/Chat.vpj"/>
-		<Project File="../CrossLine/CrossLine.vpj"/>
-		<Project File="../GuaGuaLe/GuaGuaLe.vpj"/>
-		<Project File="../Menu/Menu.vpj"/>
-		<Project File="../MusicPlayer/MusicPlayer.vpj"/>
-		<Project File="../RemoteControl/RemoteControl.vpj"/>
-		<Project File="../Scheduler/Scheduler.vpj"/>
-		<Project File="../SlideUnLock/SlideUnLock.vpj"/>
-		<Project File="../VideoPlayer/VideoPlayer.vpj"/>
-		<Project File="../VocieReco/VocieReco.vpj"/>
+		<Project File="../camera/Camera.vpj"/>
+		<Project File="../chat/Chat.vpj"/>
+		<Project File="../cross_line/CrossLine.vpj"/>
+		<Project File="../guaguale/GuaGuaLe.vpj"/>
+		<Project File="../menu/Menu.vpj"/>
+		<Project File="../music_player/MusicPlayer.vpj"/>
+		<Project File="../remote_control/RemoteControl.vpj"/>
+		<Project File="../scheduler.vpj"/>
+		<Project File="../slide_unlock/SlideUnLock.vpj"/>
+		<Project File="../video_player/VideoPlayer.vpj"/>
+		<Project File="../voice_recon/VocieReco.vpj"/>
 	</Projects>
 </Workspace>
