@@ -268,10 +268,10 @@ static int init_sockets()
 	other_addr.sin_addr.s_addr = inet_addr(ip);
 }
 
+pthread_t sending_thread, reciving_thread;
 static int init_threads()
 {
 	/* 创建触摸屏事件thread */
-	pthread_t sending_thread, reciving_thread;
 
 	int ret1 = pthread_create(&sending_thread, NULL,
 							  sending_thread_event, 0);
@@ -289,6 +289,9 @@ static int init_threads()
 static int destory()
 {
 //	close(fd_my_socket);
+    pthread_cancel(sending_thread);
+    pthread_cancel(reciving_thread);
+
 	touch_close();
 	return 0;
 }
